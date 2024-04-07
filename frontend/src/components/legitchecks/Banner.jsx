@@ -61,7 +61,7 @@ const Banner = () => {
 
   return (
     <div
-      className={`p-14 w-full overflow-hidden h-full flex flex-col gap-48 justify-center text-white relative bg-black ${
+      className={`p-14 mt-16 w-full overflow-hidden h-full flex flex-col gap-48 justify-center text-white relative bg-black ${
         animate ? 'bg-animate' : ''
       }`}
     >
