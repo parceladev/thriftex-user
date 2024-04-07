@@ -1,11 +1,13 @@
-// eslint-disable-next-line no-unused-vars
-import React from 'react';
-
+import Jumbotron from '../../components/homes/Jumbotron';
+import Tagline from '../../components/homes/Tagline';
+import Statistic from '../../components/homes/Statistic';
 const HomePage = () => {
   return (
-    <div className="flex items-center justify-center min-h-screen">
-      <a href="/user/legit-check-form">Home Page</a>
-    </div>
+    <section className="p-16 font-sans bg-primary">
+      <Jumbotron />
+      <Tagline />
+      <Statistic />
+    </section>
   );
 };
 

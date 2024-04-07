@@ -5,7 +5,7 @@ import logo from '/src/assets/user/navbar/verifex 1.png';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BiGlobe } from 'react-icons/bi'; //BiGlobe for the globe icon
-import { IoMdMoon, IoMdSunny } from 'react-icons/io'; // IoMdMoon and IoMdSunny for dark/light icons
+import { IoMdSunny } from 'react-icons/io'; // IoMdMoon and IoMdSunny for dark/light icons
 import './Navbar.css'; // Import CSS file for custom styles
 
 const Navbar = () => {
@@ -36,7 +36,7 @@ const Navbar = () => {
 
   return (
     <div className="relative">
-      <div className="fixed z-[100] flex items-center flex-row-reverse lg:flex-row border-b top-0 left-0 border-slate-200 justify-between w-full px-10 py-2 bg-primary">
+      <div className="fixed z-50 flex items-center flex-row-reverse lg:flex-row border-b top-0 left-0 border-slate-200 justify-between w-full px-10 py-2 bg-primary">
         <div className="logo">
           <a href="#">
             <img className="w-32 h-10 " src={logo} alt="Verifex" />
@@ -72,7 +72,7 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div className="fixed z-0 items-center justify-end hidden w-full pt-16 space-x-4 shadow-md lg:flex bg-primary">
+      <div className="fixed z-40 items-center justify-end hidden w-full pt-16 space-x-4 shadow-md lg:flex bg-primary">
         <div className="flex p-4 dropdown">
           <BiGlobe className="text-xl cursor-pointer" />
           {/* Language Dropdown */}
