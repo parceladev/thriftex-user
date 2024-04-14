@@ -27,14 +27,13 @@ const FormSignIn = () => {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      const data = response.data; // With axios, you directly get `data` without needing to call `.json()`
+      const data = response.data;
       if (data.status) {
         console.log('Login Successful!', data);
-        // Optionally save the token to local storage or state management
         localStorage.setItem('token', data.token);
-        navigate('/user/home'); // Redirect to dashboard or home page after successful login
+        navigate('/user/home');
       } else {
-        setErrorMessage(data.message); // Display error message from API
+        setErrorMessage(data.message);
       }
     } catch (error) {
       console.error(

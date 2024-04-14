@@ -27,12 +27,21 @@ const Navbar = () => {
     // Logic to change theme
   };
 
-  const routes = [
-    { path: '/', name: 'Home' },
-    { path: '/user/legit-check', name: 'Legit Check' },
-    { path: '/user/about', name: 'About' },
-    { path: '/auth/sign-up', name: 'Sign Up' },
-  ];
+  const isUserLoggedIn = !!localStorage.getItem('token');
+
+  const routes = isUserLoggedIn
+    ? [
+        { path: '/', name: 'Home' },
+        { path: '/user/legit-check', name: 'Legit Check' },
+        { path: '/user/about', name: 'About' },
+        { path: '/user/profile', name: 'Profile' },
+      ]
+    : [
+        { path: '/', name: 'Home' },
+        { path: '/user/legit-check', name: 'Legit Check' },
+        { path: '/user/about', name: 'About' },
+        { path: '/auth/sign-up', name: 'Sign Up' },
+      ];
 
   return (
     <div className="relative flex flex-col">
