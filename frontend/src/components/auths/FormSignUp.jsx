@@ -60,9 +60,13 @@ const FormSignUp = () => {
         type="text"
         onChange={(e) => setName(e.target.value)}
         placeholder="Your Name"
-        className="text-black p-3"
+        className="p-4 bg-[rgba(217,217,217,0.2)] placeholder-white w-full text-white rounded-md"
       />
-      <InputEmail value={email} onChange={(e) => setEmail(e.target.value)} />
+      <InputEmail
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Your Email"
+      />
       <InputPassword
         value={password}
         onChange={(e) => setPassword(e.target.value)}
