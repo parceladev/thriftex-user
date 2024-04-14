@@ -13,7 +13,6 @@ const FormSignUp = () => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
-  // const baseApiUrl = process.env.REACT_APP_BASE_API;
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -31,7 +30,6 @@ const FormSignUp = () => {
       formData.append('role', 'user');
 
       const response = await axios.post(
-        // `${baseApiUrl}/users/register`,
         'http://localhost/rest.thriftex/api/users/register',
         formData
       );

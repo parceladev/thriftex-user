@@ -12,8 +12,6 @@ const FormSignIn = () => {
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
-  // const baseApiUrl = process.env.REACT_APP_BASE_API;
-
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -24,7 +22,6 @@ const FormSignIn = () => {
 
       const response = await axios({
         method: 'post',
-        // url: `${baseApiUrl}/users/login`,
         url: `http://localhost/rest.thriftex/api/users/login`,
         data: formData,
         headers: { 'Content-Type': 'multipart/form-data' },
