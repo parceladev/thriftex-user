@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const InputPassword = (props) => {
-  const { placeholder } = props;
+  const { placeholder, value, onChange } = props;
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -14,7 +14,9 @@ const InputPassword = (props) => {
   return (
     <div className="relative">
       <input
+        value={value}
         type={showPassword ? 'text' : 'password'}
+        onChange={onChange}
         placeholder={placeholder}
         className="p-4 bg-[rgba(217,217,217,0.2)] placeholder-white text-white w-full rounded-md"
       />
@@ -28,7 +30,9 @@ const InputPassword = (props) => {
 };
 
 InputPassword.propTypes = {
-  placeholder: PropTypes.string.isRequired, // Menandakan bahwa `placeholder` adalah prop yang diperlukan dan harus bertipe string
+  value: PropTypes.string.isRequired,
+  onChange: PropTypes.func,
+  placeholder: PropTypes.string,
 };
 
 export default InputPassword;
