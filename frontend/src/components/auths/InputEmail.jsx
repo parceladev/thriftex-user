@@ -1,7 +1,7 @@
 import { PropTypes } from 'prop-types';
 
 const InputEmail = (props) => {
-  const { value, onChange } = props;
+  const { value, onChange, placeholder } = props;
 
   return (
     <div>
@@ -9,7 +9,7 @@ const InputEmail = (props) => {
         type="email"
         value={value}
         onChange={onChange}
-        placeholder="Username or Email"
+        placeholder={placeholder}
         className="p-4 bg-[rgba(217,217,217,0.2)] placeholder-white w-full text-white rounded-md"
       />
     </div>
@@ -19,6 +19,7 @@ const InputEmail = (props) => {
 InputEmail.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  placeholder: PropTypes.string,
 };
 
 export default InputEmail;
