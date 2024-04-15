@@ -2,10 +2,11 @@ import PersonalForm from './PersonalForm';
 import SecurityForm from './SecurityForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import LogOut from './LogOut';
 
 const AccountSettings = () => {
   return (
-    <section>
+    <section className="flex flex-col">
       <div className="flex flex-col w-full">
         <div className="flex w-full gap-16">
           <PersonalForm />
@@ -17,6 +18,11 @@ const AccountSettings = () => {
             className="text-4xl text-white"
           />
         </button>
+      </div>
+      <div>
+        <div>
+          <LogOut/>
+        </div>
       </div>
     </section>
   );
