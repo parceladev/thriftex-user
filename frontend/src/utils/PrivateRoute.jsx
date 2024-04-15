@@ -5,12 +5,11 @@ const PrivateRoute = ({ element }) => {
   const token = localStorage.getItem('token');
   const isUserLoggedIn = !!token;
 
-  // Ensure the element is returned as a JSX element, not as a direct component reference
   return isUserLoggedIn ? element : <Navigate to="/auth/sign-in" replace />;
 };
 
 PrivateRoute.propTypes = {
-  element: PropTypes.element.isRequired,
+  element: PropTypes.node.isRequired,
 };
 
 export default PrivateRoute;
