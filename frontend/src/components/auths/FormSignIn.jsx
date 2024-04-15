@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { saveToken, validateToken } from '../../utils/TokenUtilities';
 
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
@@ -20,45 +21,31 @@ const FormSignIn = () => {
       formData.append('email', email);
       formData.append('password', password);
 
-      const response = await axios({
-        method: 'post',
-        url: `http://localhost/rest.thriftex/api/users/login`,
-        data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+      const response = await axios.post(
+        'http://localhost/rest.thriftex/api/users/login',
+        formData,
+        {
+          headers: { 'Content-Type': 'multipart/form-data' },
+        }
+      );
 
       const data = response.data;
       if (data.status) {
-        console.log('Login Successful!', data);
-        localStorage.setItem('token', data.token);
+        saveToken(data.token);
 
-        const token = localStorage.getItem('token');
-        const decodeToken = (token) => {
-          try {
-            const base64Url = token.split('.')[1]; // Ambil bagian payload token
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); // Ganti karakter sesuai dengan Base64
-            const jsonPayload = decodeURIComponent(
-              atob(base64)
-                .split('')
-                .map((c) => {
-                  return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                })
-                .join('')
+        const validation = validateToken(data.token);
+        if (validation.valid) {
+          console.log('Token is valid:', validation.decoded);
+          if (validation.decoded.role === 'user') {
+            navigate('/user/home');
+          } else {
+            console.error(
+              'Access denied for user role:',
+              validation.decoded.role
             );
-
-            return JSON.parse(jsonPayload);
-          } catch (error) {
-            console.error('Error decoding token:', error);
-            return null;
           }
-        };
-        const decodedToken = decodeToken(token);
-        console.log(decodedToken);
-
-        if (decodedToken.role == 'user') {
-          navigate('/user/home');
         } else {
-          // Blacklist User
+          setErrorMessage('Invalid or expired token');
         }
       } else {
         setErrorMessage(data.message);

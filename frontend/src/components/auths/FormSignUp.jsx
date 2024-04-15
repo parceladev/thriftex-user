@@ -21,9 +21,8 @@ const FormSignUp = () => {
       return;
     }
     try {
-      // Create an instance of FormData
       const formData = new FormData();
-      formData.append('nama', name); // Make sure to use 'nama' if that's the correct field name expected by your API
+      formData.append('nama', name);
       formData.append('email', email);
       formData.append('password', password);
       formData.append('passconf', confirmPassword);
@@ -33,7 +32,7 @@ const FormSignUp = () => {
         'http://localhost/rest.thriftex/api/users/register',
         formData
       );
-      const data = response.data; // With axios, you directly get `data` without needing to call `.json()`
+      const data = response.data;
 
       if (data.status) {
         // Handle success

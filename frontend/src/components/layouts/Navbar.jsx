@@ -7,6 +7,7 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import { BiGlobe } from 'react-icons/bi'; //BiGlobe for the globe icon
 import { IoMdSunny } from 'react-icons/io'; // IoMdMoon and IoMdSunny for dark/light icons
 import './Navbar.css'; // Import CSS file for custom styles
+import { getToken } from '../../utils/TokenUtilities';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +28,7 @@ const Navbar = () => {
     // Logic to change theme
   };
 
-  const isUserLoggedIn = !!localStorage.getItem('token');
+  const isUserLoggedIn = getToken();
 
   const routes = isUserLoggedIn
     ? [
