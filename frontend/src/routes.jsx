@@ -2,6 +2,7 @@ import {
   HomePage,
   LegitCheckPage,
   AboutPage,
+  ProfilePage,
   LegitCheckFormPage,
 } from './pages/user';
 import { SignInPage, SignUpPage } from './pages/auth';
@@ -12,27 +13,27 @@ export const routes = [
     layout: 'UserLayout',
     pages: [
       {
-        name: 'Home Page',
-        path: '/',
-        element: <HomePage />,
-      },
-      {
-        name: 'Home Page',
+        name: 'Home',
         path: '/home',
         element: <HomePage />,
       },
       {
-        name: 'Legit Check Page',
+        name: 'Legit Check',
         path: '/legit-check',
         element: <LegitCheckPage />,
       },
       {
-        name: 'About Page',
+        name: 'About',
         path: '/about',
         element: <AboutPage />,
       },
       {
-        name: 'About Page',
+        name: 'Profile',
+        path: '/profile',
+        element: <ProfilePage />,
+      },
+      {
+        name: 'Form Legit Check',
         path: '/legit-check-form',
         element: <LegitCheckFormPage />,
       },

@@ -27,14 +27,41 @@ const FormSignIn = () => {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
-      const data = response.data; // With axios, you directly get `data` without needing to call `.json()`
+      const data = response.data;
       if (data.status) {
         console.log('Login Successful!', data);
-        // Optionally save the token to local storage or state management
         localStorage.setItem('token', data.token);
-        navigate('/user/home'); // Redirect to dashboard or home page after successful login
+
+        const token = localStorage.getItem('token');
+        const decodeToken = (token) => {
+          try {
+            const base64Url = token.split('.')[1]; // Ambil bagian payload token
+            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); // Ganti karakter sesuai dengan Base64
+            const jsonPayload = decodeURIComponent(
+              atob(base64)
+                .split('')
+                .map((c) => {
+                  return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+                })
+                .join('')
+            );
+
+            return JSON.parse(jsonPayload);
+          } catch (error) {
+            console.error('Error decoding token:', error);
+            return null;
+          }
+        };
+        const decodedToken = decodeToken(token);
+        console.log(decodedToken);
+
+        if (decodedToken.role == 'user') {
+          navigate('/user/home');
+        } else {
+          // Blacklist User
+        }
       } else {
-        setErrorMessage(data.message); // Display error message from API
+        setErrorMessage(data.message);
       }
     } catch (error) {
       console.error(
