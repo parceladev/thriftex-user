@@ -3,15 +3,13 @@ import Cookies from 'js-cookie';
 const saveToken = (token) => {
   Cookies.set('token', token, {
     expires: 30, // Expires 30 Days
-    secure: true,
-    sameSite: 'Strict',
+    secure: true, // Only send the cookie over HTTPS.
+    sameSite: 'Strict', // Strict sameSite policy.
   });
-  updateTokenTimestamp();
 };
 
 const deleteToken = () => {
   Cookies.remove('token');
-  Cookies.remove('token_timestamp');
 };
 
 const getToken = () => {
@@ -48,13 +46,11 @@ const decodeToken = (token) => {
 };
 
 const validateToken = () => {
-  const token = Cookies.get('token');
+  const token = getToken();
   if (!token) return { valid: false };
 
   const decoded = decodeToken(token);
-  if (!decoded) {
-    return { valid: false };
-  }
+  if (!decoded) return { valid: false };
 
   const now = Date.now() / 1000;
   if (decoded.exp < now) {

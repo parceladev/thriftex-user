@@ -1,7 +1,8 @@
+import { getToken } from '../../utils/TokenUtilities';
 import styles from './../../styles';
 
 const ButtonFormLegit = () => {
-  const isUserLoggedIn = !!localStorage.getItem('token');
+  const isUserLoggedIn = !!getToken();
 
   return (
     <div
