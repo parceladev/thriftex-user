@@ -31,7 +31,11 @@ const FormSignIn = () => {
 
       const data = response.data;
       if (data.status) {
-        saveToken(data.token);
+        if (!data.token) {
+          console.error('Token is undefined or null.');
+        } else {
+          saveToken(data.token);
+        }
 
         const validation = validateToken(data.token);
         if (validation.valid) {

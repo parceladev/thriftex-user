@@ -1,6 +1,9 @@
 import Cookies from 'js-cookie';
 
 const saveToken = (token) => {
+  if (!token) {
+    return;
+  }
   Cookies.set('token', token, {
     expires: 30, // Expires 30 Days
     secure: true, // Only send the cookie over HTTPS.
@@ -14,15 +17,6 @@ const deleteToken = () => {
 
 const getToken = () => {
   return Cookies.get('token');
-};
-
-const updateTokenTimestamp = () => {
-  const now = new Date();
-  Cookies.set('token_timestamp', now.getTime().toString(), {
-    expires: 30, // Expires 30 Days
-    secure: true,
-    sameSite: 'Strict',
-  });
 };
 
 const decodeToken = (token) => {
@@ -62,11 +56,4 @@ const validateToken = () => {
   return { valid: true, decoded };
 };
 
-export {
-  saveToken,
-  getToken,
-  deleteToken,
-  decodeToken,
-  validateToken,
-  updateTokenTimestamp,
-};
+export { saveToken, getToken, deleteToken, decodeToken, validateToken };
