@@ -12,7 +12,7 @@ const LegitCheckPage = () => {
         <Banner />
       </section>
       <section className="flex flex-col gap-10 m-12">
-        <h2 className="text-3xl uppercase">Track Your Legit Check</h2>
+        <h2 className="text-3xl uppercase">Track a Legit Check</h2>
         <div className="flex gap-5">
           <SearchProduct />
           <ButtonFormLegit />
