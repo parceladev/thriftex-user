@@ -1,44 +1,17 @@
-import { useState, useEffect } from 'react';
-import { decodeToken, getToken } from '../../utils/TokenUtilities';
+import { useState } from 'react';
 import InputForm from './InputForm';
+import { PropTypes } from 'prop-types';
 
-const SecurityForm = () => {
-  const [userData, setUserData] = useState({
-    email: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
-  });
-
+const SecurityForm = (props) => {
+  const { userData, handleInputChange } = props;
   const [showChangePassword, setShowChangePassword] = useState(false);
-
-  useEffect(() => {
-    const token = getToken();
-    if (token) {
-      const decoded = decodeToken(token);
-      if (decoded) {
-        setUserData((prevUserData) => ({
-          ...prevUserData,
-          email: decoded.email || '',
-        }));
-      }
-    }
-  }, []);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
 
   const toggleChangePassword = () => {
     setShowChangePassword(!showChangePassword);
   };
 
   return (
-    <form action="" className="flex flex-col w-full gap-5">
+    <div action="" className="flex flex-col w-full gap-5">
       <h1 className="mb-8 text-2xl font-semibold">Security</h1>
       <InputForm
         label="Email"
@@ -61,9 +34,10 @@ const SecurityForm = () => {
           htmlFor="password"
           placeholder="Your Password"
           isRequired="none"
-          value={userData.oldPassword}
+          value="encrypted password"
           onChange={handleInputChange}
-          readOnly={false}
+          readOnly={true}
+          className="bg-gray-100"
         />
       )}
       {showChangePassword && (
@@ -100,14 +74,14 @@ const SecurityForm = () => {
             htmlFor="confirm-new-password"
             placeholder="Confirm Your New Password"
             isRequired="required"
-            value={userData.newConfirmPassword}
+            value={userData.confirmNewPassword}
             onChange={handleInputChange}
             readOnly={false}
           />
           <button
             onClick={toggleChangePassword}
             type="button"
-            className="px-4 w-fit py-2 text-lg text-gray-600 bg-white border rounded-sm hover:bg-gray-100"
+            className="px-4 py-2 text-lg text-gray-600 bg-white border rounded-sm w-fit hover:bg-gray-100"
           >
             Cancel
           </button>
@@ -122,8 +96,18 @@ const SecurityForm = () => {
           Change Password
         </a>
       )}
-    </form>
+    </div>
   );
+};
+
+SecurityForm.propTypes = {
+  userData: PropTypes.shape({
+    email: PropTypes.string,
+    oldPassword: PropTypes.string,
+    newPassword: PropTypes.string,
+    confirmNewPassword: PropTypes.string,
+  }).isRequired,
+  handleInputChange: PropTypes.func.isRequired,
 };
 
 export default SecurityForm;

@@ -1,62 +1,11 @@
-import { useState, useEffect } from 'react';
-import { decodeToken, getToken } from '../../utils/TokenUtilities';
 import InputForm from './InputForm';
-import updateProfile from './../../utils/profile-api-service';
+import { PropTypes } from 'prop-types';
 
-const PersonalForm = () => {
-  const [userData, setUserData] = useState({
-    username: '',
-    name: '',
-    phoneNumber: '',
-    gender: '',
-  });
-
-  useEffect(() => {
-    const token = getToken();
-    if (token) {
-      const decoded = decodeToken(token);
-      if (decoded) {
-        setUserData((prevUserData) => {
-          // Cek jika data yang didapat dari token berbeda dari state saat ini
-          if (
-            prevUserData.username !== decoded.username ||
-            prevUserData.name !== decoded.nama ||
-            prevUserData.phoneNumber !== decoded.no_hp ||
-            prevUserData.gender !== decoded.jenis_kelamin
-          ) {
-            return {
-              username: decoded.username || '',
-              name: decoded.nama || '',
-              phoneNumber: decoded.no_hp || '',
-              gender: decoded.jenis_kelamin || '',
-            };
-          }
-          return prevUserData; // Jika tidak ada perubahan, kembalikan state yang lama
-        });
-      }
-    }
-  }, []);
-
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await updateProfile(userData);
-    } catch (error) {
-      alert('Failed to update profile.');
-      console.error('Profile update error:', error);
-    }
-  };
-
+const PersonalForm = (props) => {
+  const { userData, handleInputChange } = props;
+  
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col w-full gap-5">
+    <div className="flex flex-col w-full gap-5">
       <h1 className="mb-8 text-2xl font-semibold">Personal Information</h1>
       <div className="flex items-center justify-center w-20 h-20 border-2 border-black rounded-full bg-slate-300">
         <img
@@ -117,8 +66,18 @@ const PersonalForm = () => {
         <option value="female">Female</option>
         <option value="other">Other</option>
       </InputForm>
-    </form>
+    </div>
   );
+};
+
+PersonalForm.propTypes = {
+  userData: PropTypes.shape({
+    username: PropTypes.string,
+    name: PropTypes.string,
+    phoneNumber: PropTypes.string,
+    gender: PropTypes.string,
+  }).isRequired,
+  handleInputChange: PropTypes.func.isRequired,
 };
 
 export default PersonalForm;

@@ -1,22 +1,23 @@
 import axios from 'axios';
 import { getToken } from './TokenUtilities';
 
+const API_BASE_URL = 'http://localhost/rest.thriftex/api';
+
 const updateProfile = async (userData) => {
   const token = getToken();
   const formData = new FormData();
 
-  // Menambahkan semua properti userData ke formData
   Object.keys(userData).forEach((key) => {
     formData.append(key, userData[key]);
   });
 
   try {
-    const response = await axios.put(
-      'https://your-api-url.com/updateProfile',
+    const response = await axios.post(
+      `${API_BASE_URL}/users/updateuserprofile`,
       formData,
       {
         headers: {
-          'Content-Type': 'multipart/form-data', 
+          'Content-Type': 'multipart/form-data',
           Authorization: `Bearer ${token}`,
         },
       }
@@ -24,7 +25,6 @@ const updateProfile = async (userData) => {
 
     if (response.status === 200) {
       alert('Profile updated successfully!');
-      // Lakukan tindakan lain jika diperlukan, misal redirect atau update UI
     } else {
       alert('Failed to update profile. Please try again.');
     }
