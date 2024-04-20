@@ -3,3 +3,4 @@ export { default as LegitCheckPage } from './LegitCheckPage.jsx';
 export { default as AboutPage } from './AboutPage.jsx';
 export { default as ProfilePage } from './ProfilePage.jsx';
 export { default as LegitCheckFormPage } from './LegitCheckFormPage.jsx';
+export { default as ContactUsPage } from './ContactUsPage.jsx';

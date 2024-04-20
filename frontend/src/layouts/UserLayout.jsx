@@ -4,30 +4,28 @@ import LegitCheckPage from '../pages/user/LegitCheckPage';
 import AboutPage from '../pages/user/AboutPage';
 import ProfilePage from '../pages/user/ProfilePage';
 import LegitCheckFormPage from '../pages/user/LegitCheckFormPage';
+import ContactUsPage  from '../pages/user/ContactUsPage';
 import { Navbar, Footer } from './../components/layouts';
 import routes from './../routes';
 import PrivateRoute from './../utils/PrivateRoute';
 
 export function UserLayout() {
   return (
-    <div>
+    <div className="flex flex-col min-h-screen">
       <Navbar routes={routes} />
-      <div>
-        <Routes>
-          <Route path="home" element={<HomePage />} />
-          <Route path="legit-check" element={<LegitCheckPage />} />
-          <Route path="about" element={<AboutPage />} />
-          <Route
-            path="profile"
-            element={<PrivateRoute element={<ProfilePage />} />}
-          />
-          <Route
-            path="legit-check-form"
-            element={<PrivateRoute element={<LegitCheckFormPage />} />}
-          />
-        </Routes>
-      </div>
-      <Footer />
+      {/* Elemen Routes harus berada dalam satu blok */}
+      <main className="flex-grow">
+      <Routes>
+        <Route path="home" element={<HomePage />} />
+        <Route path="legit-check" element={<LegitCheckPage />} />
+        <Route path="about" element={<AboutPage />} />
+        <Route path="profile" element={<PrivateRoute element={<ProfilePage />} />} />
+        <Route path="legit-check-form" element={<PrivateRoute element={<LegitCheckFormPage />} />} />
+        <Route path="contact-us" element={<ContactUsPage />} />
+        {/* Tambahkan Route lain jika diperlukan */}
+      </Routes>
+      </main>
+      <Footer routes={routes}/>
     </div>
   );
 }

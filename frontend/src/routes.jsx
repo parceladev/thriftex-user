@@ -4,6 +4,7 @@ import {
   AboutPage,
   ProfilePage,
   LegitCheckFormPage,
+  ContactUsPage,
 } from './pages/user';
 import { SignInPage, SignUpPage } from './pages/auth';
 
@@ -36,6 +37,11 @@ export const routes = [
         name: 'Form Legit Check',
         path: '/legit-check-form',
         element: <LegitCheckFormPage />,
+      },
+      {
+        name: 'Contact Us',
+        path: "/contact-us",
+        element: <ContactUsPage />,
       },
     ],
   },
