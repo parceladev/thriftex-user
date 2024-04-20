@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { saveToken, validateToken } from '../../utils/TokenUtilities';
+import { signIn } from '../../utils/auth-api-service';
 
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
@@ -12,51 +11,40 @@ const FormSignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('password', password);
 
-      const response = await axios.post(
-        'http://localhost/rest.thriftex/api/users/login',
-        formData,
-        {
-          headers: { 'Content-Type': 'multipart/form-data' },
-        }
-      );
-
-      const data = response.data;
-      if (data.status) {
-        saveToken(data.token);
-
-        const validation = validateToken(data.token);
-        if (validation.valid) {
-          console.log('Token is valid:', validation.decoded);
-          if (validation.decoded.role === 'user') {
-            navigate('/user/home');
-          } else {
-            console.error(
-              'Access denied for user role:',
-              validation.decoded.role
-            );
-          }
-        } else {
-          setErrorMessage('Invalid or expired token');
-        }
-      } else {
-        setErrorMessage(data.message);
-      }
-    } catch (error) {
-      console.error(
-        'Login Error:',
-        error.response ? error.response.data : error
-      );
-      setErrorMessage('Login failed. Please try again.');
+    if (!email || !password) {
+      handleError('Both email and password are required.');
+      return;
     }
+
+    const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailPattern.test(email)) {
+      handleError('Please enter a valid email address.');
+      return;
+    }
+
+    if (password.length < 8) {
+      handleError('Password must be at least 8 characters long.');
+      return;
+    }
+
+    signIn(email, password, handleError, handleSuccess);
+  };
+
+  const handleSuccess = () => {
+    setSuccessMessage('Registration Successful. Redirecting to sign in...');
+    setTimeout(() => {
+      navigate('/user/home');
+    }, 3000);
+  };
+
+  const handleError = (message) => {
+    setErrorMessage(message);
   };
 
   return (
@@ -78,7 +66,10 @@ const FormSignIn = () => {
         placeholder="Your Password"
       />
       {errorMessage && (
-        <p className="mb-2 text-sm text-red-500">{errorMessage}</p>
+        <p className="mt-2 text-center text-red-500">{errorMessage}</p>
+      )}
+      {successMessage && (
+        <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
       <a href="#" className="mb-4 text-sm font-bold">
         Forgot password?
