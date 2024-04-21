@@ -23,7 +23,6 @@ const AccountSettings = () => {
     const token = getAccessToken();
     if (token) {
       const decoded = decodeToken(token);
-      console.log(decoded);
       if (decoded) {
         setUserData({
           username: decoded.username || '',
@@ -49,9 +48,10 @@ const AccountSettings = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     const updatedUserData = {
-      nama: userData.name,
       username: userData.username,
+      nama: userData.name,
       no_hp: userData.phoneNumber,
       jenis_kelamin: userData.gender,
       email: userData.email,
@@ -62,11 +62,13 @@ const AccountSettings = () => {
 
     try {
       const result = await updateProfile(updatedUserData);
+      console.log('result: ', result);
       if (result.success) {
         setUserData(result.user);
         alert('Profile updated successfully!');
       } else {
-        alert('Failed to update profile. Please try again.');
+        // alert('Failed to update profile. Please try again.');
+        alert(`Failed to update profile: ${result.message}`);
       }
     } catch (error) {
       console.error('Error updating profile:', error);

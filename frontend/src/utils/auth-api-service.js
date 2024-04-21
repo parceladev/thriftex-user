@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { getAccessToken, saveToken, validateToken } from './token-utilities';
+import { useNavigate } from 'react-router-dom';
+import { deleteToken, saveToken, validateToken } from './token-utilities';
 
 const API_BASE_URL = 'http://localhost/rest.thriftex/api';
 
@@ -51,7 +52,6 @@ export const signIn = async (email, password, setError) => {
 
         // Validate the new token
         const validationResult = await validateToken();
-        console.log(validationResult);
         if (validationResult.valid) {
           // Token is valid, return the successful login data
           return { data };
@@ -69,34 +69,13 @@ export const signIn = async (email, password, setError) => {
   }
 };
 
-// Fungsi untuk mengatur pesan error berdasarkan respons server
-// function handleErrorResponse(message, setError) {
-//   if (message.includes('Incorrect password')) {
-//     setError('The password you entered is incorrect.');
-//   } else if (message.includes('User not found')) {
-//     setError('No account associated with this email.');
-//   } else {
-//     setError(message);
-//   }
-// }
+export const useLogout = () => {
+  const navigate = useNavigate();
 
-// Fungsi untuk refresh token
-export const refreshToken = async () => {
-  try {
-    const currentToken = getAccessToken();
-    const response = await axios.post(`${API_BASE_URL}/users/refresh`, {
-      token: currentToken,
-    });
+  const logout = () => {
+    deleteToken();  // Menghapus token dari penyimpanan
+    navigate('/auth/sign-in');  // Navigasi ke halaman login
+  };
 
-    if (response.data.status && response.data.token) {
-      // Menyimpan token baru jika refresh token berhasil
-      saveToken(response.data.token);
-      return { valid: true, token: response.data.token };
-    } else {
-      return { valid: false };
-    }
-  } catch (error) {
-    console.error('Error refreshing token:', error);
-    return { valid: false };
-  }
+  return logout;
 };

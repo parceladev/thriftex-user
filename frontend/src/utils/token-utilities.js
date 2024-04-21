@@ -25,7 +25,7 @@ const getRefreshToken = () => Cookies.get('refresh_token');
 
 // Menghapus token dan refresh token
 const deleteToken = () => {
-  Cookies.remove('token');
+  Cookies.remove('access_token');
   Cookies.remove('refresh_token');
 };
 
@@ -47,7 +47,6 @@ const decodeToken = (token) => {
   }
 };
 
-// Memperbarui token jika token sudah kedaluwarsa
 const refreshToken = async () => {
   const currentRefreshToken = getRefreshToken();
   if (!currentRefreshToken) {
@@ -56,21 +55,30 @@ const refreshToken = async () => {
   }
 
   try {
-    const response = await axios.post(`${API_BASE_URL}/users/refresh_token`, {
-      refreshToken: currentRefreshToken,
-    });
+    const response = await axios.post(
+      `${API_BASE_URL}/users/refresh_token`,
+      {
+        refreshToken: currentRefreshToken,
+      },
+      {
+        timeout: 5000, 
+      }
+    );
 
     const { data } = response;
     if (data.status) {
       saveToken(data.accessToken, data.refreshToken);
       return true;
     } else {
-      deleteToken();
+      // Only delete tokens if explicitly stated by the server, e.g., token is invalid
+      if (data.tokenInvalid) {
+        deleteToken();
+      }
       return false;
     }
   } catch (error) {
     console.error('Error refreshing token:', error);
-    deleteToken();
+    // Consider not deleting the token here unless you're sure it's invalid
     return false;
   }
 };
