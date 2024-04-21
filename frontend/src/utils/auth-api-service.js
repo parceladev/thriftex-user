@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { saveToken, validateToken } from './TokenUtilities';
+import { saveToken, validateToken } from './token-utilities';
 
 const API_BASE_URL = 'http://localhost/rest.thriftex/api';
 

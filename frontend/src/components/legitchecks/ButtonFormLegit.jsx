@@ -1,4 +1,4 @@
-import { getToken } from '../../utils/TokenUtilities';
+import { getToken } from '../../utils/token-utilities';
 import styles from './../../styles';
 
 const ButtonFormLegit = () => {
