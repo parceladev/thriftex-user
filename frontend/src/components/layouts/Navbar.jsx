@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import logo from '/src/assets/user/navbar/verifex 1.png';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
-import { BiGlobe } from 'react-icons/bi'; //BiGlobe for the globe icon
-import { IoMdSunny } from 'react-icons/io'; // IoMdMoon and IoMdSunny for dark/light icons
-import './Navbar.css'; // Import CSS file for custom styles
-import { getToken } from '../../utils/TokenUtilities';
+import { BiGlobe } from 'react-icons/bi';
+import { IoMdSunny } from 'react-icons/io';
+import './Navbar.css';
+import { getToken } from '../../utils/token-utilities';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

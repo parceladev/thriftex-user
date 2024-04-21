@@ -5,7 +5,7 @@ import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import LogOut from './LogOut';
 import updateProfile from './../../utils/profile-api-service';
 import { useState, useEffect } from 'react';
-import { decodeToken, getToken } from '../../utils/TokenUtilities';
+import { decodeToken, getToken } from '../../utils/token-utilities';
 
 const AccountSettings = () => {
   const [userData, setUserData] = useState({
