@@ -1,11 +1,11 @@
+import { useState, useEffect } from 'react';
 import PersonalForm from './PersonalForm';
 import SecurityForm from './SecurityForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import LogOut from './LogOut';
-import updateProfile from './../../utils/profile-api-service';
-import { useState, useEffect } from 'react';
-import { decodeToken, getToken } from '../../utils/token-utilities';
+import updateProfile from '../../utils/profile-api-service';
+import { decodeToken, getAccessToken } from '../../utils/token-utilities';
 
 const AccountSettings = () => {
   const [userData, setUserData] = useState({
@@ -20,27 +20,20 @@ const AccountSettings = () => {
   });
 
   useEffect(() => {
-    const token = getToken();
+    const token = getAccessToken();
     if (token) {
       const decoded = decodeToken(token);
+      console.log(decoded);
       if (decoded) {
-        setUserData((prevUserData) => {
-          if (
-            prevUserData.username !== decoded.username ||
-            prevUserData.name !== decoded.nama ||
-            prevUserData.phoneNumber !== decoded.no_hp ||
-            prevUserData.gender !== decoded.jenis_kelamin ||
-            prevUserData.email !== decoded.email
-          ) {
-            return {
-              username: decoded.username || '',
-              name: decoded.nama || '',
-              phoneNumber: decoded.no_hp || '',
-              gender: decoded.jenis_kelamin || '',
-              email: decoded.email || '',
-            };
-          }
-          return prevUserData;
+        setUserData({
+          username: decoded.username || '',
+          name: decoded.nama || '',
+          phoneNumber: decoded.no_hp || '',
+          gender: decoded.jenis_kelamin || '',
+          email: decoded.email || '',
+          oldPassword: '',
+          newPassword: '',
+          confirmNewPassword: '',
         });
       }
     }
@@ -56,19 +49,30 @@ const AccountSettings = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const updatedUserData = {
+      nama: userData.name,
+      username: userData.username,
+      no_hp: userData.phoneNumber,
+      jenis_kelamin: userData.gender,
+      email: userData.email,
+      old_password: userData.oldPassword,
+      password: userData.newPassword,
+      passconf: userData.confirmNewPassword,
+    };
+
     try {
-      await updateProfile({
-        nama: userData.name,
-        username: userData.username,
-        no_hp: userData.phoneNumber,
-        jenis_kelamin: userData.gender,
-        email: userData.email,
-        old_password: userData.oldPassword,
-        password: userData.newPassword,
-        passconf: userData.confirmNewPassword,
-      });
+      const result = await updateProfile(updatedUserData);
+      if (result.success) {
+        setUserData(result.user);
+        alert('Profile updated successfully!');
+      } else {
+        alert('Failed to update profile. Please try again.');
+      }
     } catch (error) {
-      console.log(error);
+      console.error('Error updating profile:', error);
+      alert(
+        'Error updating profile. Please check your connection and try again.'
+      );
     }
   };
 
@@ -96,9 +100,7 @@ const AccountSettings = () => {
         </button>
       </form>
       <div>
-        <div>
-          <LogOut />
-        </div>
+        <LogOut />
       </div>
     </section>
   );

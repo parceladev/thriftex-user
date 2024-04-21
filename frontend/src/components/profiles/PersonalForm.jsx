@@ -3,7 +3,7 @@ import { PropTypes } from 'prop-types';
 
 const PersonalForm = (props) => {
   const { userData, handleInputChange } = props;
-  
+
   return (
     <div className="flex flex-col w-full gap-5">
       <h1 className="mb-8 text-2xl font-semibold">Personal Information</h1>
