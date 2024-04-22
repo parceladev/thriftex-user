@@ -9,6 +9,7 @@ import { decodeToken, getAccessToken } from '../../utils/token-utilities';
 
 const AccountSettings = () => {
   const [userData, setUserData] = useState({
+    // photo: '',
     username: '',
     name: '',
     phoneNumber: '',
@@ -25,6 +26,7 @@ const AccountSettings = () => {
       const decoded = decodeToken(token);
       if (decoded) {
         setUserData({
+          // photo: decoded.foto || '',
           username: decoded.username || '',
           name: decoded.nama || '',
           phoneNumber: decoded.no_hp || '',
@@ -50,6 +52,7 @@ const AccountSettings = () => {
     event.preventDefault();
 
     const updatedUserData = {
+      // foto: userData.photo,
       username: userData.username,
       nama: userData.name,
       no_hp: userData.phoneNumber,
@@ -60,21 +63,14 @@ const AccountSettings = () => {
       passconf: userData.confirmNewPassword,
     };
 
-    try {
-      const result = await updateProfile(updatedUserData);
-      console.log('result: ', result);
-      if (result.success) {
-        setUserData(result.user);
-        alert('Profile updated successfully!');
-      } else {
-        // alert('Failed to update profile. Please try again.');
-        alert(`Failed to update profile: ${result.message}`);
-      }
-    } catch (error) {
-      console.error('Error updating profile:', error);
-      alert(
-        'Error updating profile. Please check your connection and try again.'
-      );
+    const result = await updateProfile(updatedUserData);
+    if (result.success) {
+      setUserData(result.user);
+      alert('Profile updated successfully!');
+    } else {
+      const message =
+        result.message || 'Failed to update profile. Please try again.';
+      alert(message);
     }
   };
 
