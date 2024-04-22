@@ -1,8 +1,8 @@
-import { getToken } from '../../utils/token-utilities';
+import { getAccessToken } from '../../utils/token-utilities';
 import styles from './../../styles';
 
 const ButtonFormLegit = () => {
-  const isUserLoggedIn = !!getToken();
+  const isUserLoggedIn = !!getAccessToken();
 
   return (
     <div

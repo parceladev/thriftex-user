@@ -1,14 +1,36 @@
 import axios from 'axios';
-import { getToken } from './token-utilities';
+import {
+  getAccessToken,
+  getRefreshToken,
+  decodeToken,
+  saveToken,
+} from './token-utilities';
 
 const API_BASE_URL = 'http://localhost/rest.thriftex/api';
 
-const updateProfile = async (userData) => {
-  const token = getToken();
-  const formData = new FormData();
+const updateProfile = async (updatedUserData) => {
+  const tokenValid = getRefreshToken();
+  if (!tokenValid) {
+    alert('Session has expired. Please log in again.');
+    return { success: false, message: 'Session expired' };
+  }
 
-  Object.keys(userData).forEach((key) => {
-    formData.append(key, userData[key]);
+  const token = getAccessToken();
+  if (!token) {
+    console.error('No access token available after refresh.');
+    alert('You are not logged in. Please log in and try again.');
+    return { success: false, message: 'Not logged in' };
+  }
+
+  const formData = new FormData();
+  const sanitizeInput = (input) => {
+    // eslint-disable-next-line no-control-regex
+    return input.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+  };
+
+  Object.keys(updatedUserData).forEach((key) => {
+    const sanitizedValue = sanitizeInput(updatedUserData[key]);
+    formData.append(key, sanitizedValue);
   });
 
   try {
@@ -18,21 +40,26 @@ const updateProfile = async (userData) => {
       {
         headers: {
           'Content-Type': 'multipart/form-data',
-          Authorization: `Bearer ${token}`,
+          Authorization: `${token}`,
         },
       }
     );
 
-    if (response.status === 200) {
-      alert('Profile updated successfully!');
+    if (response.status) {
+      if (response.data.access_token) {
+        saveToken(response.data.access_token, response.data.refresh_token);
+      }
+
+      const decoded = decodeToken(response.data.access_token || token);
+      return { success: true, user: decoded };
     } else {
-      alert('Failed to update profile. Please try again.');
+      return { success: false, message: response.data.message };
     }
   } catch (error) {
-    console.error('Error updating profile:', error);
     alert(
       'Error updating profile. Please check your connection and try again.'
     );
+    return { success: false, error };
   }
 };
 

@@ -4,8 +4,29 @@ import {
   SearchProduct,
   Banner,
 } from '../../components/legitchecks';
+import { fetchLegitPublish } from '../../utils/legit-api-service';
+import { useEffect, useState } from 'react';
 
 const LegitCheckPage = () => {
+  const [legitData, setLegitData] = useState([]);
+
+  useEffect(() => {
+    const getLegitData = async () => {
+      try {
+        const data = await fetchLegitPublish();
+        if (data.status) {
+          setLegitData(data.data);
+        } else {
+          // Handle jika status false
+        }
+      } catch (error) {
+        // Handle error
+      }
+    };
+
+    getLegitData();
+  }, []);
+
   return (
     <div>
       <section className="h-screen w-full,">
@@ -18,18 +39,9 @@ const LegitCheckPage = () => {
           <ButtonFormLegit />
         </div>
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
-          <CardProduct />
+          {legitData.map((product) => (
+            <CardProduct key={product.id} product={product} />
+          ))}
         </div>
       </section>
     </div>

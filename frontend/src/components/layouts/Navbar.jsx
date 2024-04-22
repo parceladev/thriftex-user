@@ -7,7 +7,7 @@ import { FiMenu, FiX } from 'react-icons/fi';
 import { BiGlobe } from 'react-icons/bi';
 import { IoMdSunny } from 'react-icons/io';
 import './Navbar.css';
-import { getToken } from '../../utils/token-utilities';
+import { getAccessToken } from '../../utils/token-utilities';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -28,7 +28,7 @@ const Navbar = () => {
     // Logic to change theme
   };
 
-  const isUserLoggedIn = getToken();
+  const isUserLoggedIn = getAccessToken();
 
   const routes = isUserLoggedIn
     ? [

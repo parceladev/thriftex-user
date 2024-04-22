@@ -1,5 +1,6 @@
 import axios from 'axios';
-import { saveToken, validateToken } from './token-utilities';
+import { useNavigate } from 'react-router-dom';
+import { deleteToken, saveToken, validateToken } from './token-utilities';
 
 const API_BASE_URL = 'http://localhost/rest.thriftex/api';
 
@@ -30,41 +31,51 @@ export const signUp = async (userData, onSuccess, onError) => {
   }
 };
 
-export const signIn = async (email, password, setError, navigate) => {
+export const signIn = async (email, password, setError) => {
   try {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
 
+    // Mencoba sign in dan mendapatkan token
     const response = await axios.post(`${API_BASE_URL}/users/login`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
 
     const data = response.data;
     if (data.status) {
-      if (!data.token) {
+      if (!data.access_token) {
         console.error('Token is undefined or null.');
-        setError('No token received');
+        return { error: 'No token received' };
       } else {
-        saveToken(data.token);
-        const validation = validateToken(data.token);
-        if (validation.valid) {
-          navigate('/user/home');
+        saveToken(data.access_token, data.refresh_token);
+
+        // Validate the new token
+        const validationResult = await validateToken();
+        if (validationResult.valid) {
+          // Token is valid, return the successful login data
+          return { data };
         } else {
-          setError('Invalid or expired token');
+          return { error: 'Invalid or expired token' };
         }
       }
     } else {
-      if (data.message.includes('Incorrect password')) {
-        setError('The password you entered is incorrect.');
-      } else if (data.message.includes('User not found')) {
-        setError('No account associated with this email.');
-      } else {
-        setError(data.message);
-      }
+      // Handle various error messages from the server
+      return { error: data.message };
     }
   } catch (error) {
     console.error('Login Error:', error);
     setError('Login failed. Please try again.');
   }
+};
+
+export const useLogout = () => {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    deleteToken();  // Menghapus token dari penyimpanan
+    navigate('/auth/sign-in');  // Navigasi ke halaman login
+  };
+
+  return logout;
 };

@@ -69,7 +69,7 @@ const SecurityForm = (props) => {
           <InputForm
             label="Confirm New Password"
             type="password"
-            name="newConfirmPassword"
+            name="confirmNewPassword"
             id="confirm-new-password"
             htmlFor="confirm-new-password"
             placeholder="Confirm Your New Password"

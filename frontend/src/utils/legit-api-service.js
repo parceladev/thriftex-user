@@ -11,3 +11,13 @@ export const fetchTotalLegitChecks = async () => {
     return null;
   }
 };
+
+export const fetchLegitPublish = async () => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/legits/legitpublish`);
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching legit publish data:', error);
+    throw error;
+  }
+};

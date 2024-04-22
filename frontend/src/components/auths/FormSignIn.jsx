@@ -17,6 +17,20 @@ const FormSignIn = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    const handleSuccess = () => {
+      setSuccessMessage('Registration Successful. Redirecting to sign in...');
+      setTimeout(() => {
+        navigate('/user/home');
+      }, 3000);
+    };
+
+    const handleError = (message) => {
+      setErrorMessage(message);
+    };
+
     if (!email || !password) {
       handleError('Both email and password are required.');
       return;
@@ -33,18 +47,12 @@ const FormSignIn = () => {
       return;
     }
 
-    signIn(email, password, handleError, handleSuccess);
-  };
-
-  const handleSuccess = () => {
-    setSuccessMessage('Registration Successful. Redirecting to sign in...');
-    setTimeout(() => {
-      navigate('/user/home');
-    }, 3000);
-  };
-
-  const handleError = (message) => {
-    setErrorMessage(message);
+    const response = await signIn(email, password);
+    if (response.data) {
+      handleSuccess();
+    } else {
+      handleError();
+    }
   };
 
   return (
