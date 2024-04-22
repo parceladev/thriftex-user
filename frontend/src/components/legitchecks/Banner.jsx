@@ -1,22 +1,29 @@
 import { useEffect, useState, useRef } from 'react';
 import backgroundImage from '/src/assets/user/legit-check-page/banner.png';
+import { fetchTotalLegitChecks } from '../../utils/legit-api-service';
 
 const Banner = () => {
   const [animate, setAnimate] = useState(false);
   const [currentCount, setCurrentCount] = useState(0);
-  const endCount = 12756;
+  const [endCount, setEndCount] = useState(0);
   const styleRef = useRef();
   const legitStyleRef = useRef();
 
   // Set All Animations Start
   useEffect(() => {
+    fetchTotalLegitChecks().then((data) => {
+      if (data && data.total) {
+        setEndCount(data.total);
+      }
+    });
+
     const timer = setTimeout(() => setAnimate(true), 1000);
     return () => clearTimeout(timer);
   }, []);
 
   // Animation Math Total Legit Check
   useEffect(() => {
-    if (animate) {
+    if (animate && endCount > 0) {
       let start = 0;
       const duration = 6000;
       const increment = endCount / (duration / 200);
@@ -32,7 +39,7 @@ const Banner = () => {
 
       return () => clearInterval(counter);
     }
-  }, [animate]);
+  }, [animate, endCount]);
 
   // Animation "IS YOUR FASHION STYLE ?"
   useEffect(() => {
@@ -56,8 +63,6 @@ const Banner = () => {
       }, animationDuration * 0);
     }
   }, [animate]);
-
-  const formatNumber = (number) => number.toString().padStart(5, '0');
 
   return (
     <div
@@ -93,7 +98,7 @@ const Banner = () => {
         }}
       >
         <div className="flex flex-col gap-3 text-center w-52">
-          <p className="text-7xl">{formatNumber(currentCount)}</p>
+          <p className="text-7xl">{currentCount}</p>
           <span className="w-full h-1 bg-white"></span>
           <p className="text-3xl uppercase">Total Check</p>
         </div>

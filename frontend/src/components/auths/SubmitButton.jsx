@@ -6,6 +6,7 @@ const SubmitButton = (props) => {
     <button
       onClick={onClick}
       onSubmit={onSubmit}
+      type="submit"
       className="w-full p-3 text-center rounded-md bg-black/30"
     >
       {name}

@@ -5,12 +5,18 @@ import { Link } from 'react-router-dom';
 import { FaInstagram, FaFacebook, FaYoutube, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
+  const routes = [
+    { id: 'contact', path: '/user/contact-us', name: 'CONTACT US' },
+    { id: 'terms', path: '/user/terms-of-condition', name: 'TERMS OF CONDITION' },
+    { id: 'contact', path: '/user/contact-us', name: 'FAQ' },
+  ];
+
   return (
-    <div className="text-center w-full border-t border-b border-slate-200 bg-primary">
+    <section className="mt-6 text-center w-full border-t border-b border-slate-200 bg-primary">
       <div className="flex gap-20 px-10 py-3  text-primary">
-        <ul className="flex text-xs space-x-16 justify-start">
+        {/* <ul className="flex text-xs space-x-16 justify-start">
           <li>
-            <Link to="/contact" className="text-xs lg:text-sm font-bold">
+            <Link to="/user/contact-us" className="text-xs lg:text-sm font-bold">
               CONTACT US
             </Link>
           </li>
@@ -24,7 +30,12 @@ const Footer = () => {
               FAQ
             </Link>
           </li>
-        </ul>
+        </ul> */}
+        {routes.map((route) => (
+          <Link key={route.id} to={route.path}>
+            {route.name}
+          </Link>
+        ))}
       </div>
       <hr className="left-0" />
       <div className="flex justify-between px-10 pb-3 gap-4 mt-4 w-full">
@@ -39,7 +50,7 @@ const Footer = () => {
           <p>&copy; 2024 VERIFEX</p>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

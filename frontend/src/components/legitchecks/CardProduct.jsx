@@ -1,17 +1,23 @@
-const CardProduct = () => {
+import { PropTypes } from 'prop-types';
+
+const CardProduct = (props) => {
+  const { product } = props;
   return (
     <div className="flex flex-col gap-5 border border-black dark:border-gray-600">
-      <img
-        className="h-72"
-        src="/src/assets/user/legit-check-page/product-legit-portofolio.png"
-        alt="product-legit-portofolio"
-      />
-      <p className="text-center">Vans Oldskool</p>
+      <img className="h-72" src={product.file_path} alt={product.nama_item} />
+      <p className="text-center text-black">{product.nama_item}</p>
       <p className="py-3 font-bold text-center text-white bg-black dark:bg-gray-300 dark:text-black">
-        Orginal
+        {product.check_result.toUpperCase()}
       </p>
     </div>
   );
 };
 
+CardProduct.propTypes = {
+  product: PropTypes.shape({
+    file_path: PropTypes.string,
+    nama_item: PropTypes.string,
+    check_result: PropTypes.string,
+  }).isRequired,
+};
 export default CardProduct;

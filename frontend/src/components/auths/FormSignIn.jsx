@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { signIn } from '../../utils/auth-api-service';
 
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
@@ -11,64 +11,47 @@ const FormSignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const formData = new FormData();
-      formData.append('email', email);
-      formData.append('password', password);
 
-      const response = await axios({
-        method: 'post',
-        url: `http://localhost/rest.thriftex/api/users/login`,
-        data: formData,
-        headers: { 'Content-Type': 'multipart/form-data' },
-      });
+    setErrorMessage('');
+    setSuccessMessage('');
 
-      const data = response.data;
-      if (data.status) {
-        console.log('Login Successful!', data);
-        localStorage.setItem('token', data.token);
+    const handleSuccess = () => {
+      setSuccessMessage('Registration Successful. Redirecting to sign in...');
+      setTimeout(() => {
+        navigate('/user/home');
+      }, 3000);
+    };
 
-        const token = localStorage.getItem('token');
-        const decodeToken = (token) => {
-          try {
-            const base64Url = token.split('.')[1]; // Ambil bagian payload token
-            const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/'); // Ganti karakter sesuai dengan Base64
-            const jsonPayload = decodeURIComponent(
-              atob(base64)
-                .split('')
-                .map((c) => {
-                  return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
-                })
-                .join('')
-            );
+    const handleError = (message) => {
+      setErrorMessage(message);
+    };
 
-            return JSON.parse(jsonPayload);
-          } catch (error) {
-            console.error('Error decoding token:', error);
-            return null;
-          }
-        };
-        const decodedToken = decodeToken(token);
-        console.log(decodedToken);
+    if (!email || !password) {
+      handleError('Both email and password are required.');
+      return;
+    }
 
-        if (decodedToken.role == 'user') {
-          navigate('/user/home');
-        } else {
-          // Blacklist User
-        }
-      } else {
-        setErrorMessage(data.message);
-      }
-    } catch (error) {
-      console.error(
-        'Login Error:',
-        error.response ? error.response.data : error
-      );
-      setErrorMessage('Login failed. Please try again.');
+    const emailPattern = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+    if (!emailPattern.test(email)) {
+      handleError('Please enter a valid email address.');
+      return;
+    }
+
+    if (password.length < 8) {
+      handleError('Password must be at least 8 characters long.');
+      return;
+    }
+
+    const response = await signIn(email, password);
+    if (response.data) {
+      handleSuccess();
+    } else {
+      handleError();
     }
   };
 
@@ -91,7 +74,10 @@ const FormSignIn = () => {
         placeholder="Your Password"
       />
       {errorMessage && (
-        <p className="mb-2 text-sm text-red-500">{errorMessage}</p>
+        <p className="mt-2 text-center text-red-500">{errorMessage}</p>
+      )}
+      {successMessage && (
+        <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
       <a href="#" className="mb-4 text-sm font-bold">
         Forgot password?

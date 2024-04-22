@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { signUp } from './../../utils/auth-api-service';
 
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
@@ -12,43 +12,62 @@ const FormSignUp = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const navigate = useNavigate();
+
+  const validateForm = () => {
+    if (!name || !email || !password || !confirmPassword) {
+      setErrorMessage('All fields must be filled.');
+      return false;
+    }
+
+    const emailRegex = /\S+@\S+\.\S+/;
+    if (!emailRegex.test(email)) {
+      setErrorMessage('Please enter a valid email address.');
+      return false;
+    }
+
+    if (password.length < 8) {
+      setErrorMessage('Password must be at least 8 characters long.');
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      setErrorMessage('Passwords do not match!');
+      return false;
+    }
+
+    setErrorMessage('');
+    return true;
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (password !== confirmPassword) {
-      alert('Passwords do not match!');
+    if (!validateForm()) {
       return;
     }
-    try {
-      // Create an instance of FormData
-      const formData = new FormData();
-      formData.append('nama', name); // Make sure to use 'nama' if that's the correct field name expected by your API
-      formData.append('email', email);
-      formData.append('password', password);
-      formData.append('passconf', confirmPassword);
-      formData.append('role', 'user');
 
-      const response = await axios.post(
-        'http://localhost/rest.thriftex/api/users/register',
-        formData
-      );
-      const data = response.data; // With axios, you directly get `data` without needing to call `.json()`
+    const userData = {
+      nama: name,
+      email: email,
+      password: password,
+      passconf: confirmPassword,
+      role: 'user',
+    };
 
-      if (data.status) {
-        // Handle success
-        console.log('Registration Successful', data);
-        navigate('/auth/sign-in');
-      } else {
-        // Handle errors or unsuccessful registration
-        console.log('Registration Failed:', data.message);
-      }
-    } catch (error) {
-      console.error(
-        'Registration Error:',
-        error.response ? error.response.data : error
-      );
-    }
+    signUp(userData, handleSuccess, handleError);
+  };
+
+  const handleSuccess = () => {
+    setSuccessMessage('Registration Successful. Redirecting to sign in...');
+    setTimeout(() => {
+      navigate('/auth/sign-in');
+    }, 3000);
+  };
+
+  const handleError = (message) => {
+    setErrorMessage(message);
   };
 
   return (
@@ -77,6 +96,12 @@ const FormSignUp = () => {
         onChange={(e) => setConfirmPassword(e.target.value)}
         placeholder="Confirm Password"
       />
+      {errorMessage && (
+        <p className="mt-2 text-center text-red-500">{errorMessage}</p>
+      )}
+      {successMessage && (
+        <p className="mt-2 text-center text-green-500">{successMessage}</p>
+      )}
       <SubmitButton name="Sign Up" onClick={handleSubmit} />
       <BorderButton />
     </div>
