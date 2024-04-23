@@ -31,13 +31,12 @@ export const signUp = async (userData, onSuccess, onError) => {
   }
 };
 
-export const signIn = async (email, password, setError) => {
+export const signIn = async (email, password) => {
   try {
     const formData = new FormData();
     formData.append('email', email);
     formData.append('password', password);
 
-    // Mencoba sign in dan mendapatkan token
     const response = await axios.post(`${API_BASE_URL}/users/login`, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
@@ -50,22 +49,18 @@ export const signIn = async (email, password, setError) => {
       } else {
         saveToken(data.access_token, data.refresh_token);
 
-        // Validate the new token
         const validationResult = await validateToken();
         if (validationResult.valid) {
-          // Token is valid, return the successful login data
           return { data };
         } else {
           return { error: 'Invalid or expired token' };
         }
       }
     } else {
-      // Handle various error messages from the server
       return { error: data.message };
     }
   } catch (error) {
-    console.error('Login Error:', error);
-    setError('Login failed. Please try again.');
+    return { error: 'Your Email or Password do not match!' };
   }
 };
 
@@ -73,8 +68,8 @@ export const useLogout = () => {
   const navigate = useNavigate();
 
   const logout = () => {
-    deleteToken();  // Menghapus token dari penyimpanan
-    navigate('/auth/sign-in');  // Navigasi ke halaman login
+    deleteToken();
+    navigate('/auth/sign-in');
   };
 
   return logout;

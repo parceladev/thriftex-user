@@ -21,14 +21,17 @@ const FormSignIn = () => {
     setSuccessMessage('');
 
     const handleSuccess = () => {
-      setSuccessMessage('Registration Successful. Redirecting to sign in...');
+      setSuccessMessage('Please Wait, Redirecting...');
       setTimeout(() => {
         navigate('/user/home');
-      }, 3000);
+      }, 1000);
     };
 
     const handleError = (message) => {
       setErrorMessage(message);
+      setTimeout(() => {
+        setErrorMessage('');
+      }, 3000);
     };
 
     if (!email || !password) {
@@ -51,7 +54,7 @@ const FormSignIn = () => {
     if (response.data) {
       handleSuccess();
     } else {
-      handleError();
+      handleError(response.error);
     }
   };
 
