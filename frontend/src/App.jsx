@@ -8,6 +8,7 @@ import {
   ProfilePage,
   LegitCheckFormPage,
   ContactUsPage,
+  MyLegit,
 } from './pages/user';
 import { SignInPage, SignUpPage } from './pages/auth';
 import PrivateRoute from './utils/PrivateRoute';
@@ -22,6 +23,10 @@ function App() {
         <Route
           path="profile"
           element={<PrivateRoute element={<ProfilePage />} />}
+        />
+        <Route
+          path="my-legit"
+          element={<PrivateRoute element={<MyLegit />} />}
         />
         <Route
           path="legit-check-form"
