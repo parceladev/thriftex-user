@@ -5,6 +5,7 @@ import CategoryOption from '../../components/legitchecks/CategoryOption';
 import BrandOption from '../../components/legitchecks/BrandOption';
 import PurchaseOption from '../../components/legitchecks/PurchaseOption';
 import ItemConditionOption from '../../components/legitchecks/ItemConditionOption';
+import AlertLegitCheck from '../../components/legitchecks/AlertLegitCheck';
 
 const LegitCheckFormPage = () => {
   const categories = [
@@ -231,6 +232,7 @@ const LegitCheckFormPage = () => {
             LEGIT CHECK <FaArrowRight className="ml-2" />
           </button>
         </form>
+        <AlertLegitCheck isVisible={isAlertVisible} onClose={closeAlert} />
       </div>
     </div>
   );

@@ -6,6 +6,7 @@ import BrandOption from './BrandOption';
 import CategoryOption from './CategoryOption';
 import ItemConditionOption from './ItemConditionOption';
 import PurchaseOption from './PurchaseOption';
+import AlertLegitCheck from './AlertLegitCheck';
 
 export {
   Banner,
