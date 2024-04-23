@@ -29,9 +29,6 @@ const FormSignIn = () => {
 
     const handleError = (message) => {
       setErrorMessage(message);
-      setTimeout(() => {
-        setErrorMessage('');
-      }, 3000);
     };
 
     if (!email || !password) {
