@@ -9,7 +9,7 @@ import { decodeToken, getAccessToken } from '../../utils/token-utilities';
 
 const AccountSettings = () => {
   const [userData, setUserData] = useState({
-    // photo: '',
+    photo: '',
     username: '',
     name: '',
     phoneNumber: '',
@@ -26,7 +26,7 @@ const AccountSettings = () => {
       const decoded = decodeToken(token);
       if (decoded) {
         setUserData({
-          // photo: decoded.foto || '',
+          photo: decoded.foto || '',
           username: decoded.username || '',
           name: decoded.nama || '',
           phoneNumber: decoded.no_hp || '',
@@ -41,18 +41,45 @@ const AccountSettings = () => {
   }, []);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    const { name, type, value } = e.target;
+    if (type === 'file') {
+      const file = e.target.files[0];
+      setUserData((prevState) => ({
+        ...prevState,
+        [name]: file,
+      }));
+    } else {
+      setUserData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (
+      userData.newPassword ||
+      userData.confirmNewPassword ||
+      userData.oldPassword
+    ) {
+      if (!userData.oldPassword) {
+        alert('Please enter your old password.');
+        return;
+      }
+      if (userData.newPassword.length < 8) {
+        alert('New password must be at least 8 characters long.');
+        return;
+      }
+      if (userData.newPassword !== userData.confirmNewPassword) {
+        alert('New passwords do not match.');
+        return;
+      }
+    }
+
     const updatedUserData = {
-      // foto: userData.photo,
+      foto: userData.photo,
       username: userData.username,
       nama: userData.name,
       no_hp: userData.phoneNumber,
@@ -63,14 +90,23 @@ const AccountSettings = () => {
       passconf: userData.confirmNewPassword,
     };
 
-    const result = await updateProfile(updatedUserData);
-    if (result.success) {
-      setUserData(result.user);
-      alert('Profile updated successfully!');
-    } else {
-      const message =
-        result.message || 'Failed to update profile. Please try again.';
-      alert(message);
+    try {
+      const result = await updateProfile(updatedUserData);
+      if (result.success) {
+        setUserData({
+          ...userData,
+          oldPassword: '',
+          newPassword: '',
+          confirmNewPassword: '',
+        });
+        alert('Profile updated successfully!');
+      } else {
+        const message =
+          result.message || 'Failed to update profile. Please try again.';
+        alert(message);
+      }
+    } catch (error) {
+      console.error('Error during profile update:', error);
     }
   };
 

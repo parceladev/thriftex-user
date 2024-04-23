@@ -60,10 +60,10 @@ const FormSignUp = () => {
   };
 
   const handleSuccess = () => {
-    setSuccessMessage('Registration Successful. Redirecting to sign in...');
+    setSuccessMessage('Registration Success! Redirecting to sign in...');
     setTimeout(() => {
       navigate('/auth/sign-in');
-    }, 3000);
+    }, 1000);
   };
 
   const handleError = (message) => {

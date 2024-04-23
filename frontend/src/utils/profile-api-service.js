@@ -23,14 +23,23 @@ const updateProfile = async (updatedUserData) => {
   }
 
   const formData = new FormData();
+
   const sanitizeInput = (input) => {
-    // eslint-disable-next-line no-control-regex
-    return input.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+    if (typeof input === 'string') {
+      // eslint-disable-next-line no-control-regex
+      return input.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+    }
+    return input;
   };
 
   Object.keys(updatedUserData).forEach((key) => {
-    const sanitizedValue = sanitizeInput(updatedUserData[key]);
-    formData.append(key, sanitizedValue);
+    const value = updatedUserData[key];
+    if (key === 'foto' && value instanceof File) {
+      formData.append('foto', value, value.name);
+    } else if (value !== undefined && value !== null) {
+      const sanitizedValue = sanitizeInput(value);
+      formData.append(key, sanitizedValue);
+    }
   });
 
   try {
@@ -56,9 +65,7 @@ const updateProfile = async (updatedUserData) => {
       return { success: false, message: response.data.message };
     }
   } catch (error) {
-    alert(
-      'Error updating profile. Please check your connection and try again.'
-    );
+    alert('Your Old Password is wrong!');
     return { success: false, error };
   }
 };

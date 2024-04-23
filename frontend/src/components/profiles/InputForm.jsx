@@ -87,7 +87,7 @@ const InputForm = (props) => {
 };
 
 InputForm.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   type: PropTypes.string.isRequired,
   htmlFor: PropTypes.string,
   className: PropTypes.string,
@@ -95,7 +95,11 @@ InputForm.propTypes = {
   name: PropTypes.string,
   placeholder: PropTypes.string,
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(File),
+  ]),
   onChange: PropTypes.func,
   children: PropTypes.node,
 };
