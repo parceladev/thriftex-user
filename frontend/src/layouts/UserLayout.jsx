@@ -29,8 +29,11 @@ export function UserLayout() {
             path="legit-check-form"
             element={<PrivateRoute element={<LegitCheckFormPage />} />}
           />
+          <Route
+            path="my-legit"
+            element={<PrivateRoute element={<MyLegit />} />}
+          />
           <Route path="contact-us" element={<ContactUsPage />} />
-          <Route path="my-legit" element={<MyLegit />} />
           {/* Tambahkan Route lain jika diperlukan */}
         </Routes>
       </main>
