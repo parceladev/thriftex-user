@@ -23,15 +23,28 @@ const updateProfile = async (updatedUserData) => {
   }
 
   const formData = new FormData();
+
   const sanitizeInput = (input) => {
-    // eslint-disable-next-line no-control-regex
-    return input.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+    if (typeof input === 'string') {
+      // eslint-disable-next-line no-control-regex
+      return input.replace(/[\x00-\x1F\x7F-\x9F]/g, '');
+    }
+    return input;
   };
 
   Object.keys(updatedUserData).forEach((key) => {
-    const sanitizedValue = sanitizeInput(updatedUserData[key]);
-    formData.append(key, sanitizedValue);
+    const value = updatedUserData[key];
+    if (key === 'foto' && value instanceof File) {
+      // Tambahkan foto dengan menggunakan nama file
+      formData.append('foto', value, value.name);
+    } else if (value !== undefined && value !== null) {
+      // Hanya tambahkan key-value ke formData jika value tidak undefined/null
+      const sanitizedValue = sanitizeInput(value);
+      formData.append(key, sanitizedValue);
+    }
   });
+
+  // Tidak perlu menambahkan foto lagi di luar loop karena sudah ditangani di dalam loop jika ada
 
   try {
     const response = await axios.post(

@@ -1,5 +1,8 @@
-import InputForm from './InputForm';
 import { PropTypes } from 'prop-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
+
+import InputForm from './InputForm';
 
 const PersonalForm = (props) => {
   const { userData, handleInputChange } = props;
@@ -7,13 +10,36 @@ const PersonalForm = (props) => {
   return (
     <div className="flex flex-col w-full gap-5">
       <h1 className="mb-8 text-2xl font-semibold">Personal Information</h1>
-      <div className="flex items-center justify-center w-20 h-20 border-2 border-black rounded-full bg-slate-300">
-        <img
-          src="../../../public/icons/header/alif-lakipadada-profile.png"
-          alt=""
-          className="w-full h-full bg-cover "
+      <div className="relative cursor-pointer flex items-center justify-center w-20 h-20 border-2 border-black rounded-full bg-slate-300">
+        {userData.photo ? (
+          typeof userData.photo === 'object' ? ( // Periksa apakah userData.photo adalah objek File
+            <img
+              src={URL.createObjectURL(userData.photo)}
+              alt="Pratinjau"
+              className="w-full h-full object-cover rounded-full"
+            />
+          ) : (
+            <img
+              src={userData.photo}
+              alt="Profile"
+              className="w-full h-full object-cover rounded-full"
+            />
+          )
+        ) : (
+          <FontAwesomeIcon icon={faUser} size="2x" />
+        )}
+        <input
+          name="photo"
+          type="file"
+          id="photo"
+          onChange={handleInputChange}
+          className="absolute w-full h-full opacity-0 cursor-pointer"
         />
+        <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full pointer-events-none">
+          <FontAwesomeIcon icon={faPenToSquare} className="text-gray-700" />
+        </div>
       </div>
+
       <InputForm
         label="Username"
         name="username"
@@ -72,6 +98,7 @@ const PersonalForm = (props) => {
 
 PersonalForm.propTypes = {
   userData: PropTypes.shape({
+    photo: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(File)]),
     username: PropTypes.string,
     name: PropTypes.string,
     phoneNumber: PropTypes.string,

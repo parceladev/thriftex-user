@@ -9,7 +9,7 @@ import { decodeToken, getAccessToken } from '../../utils/token-utilities';
 
 const AccountSettings = () => {
   const [userData, setUserData] = useState({
-    // photo: '',
+    photo: '',
     username: '',
     name: '',
     phoneNumber: '',
@@ -26,7 +26,7 @@ const AccountSettings = () => {
       const decoded = decodeToken(token);
       if (decoded) {
         setUserData({
-          // photo: decoded.foto || '',
+          photo: decoded.foto || '',
           username: decoded.username || '',
           name: decoded.nama || '',
           phoneNumber: decoded.no_hp || '',
@@ -41,18 +41,26 @@ const AccountSettings = () => {
   }, []);
 
   const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setUserData((prevState) => ({
-      ...prevState,
-      [name]: value,
-    }));
+    const { name, type, value } = e.target;
+    if (type === 'file') {
+      const file = e.target.files[0];
+      setUserData((prevState) => ({
+        ...prevState,
+        [name]: file,
+      }));
+    } else {
+      setUserData((prevState) => ({
+        ...prevState,
+        [name]: value,
+      }));
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     const updatedUserData = {
-      // foto: userData.photo,
+      foto: userData.photo,
       username: userData.username,
       nama: userData.name,
       no_hp: userData.phoneNumber,
@@ -64,9 +72,16 @@ const AccountSettings = () => {
     };
 
     const result = await updateProfile(updatedUserData);
+    console.log('Result:', result);
     if (result.success) {
-      setUserData(result.user);
+      const updatedUser = result.user;
+      if (updatedUser.foto) {
+        updatedUser.photo = updatedUser.foto;
+      }
+      setUserData(updatedUser);
       alert('Profile updated successfully!');
+      // setUserData(result.user);
+      // alert('Profile updated successfully!');
     } else {
       const message =
         result.message || 'Failed to update profile. Please try again.';
