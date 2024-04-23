@@ -59,6 +59,25 @@ const AccountSettings = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    if (
+      userData.newPassword ||
+      userData.confirmNewPassword ||
+      userData.oldPassword
+    ) {
+      if (!userData.oldPassword) {
+        alert('Please enter your old password.');
+        return;
+      }
+      if (userData.newPassword.length < 8) {
+        alert('New password must be at least 8 characters long.');
+        return;
+      }
+      if (userData.newPassword !== userData.confirmNewPassword) {
+        alert('New passwords do not match.');
+        return;
+      }
+    }
+
     const updatedUserData = {
       foto: userData.photo,
       username: userData.username,
@@ -71,21 +90,23 @@ const AccountSettings = () => {
       passconf: userData.confirmNewPassword,
     };
 
-    const result = await updateProfile(updatedUserData);
-    console.log('Result:', result);
-    if (result.success) {
-      const updatedUser = result.user;
-      if (updatedUser.foto) {
-        updatedUser.photo = updatedUser.foto;
+    try {
+      const result = await updateProfile(updatedUserData);
+      if (result.success) {
+        setUserData({
+          ...userData,
+          oldPassword: '',
+          newPassword: '',
+          confirmNewPassword: '',
+        });
+        alert('Profile updated successfully!');
+      } else {
+        const message =
+          result.message || 'Failed to update profile. Please try again.';
+        alert(message);
       }
-      setUserData(updatedUser);
-      alert('Profile updated successfully!');
-      // setUserData(result.user);
-      // alert('Profile updated successfully!');
-    } else {
-      const message =
-        result.message || 'Failed to update profile. Please try again.';
-      alert(message);
+    } catch (error) {
+      console.error('Error during profile update:', error);
     }
   };
 

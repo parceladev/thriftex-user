@@ -10,19 +10,19 @@ const PersonalForm = (props) => {
   return (
     <div className="flex flex-col w-full gap-5">
       <h1 className="mb-8 text-2xl font-semibold">Personal Information</h1>
-      <div className="relative cursor-pointer flex items-center justify-center w-20 h-20 border-2 border-black rounded-full bg-slate-300">
+      <div className="relative flex items-center justify-center w-20 h-20 border-2 border-black rounded-full cursor-pointer bg-slate-300">
         {userData.photo ? (
           typeof userData.photo === 'object' ? ( // Periksa apakah userData.photo adalah objek File
             <img
               src={URL.createObjectURL(userData.photo)}
               alt="Pratinjau"
-              className="w-full h-full object-cover rounded-full"
+              className="object-cover w-full h-full rounded-full"
             />
           ) : (
             <img
               src={userData.photo}
               alt="Profile"
-              className="w-full h-full object-cover rounded-full"
+              className="object-cover w-full h-full rounded-full"
             />
           )
         ) : (
@@ -35,7 +35,7 @@ const PersonalForm = (props) => {
           onChange={handleInputChange}
           className="absolute w-full h-full opacity-0 cursor-pointer"
         />
-        <div className="absolute bottom-0 right-0 bg-white p-1 rounded-full pointer-events-none">
+        <div className="absolute bottom-0 right-0 p-1 bg-white rounded-full pointer-events-none">
           <FontAwesomeIcon icon={faPenToSquare} className="text-gray-700" />
         </div>
       </div>
@@ -47,7 +47,7 @@ const PersonalForm = (props) => {
         id="username"
         htmlFor="username"
         placeholder="Username"
-        isRequired="optional"
+        isRequired="required"
         value={userData.username}
         onChange={handleInputChange}
         readOnly={false}
@@ -59,7 +59,7 @@ const PersonalForm = (props) => {
         id="name"
         htmlFor="name"
         placeholder="Your Name"
-        isRequired="optional"
+        isRequired="required"
         value={userData.name}
         onChange={handleInputChange}
         readOnly={false}

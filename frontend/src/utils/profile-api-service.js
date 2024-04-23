@@ -35,16 +35,12 @@ const updateProfile = async (updatedUserData) => {
   Object.keys(updatedUserData).forEach((key) => {
     const value = updatedUserData[key];
     if (key === 'foto' && value instanceof File) {
-      // Tambahkan foto dengan menggunakan nama file
       formData.append('foto', value, value.name);
     } else if (value !== undefined && value !== null) {
-      // Hanya tambahkan key-value ke formData jika value tidak undefined/null
       const sanitizedValue = sanitizeInput(value);
       formData.append(key, sanitizedValue);
     }
   });
-
-  // Tidak perlu menambahkan foto lagi di luar loop karena sudah ditangani di dalam loop jika ada
 
   try {
     const response = await axios.post(
@@ -69,9 +65,7 @@ const updateProfile = async (updatedUserData) => {
       return { success: false, message: response.data.message };
     }
   } catch (error) {
-    alert(
-      'Error updating profile. Please check your connection and try again.'
-    );
+    alert('Your Old Password is wrong!');
     return { success: false, error };
   }
 };
