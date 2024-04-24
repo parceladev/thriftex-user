@@ -79,7 +79,7 @@ const LegitCheckFormPage = () => {
             name="purchase"
             id="purchase"
             htmlFor="purchase"
-            isRequired="required"
+            isRequired="optional"
             data={purchases}
           />
           <InputText
@@ -87,14 +87,14 @@ const LegitCheckFormPage = () => {
             name="store-name"
             id="store-name"
             htmlFor="store-name"
-            isRequired="required"
+            isRequired="optional"
           />
           <InputSelect
             label="Item Condition"
             name="item-condition"
             id="item-condition"
             htmlFor="item-condition"
-            isRequired="required"
+            isRequired="optional"
             data={conditions}
           />
           <InputTextArea
