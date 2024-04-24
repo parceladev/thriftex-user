@@ -7,6 +7,9 @@ import CategoryOption from './CategoryOption';
 import ItemConditionOption from './ItemConditionOption';
 import PurchaseOption from './PurchaseOption';
 import AlertLegitCheck from './AlertLegitCheck';
+import InputSelect from './InputSelect';
+import InputTextLegitForm from './InputText';
+import InputTextArea from './InputTextArea';
 
 export {
   Banner,
@@ -17,4 +20,8 @@ export {
   CategoryOption,
   ItemConditionOption,
   PurchaseOption,
+  AlertLegitCheck,
+  InputSelect,
+  InputTextLegitForm,
+  InputTextArea,
 };

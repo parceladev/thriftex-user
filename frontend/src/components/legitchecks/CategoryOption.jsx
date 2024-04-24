@@ -1,12 +1,25 @@
-import PropTypes from 'prop-types';
+import { PropTypes } from 'prop-types';
 
-const CategoryOption = ({ value, children }) => {
-  return <option value={value}>{children}</option>;
+const CategoryOption = (props) => {
+  const { data } = props;
+  return (
+    <>
+      {data.map((item) => (
+        <option key={item.value} value={item.value}>
+          {item.label}
+        </option>
+      ))}
+    </>
+  );
 };
 
 CategoryOption.propTypes = {
-  value: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      value: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default CategoryOption;
