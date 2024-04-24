@@ -1,7 +1,10 @@
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import InputSelect from '../../components/legitchecks/InputSelect';
-import InputText from '../../components/legitchecks/InputText';
-import { InputTextArea } from '../../components/legitchecks';
+import {
+  InputText,
+  InputImage,
+  InputTextArea,
+  InputSelect,
+} from '../../components/legitchecks';
 
 const LegitCheckFormPage = () => {
   const categories = [
@@ -17,13 +20,11 @@ const LegitCheckFormPage = () => {
     { value: 'adidas', label: 'Adidas' },
   ];
 
-  // eslint-disable-next-line no-unused-vars
   const purchases = [
     { value: 'offline', label: 'Offline' },
     { value: 'online', label: 'Online' },
   ];
 
-  // eslint-disable-next-line no-unused-vars
   const conditions = [
     { value: '', label: 'Choose item conditions' },
     { value: 'new', label: 'New' },
@@ -44,56 +45,63 @@ const LegitCheckFormPage = () => {
         <form>
           <InputSelect
             label="Item Category"
-            name="category"
-            id="category"
-            htmlFor="category"
+            name="item-category"
+            id="item-category"
+            htmlFor="item-category"
             isRequired="required"
             data={categories}
           />
           <InputSelect
             label="Item Brand"
-            name="category"
-            id="category"
-            htmlFor="category"
+            name="item-brand"
+            id="item-brand"
+            htmlFor="item-brand"
             isRequired="required"
             data={brands}
           />
           <InputText
             label="Item Name"
-            name="category"
-            id="category"
-            htmlFor="category"
+            name="item-name"
+            id="item-name"
+            htmlFor="item-name"
             isRequired="required"
           />
-          {/* Images -> Input Images */}
+          <InputImage
+            label="Upload Images"
+            htmlFor="imageUpload"
+            id="imageUpload"
+            isRequired="required"
+            // images={userData.images}
+            // handleImageChange={handleImageChange}
+          />
           <InputSelect
             label="Purchase"
-            name="category"
-            id="category"
-            htmlFor="category"
+            name="purchase"
+            id="purchase"
+            htmlFor="purchase"
             isRequired="required"
             data={purchases}
           />
           <InputText
             label="Store Name"
-            name="category"
-            id="category"
-            htmlFor="category"
+            name="store-name"
+            id="store-name"
+            htmlFor="store-name"
             isRequired="required"
           />
           <InputSelect
             label="Item Condition"
-            name="category"
-            id="category"
-            htmlFor="category"
+            name="item-condition"
+            id="item-condition"
+            htmlFor="item-condition"
             isRequired="required"
             data={conditions}
           />
           <InputTextArea
             label="Other Notes"
-            name="category"
-            id="category"
-            htmlFor="category"
+            name="other-notes"
+            id="other-notes"
+            htmlFor="other-notes"
             isRequired="optional"
           />
           <button

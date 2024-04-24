@@ -19,14 +19,14 @@ const InputSelectLegitForm = (props) => {
     <div className="mb-8">
       <label
         htmlFor={htmlFor}
-        className="block mb-5 font-bold text-gray-700 uppercase"
+        className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase"
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="text-gray-700">(Optional)</span>
+          <span className="font-normal text-gray-700"> (Optional)</span>
         )}
         {isRequired === 'required' && (
-          <span className="text-red-500">(Required)</span>
+          <span className="text-xs font-normal text-red-500"> (Required)</span>
         )}
       </label>
       <select

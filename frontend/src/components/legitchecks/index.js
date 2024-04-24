@@ -8,8 +8,10 @@ import ItemConditionOption from './ItemConditionOption';
 import PurchaseOption from './PurchaseOption';
 import AlertLegitCheck from './AlertLegitCheck';
 import InputSelect from './InputSelect';
-import InputTextLegitForm from './InputText';
+import InputText from './InputText';
 import InputTextArea from './InputTextArea';
+import InputImage from './InputImage';
+import ImageUploadBox from './ImageUploadBox';
 
 export {
   Banner,
@@ -22,6 +24,8 @@ export {
   PurchaseOption,
   AlertLegitCheck,
   InputSelect,
-  InputTextLegitForm,
+  InputText,
   InputTextArea,
+  InputImage,
+  ImageUploadBox,
 };
