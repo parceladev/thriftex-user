@@ -7,29 +7,6 @@ import {
 } from '../../components/legitchecks';
 
 const LegitCheckFormPage = () => {
-  const categories = [
-    { value: 'shoes', label: 'Shoes' },
-    { value: 'shirts', label: 'Shirts' },
-    { value: 'pants', label: 'Pants' },
-    { value: 'accessories', label: 'Accessories' },
-    { value: 'electronics', label: 'Electronics' },
-  ];
-
-  const brands = [
-    { value: 'nike', label: 'Nike' },
-    { value: 'adidas', label: 'Adidas' },
-  ];
-
-  const purchases = [
-    { value: 'offline', label: 'Offline' },
-    { value: 'online', label: 'Online' },
-  ];
-
-  const conditions = [
-    { value: '', label: 'Choose item conditions' },
-    { value: 'new', label: 'New' },
-  ];
-
   return (
     <div className="flex flex-col justify-start w-full min-h-screen p-10">
       <a
@@ -49,7 +26,8 @@ const LegitCheckFormPage = () => {
             id="item-category"
             htmlFor="item-category"
             isRequired="required"
-            data={categories}
+            dataType="categories"
+            defaultValue="Select Item Category"
           />
           <InputSelect
             label="Item Brand"
@@ -57,7 +35,8 @@ const LegitCheckFormPage = () => {
             id="item-brand"
             htmlFor="item-brand"
             isRequired="required"
-            data={brands}
+            dataType="brands"
+            defaultValue="Select Brand"
           />
           <InputText
             label="Item Name"
@@ -65,6 +44,7 @@ const LegitCheckFormPage = () => {
             id="item-name"
             htmlFor="item-name"
             isRequired="required"
+            placeholder="Enter Item Name"
           />
           <InputImage
             label="Upload Images"
@@ -80,7 +60,8 @@ const LegitCheckFormPage = () => {
             id="purchase"
             htmlFor="purchase"
             isRequired="optional"
-            data={purchases}
+            dataType="purchases"
+            defaultValue="Select Purchase"
           />
           <InputText
             label="Store Name"
@@ -88,6 +69,7 @@ const LegitCheckFormPage = () => {
             id="store-name"
             htmlFor="store-name"
             isRequired="optional"
+            placeholder="Enter Store Name"
           />
           <InputSelect
             label="Item Condition"
@@ -95,7 +77,8 @@ const LegitCheckFormPage = () => {
             id="item-condition"
             htmlFor="item-condition"
             isRequired="optional"
-            data={conditions}
+            dataType="conditions"
+            defaultValue="Select Item Condition"
           />
           <InputTextArea
             label="Other Notes"

@@ -10,6 +10,7 @@ const InputTextLegitForm = (props) => {
     isRequired = 'none',
     value,
     onChange,
+    placeholder
   } = props;
 
   return (
@@ -33,6 +34,7 @@ const InputTextLegitForm = (props) => {
         className="w-full p-2 border-b-2 border-gray-500"
         value={value}
         onChange={onChange}
+        placeholder={placeholder}
       />
     </div>
   );
@@ -43,6 +45,7 @@ InputTextLegitForm.propTypes = {
   type: PropTypes.string,
   htmlFor: PropTypes.string,
   className: PropTypes.string,
+  placeholder: PropTypes.string,
   isCategoryClassName: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,

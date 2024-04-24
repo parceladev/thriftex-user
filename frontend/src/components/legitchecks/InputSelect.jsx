@@ -1,5 +1,5 @@
 import { PropTypes } from 'prop-types';
-import CategoryOption from './CategoryOption';
+import { data } from '../../datas/options-legit-form';
 
 const InputSelectLegitForm = (props) => {
   const {
@@ -9,11 +9,31 @@ const InputSelectLegitForm = (props) => {
     id,
     isRequired = 'none',
     value,
+    defaultValue,
     onChange,
     className,
     isCategoryClassName = false,
-    data,
+    dataType,
   } = props;
+
+  let optionsData = [];
+
+  switch (dataType) {
+    case 'categories':
+      optionsData = data.categories;
+      break;
+    case 'brands':
+      optionsData = data.brands;
+      break;
+    case 'purchases':
+      optionsData = data.purchases;
+      break;
+    case 'conditions':
+      optionsData = data.conditions;
+      break;
+    default:
+      optionsData = [];
+  }
 
   return (
     <div className="mb-8">
@@ -38,7 +58,14 @@ const InputSelectLegitForm = (props) => {
         value={value}
         onChange={onChange}
       >
-        <CategoryOption data={data} />
+        <option value="" disabled={!value} selected={!value}>
+          {defaultValue}
+        </option>
+        {optionsData.map((item) => (
+          <option key={item.value} value={item.value}>
+            {item.label}
+          </option>
+        ))}
       </select>
     </div>
   );
@@ -52,6 +79,7 @@ InputSelectLegitForm.propTypes = {
   isCategoryClassName: PropTypes.string,
   id: PropTypes.string,
   name: PropTypes.string,
+  defaultValue: PropTypes.string,
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
   value: PropTypes.oneOfType([
     PropTypes.string,
@@ -59,7 +87,7 @@ InputSelectLegitForm.propTypes = {
     PropTypes.instanceOf(File),
   ]),
   onChange: PropTypes.func,
-  data: PropTypes.array.isRequired,
+  dataType: PropTypes.string,
 };
 
 export default InputSelectLegitForm;
