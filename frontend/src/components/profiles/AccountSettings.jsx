@@ -100,6 +100,7 @@ const AccountSettings = () => {
           confirmNewPassword: '',
         });
         alert('Profile updated successfully!');
+        window.location.reload();
       } else {
         const message =
           result.message || 'Failed to update profile. Please try again.';
