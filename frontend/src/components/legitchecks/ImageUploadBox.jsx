@@ -10,7 +10,7 @@ const ImageUploadBox = (props) => {
         className="hidden"
         accept="image/*"
         multiple
-        onChange={(e) => onFileSelectSuccess(e.target.files)}
+        onChange={onFileSelectSuccess}
       />
       <FaPlus className="text-gray-500" size={20} />
     </label>
@@ -18,7 +18,7 @@ const ImageUploadBox = (props) => {
 };
 
 ImageUploadBox.propTypes = {
-  onFileSelectSuccess: PropTypes.func,
+  onFileSelectSuccess: PropTypes.func.isRequired,
 };
 
 export default ImageUploadBox;

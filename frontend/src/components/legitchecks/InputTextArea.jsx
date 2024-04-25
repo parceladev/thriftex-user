@@ -21,7 +21,7 @@ const InputTextArea = (props) => {
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="font-normal text-gray-700"> (Optional)</span>
+          <span className="text-xs font-normal text-gray-700"> (Optional)</span>
         )}
         {isRequired === 'required' && (
           <span className="text-xs font-normal text-red-500"> (Required)</span>

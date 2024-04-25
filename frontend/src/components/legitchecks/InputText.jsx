@@ -1,6 +1,6 @@
 import { PropTypes } from 'prop-types';
 
-const InputTextLegitForm = (props) => {
+const InputText = (props) => {
   const {
     label,
     name,
@@ -21,7 +21,7 @@ const InputTextLegitForm = (props) => {
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="font-normal text-gray-700"> (Optional)</span>
+          <span className="text-xs font-normal text-gray-700"> (Optional)</span>
         )}
         {isRequired === 'required' && (
           <span className="text-xs font-normal text-red-500"> (Required)</span>
@@ -40,7 +40,7 @@ const InputTextLegitForm = (props) => {
   );
 };
 
-InputTextLegitForm.propTypes = {
+InputText.propTypes = {
   label: PropTypes.string,
   type: PropTypes.string,
   htmlFor: PropTypes.string,
@@ -59,4 +59,4 @@ InputTextLegitForm.propTypes = {
   data: PropTypes.array.isRequired,
 };
 
-export default InputTextLegitForm;
+export default InputText;

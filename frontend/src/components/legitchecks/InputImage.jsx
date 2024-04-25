@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import ImageUploadBox from './ImageUploadBox';
 
 const InputImage = (props) => {
-  const { label, htmlFor, isRequired } = props;
-  const [images, setImages] = useState([]);
+  const { label, htmlFor, isRequired, images, handleImageChange } = props;
+  // const [images, setImages] = useState([]);
 
-  const handleImageChange = (files) => {
-    setImages([
-      ...images,
-      ...Array.from(files).map((file) => URL.createObjectURL(file)),
-    ]);
-  };
+  // const handleImageChange = (files) => {
+  //   setImages([
+  //     ...images,
+  //     ...Array.from(files).map((file) => URL.createObjectURL(file)),
+  //   ]);
+  // };
 
   return (
     <div className="mb-8">
@@ -43,8 +43,8 @@ const InputImage = (props) => {
         ))}
         {images.length < 12 && (
           <div className="px-2 mb-4">
-            <ImageUploadBox onFileSelectSuccess={handleImageChange} />
-          </div>
+          <ImageUploadBox onFileSelectSuccess={handleImageChange} />
+        </div>
         )}
       </div>
     </div>
@@ -55,6 +55,8 @@ InputImage.propTypes = {
   label: PropTypes.string.isRequired,
   htmlFor: PropTypes.string,
   id: PropTypes.string,
+  images: PropTypes.array, // Tambahkan ini
+  handleImageChange: PropTypes.func.isRequired, // Tambahkan ini
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
 };
 
