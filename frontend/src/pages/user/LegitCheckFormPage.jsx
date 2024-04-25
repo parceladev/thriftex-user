@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { InputText, InputImage, InputTextArea, InputSelect } from '../../components/legitchecks';
+import AlertLegitCheck from '../../components/legitchecks/AlertLegitCheck';
 
 const LegitCheckFormPage = () => {
   // State untuk tiap-tiap field dan gambar.
@@ -46,13 +47,22 @@ const LegitCheckFormPage = () => {
     }
   };
 
+  
   // Fungsi untuk menangani submit form
   const handleSubmit = (event) => {
     event.preventDefault();
     if (isButtonActive) {
       // Proses data form di sini
-      console.log('Form Submitted:', { itemName, itemCategory, itemBrand, images });
+      // console.log('Form Submitted:', { itemName, itemCategory, itemBrand, images });
+      setAlertVisible(true); // Menampilkan alert sukses
     }
+  };
+  
+ 
+  const [isAlertVisible, setAlertVisible] = useState(false); // State untuk menampilkan alert
+ 
+  const closeAlert = () => {
+    setAlertVisible(false);
   };
 
   return (
@@ -100,8 +110,8 @@ const LegitCheckFormPage = () => {
             htmlFor="imageUpload"
             id="imageUpload"
             isRequired="required"
-            images={images} // Tambahkan ini
-            setImages={setImages} // Dan ini
+            images={images}
+            setImages={setImages}
             handleImageChange={(e) => handleImageChange(e.target.files)}
           />
           <InputSelect
@@ -146,6 +156,7 @@ const LegitCheckFormPage = () => {
             Legit Check <FaArrowRight className="ml-2" />
           </button>
         </form>
+        <AlertLegitCheck isVisible={isAlertVisible} onClose={closeAlert} />
       </div>
     </div>
   );

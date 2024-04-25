@@ -55,8 +55,8 @@ InputImage.propTypes = {
   label: PropTypes.string.isRequired,
   htmlFor: PropTypes.string,
   id: PropTypes.string,
-  images: PropTypes.array, // Tambahkan ini
-  handleImageChange: PropTypes.func.isRequired, // Tambahkan ini
+  images: PropTypes.array,
+  handleImageChange: PropTypes.func.isRequired,
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
 };
 
