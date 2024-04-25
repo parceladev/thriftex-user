@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import { InputText, InputImage, InputTextArea, InputSelect } from '../../components/legitchecks';
 import AlertLegitCheck from '../../components/legitchecks/AlertLegitCheck';
@@ -28,6 +28,7 @@ const LegitCheckFormPage = () => {
   }, [itemCategory, itemBrand, itemName, images]); // Dependensi efek.
 
   // Fungsi untuk menangani perubahan gambar yang diunggah
+  // eslint-disable-next-line no-unused-vars
   const handleImageChange = (files) => {
     const newFiles = Array.from(event.target.files);
     // Memastikan total gambar tidak melebihi 12 setelah menambahkan yang baru
@@ -67,7 +68,7 @@ const LegitCheckFormPage = () => {
 
   return (
     <div className="flex flex-col justify-start w-full min-h-screen p-10">
-      <a href="/users/legit-check" className="flex items-center justify-start mt-32">
+      <a href="/user/legit-check" className="flex items-center justify-start mt-32">
         <FaArrowLeft /> <span className="pl-2">Back</span>
       </a>
       <div className="w-full p-8 mt-5 bg-white rounded">

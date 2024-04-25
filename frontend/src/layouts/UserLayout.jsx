@@ -9,7 +9,7 @@ import ProfilePage from '../pages/user/ProfilePage';
 import LegitCheckFormPage from '../pages/user/LegitCheckFormPage';
 import ContactUsPage from '../pages/user/ContactUsPage';
 import PrivateRoute from './../utils/PrivateRoute';
-import MyLegit from './../pages/user/MyLegit';
+import MyLegitPage from './../pages/user/MyLegitPage';
 
 export function UserLayout() {
   return (
@@ -31,7 +31,7 @@ export function UserLayout() {
           />
           <Route
             path="my-legit"
-            element={<PrivateRoute element={<MyLegit />} />}
+            element={<PrivateRoute element={<MyLegitPage />} />}
           />
           <Route path="contact-us" element={<ContactUsPage />} />
           {/* Tambahkan Route lain jika diperlukan */}
