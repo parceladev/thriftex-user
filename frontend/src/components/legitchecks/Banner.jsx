@@ -44,11 +44,11 @@ const Banner = () => {
   // Animation "IS YOUR FASHION STYLE ?"
   useEffect(() => {
     if (animate) {
-      const animationDuration = 5000;
+      const animationDuration = 1000;
       const totalSlideInFromLeftDuration = animationDuration * 0;
-      styleRef.current.style.animation = `slideInFromLeft ${animationDuration}ms ease-in-out 2`;
+      styleRef.current.style.animation = `slideInFromLeft ${animationDuration}ms ease-in-out 2000ms`;
       setTimeout(() => {
-        styleRef.current.style.animation = `slideInFromLeftEnd 3000ms ease-in-out forwards`;
+        styleRef.current.style.animation = `slideInFromLeftEnd 2000ms ease-in-out forwards`;
       }, totalSlideInFromLeftDuration);
     }
   }, [animate]);
@@ -56,10 +56,10 @@ const Banner = () => {
   // Animation "LEGIT ?"
   useEffect(() => {
     if (animate) {
-      const animationDuration = 5000;
-      legitStyleRef.current.style.animation = `slideInFromRight ${animationDuration}ms ease-in-out 2`;
+      const animationDuration = 1000;
+      legitStyleRef.current.style.animation = `slideInFromRight ${animationDuration}ms ease-in-out 2000ms`;
       setTimeout(() => {
-        legitStyleRef.current.style.animation = `slideInFromRightEnd 3000ms ease-in-out forwards`;
+        legitStyleRef.current.style.animation = `slideInFromRightEnd 2000ms ease-in-out forwards`;
       }, animationDuration * 0);
     }
   }, [animate]);
@@ -71,7 +71,7 @@ const Banner = () => {
       }`}
     >
       <div
-        className="absolute top-0 left-0 z-0 w-full h-full transition-opacity duration-[6000ms] bg-cover bg-opacity-90"
+        className="absolute top-0 left-0 z-0 w-full h-full transition-opacity duration-[3000ms] bg-cover bg-opacity-90"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           opacity: animate ? 1 : 0,
