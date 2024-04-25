@@ -3,7 +3,7 @@ import {
   LegitCheckPage,
   AboutPage,
   ProfilePage,
-  MyLegit,
+  MyLegitPage,
   LegitCheckFormPage,
   ContactUsPage,
 } from './pages/user';
@@ -37,7 +37,7 @@ export const routes = [
       {
         name: 'My Legit',
         path: '/my-legit',
-        element: <MyLegit />,
+        element: <MyLegitPage />,
       },
       {
         name: 'Form Legit Check',

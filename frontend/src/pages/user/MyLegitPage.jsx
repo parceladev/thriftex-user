@@ -1,40 +1,39 @@
 import {
+  SearchProduct,
   ButtonFormLegit,
   CardProduct,
-  SearchProduct,
-  Banner,
 } from '../../components/legitchecks';
 import { fetchLegitPublish } from '../../utils/legit-api-service';
 import { useEffect, useState } from 'react';
 
-const LegitCheckPage = () => {
+const MyLegitPage = () => {
   const [legitData, setLegitData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     setLoading(true);
-    fetchLegitPublish()
-      .then((data) => {
+    const getLegitData = async () => {
+      try {
+        const data = await fetchLegitPublish();
         if (data.status) {
           setLegitData(data.data);
         } else {
-          setError('No data available');
+          setError('No legit checks available at the moment.');
         }
-        setLoading(false);
-      })
-      .catch((error) => {
-        setError('Failed to fetch data');
-        setLoading(false);
+      } catch (error) {
+        setError('Failed to fetch data.');
         console.error('Error:', error);
-      });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getLegitData();
   }, []);
 
   return (
-    <div>
-      <section className="w-full h-screen">
-        <Banner />
-      </section>
+    <div className="mt-44">
       <section className="flex flex-col gap-10 m-12">
         <h2 className="text-3xl uppercase">Track a Legit Check</h2>
         <div className="flex gap-5">
@@ -44,13 +43,11 @@ const LegitCheckPage = () => {
         {loading ? (
           <div className="flex items-center justify-center h-48">
             {' '}
-            {/* Adjust height as needed */}
             <p className="text-xl font-medium">Loading...</p>
           </div>
         ) : error ? (
           <div className="flex items-center justify-center h-48">
             {' '}
-            {/* Adjust height as needed */}
             <p className="text-xl text-red-500">Error: {error}</p>
           </div>
         ) : (
@@ -65,4 +62,4 @@ const LegitCheckPage = () => {
   );
 };
 
-export default LegitCheckPage;
+export default MyLegitPage;
