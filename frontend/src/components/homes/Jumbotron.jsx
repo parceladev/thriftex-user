@@ -11,9 +11,12 @@ const Jumbotron = () => {
       <h1 className="block text-[40px] font-didot text-secondary py-2">
         IS YOUR FASHION STYLE LEGIT?
       </h1>
-      <button className="px-6 py-3 mt-2 text-white bg-transparent border border-white rounded-lg hover:bg-white hover:text-primary">
+      <a
+        href="/user/legit-check"
+        className="px-6 py-3 mt-2 text-white bg-transparent border border-white rounded-lg hover:bg-white hover:text-primary"
+      >
         CHECK NOW
-      </button>
+      </a>
     </div>
   );
 };

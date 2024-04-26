@@ -4,14 +4,17 @@ import {
   faArrowDownWideShort,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles';
+import { PropTypes } from 'prop-types';
 
-const SearchProduct = () => {
+const SearchProduct = (props) => {
+  const { onSearchChange } = props;
   return (
-    <div className="flex h-14 w-full">
+    <div className="flex w-full h-14">
       <input
         type="text"
         placeholder="Example: ID- 040121"
-        className="p-3 border border-black h-full w-4/5 light:bg-white dark:border-gray-400"
+        onChange={onSearchChange}
+        className="w-4/5 h-full p-3 border border-black light:bg-white dark:border-gray-400"
       />
       <button
         className={`${styles.flexCenter} p-5 border border-black dark:border-gray-400`}
@@ -25,6 +28,10 @@ const SearchProduct = () => {
       </button>
     </div>
   );
+};
+
+SearchProduct.propTypes = {
+  onSearchChange: PropTypes.func.isRequired,
 };
 
 export default SearchProduct;

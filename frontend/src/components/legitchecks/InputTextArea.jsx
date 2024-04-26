@@ -30,6 +30,8 @@ const InputTextArea = (props) => {
       <textarea
         id={id}
         className="w-full p-2 border-b-2 border-gray-500"
+        value={value}
+        onChange={onChange}
       ></textarea>
     </div>
   );
@@ -50,7 +52,6 @@ InputTextArea.propTypes = {
     PropTypes.instanceOf(File),
   ]),
   onChange: PropTypes.func,
-  data: PropTypes.array.isRequired,
 };
 
 export default InputTextArea;
