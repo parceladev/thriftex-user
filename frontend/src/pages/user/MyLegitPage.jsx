@@ -3,10 +3,15 @@ import {
   ButtonFormLegit,
   CardProduct,
 } from '../../components/legitchecks';
-import { fetchLegitPublish } from '../../utils/legit-api-service';
+import { fetchMyLegit } from '../../utils/legit-api-service';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const MyLegitPage = () => {
+  const navigate = useNavigate();
+
   const [legitData, setLegitData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -15,9 +20,9 @@ const MyLegitPage = () => {
     setLoading(true);
     const getLegitData = async () => {
       try {
-        const data = await fetchLegitPublish();
+        const data = await fetchMyLegit(navigate);
         if (data.status) {
-          setLegitData(data.data);
+          setLegitData(data.data.data);
         } else {
           setError('No legit checks available at the moment.');
         }
@@ -30,7 +35,7 @@ const MyLegitPage = () => {
     };
 
     getLegitData();
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="mt-44">
@@ -41,8 +46,9 @@ const MyLegitPage = () => {
           <ButtonFormLegit />
         </div>
         {loading ? (
-          <div className="flex items-center justify-center h-48">
+          <div className="flex items-center justify-center h-48 gap-2">
             {' '}
+            <FontAwesomeIcon icon={faCircleNotch} spin />
             <p className="text-xl font-medium">Loading...</p>
           </div>
         ) : error ? (

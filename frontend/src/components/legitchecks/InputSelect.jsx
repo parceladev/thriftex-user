@@ -12,7 +12,6 @@ const InputSelect = (props) => {
     defaultValue,
     onChange,
     className,
-    isCategoryClassName = false,
     dataType,
   } = props;
 
@@ -37,10 +36,16 @@ const InputSelect = (props) => {
 
   return (
     <div className="mb-8">
-      <label htmlFor={htmlFor} className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase">
+      <label
+        htmlFor={htmlFor}
+        className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase"
+      >
         {label}
         {isRequired === 'optional' && (
-          <span className=" text-xs font-normal text-gray-700"> (Optional)</span>
+          <span className="text-xs font-normal text-gray-700 ">
+            {' '}
+            (Optional)
+          </span>
         )}
         {isRequired === 'required' && (
           <span className="text-xs font-normal text-red-500"> (Required)</span>
@@ -53,7 +58,7 @@ const InputSelect = (props) => {
         value={value}
         onChange={onChange}
       >
-        <option value="" disabled={!value} selected={!value} className="text-gray-400">
+        <option value="" disabled className="text-gray-400">
           {defaultValue}
         </option>
         {optionsData.map((item) => (
@@ -68,7 +73,6 @@ const InputSelect = (props) => {
 
 InputSelect.propTypes = {
   label: PropTypes.string,
-  // type: PropTypes.string.isRequired,
   htmlFor: PropTypes.string,
   className: PropTypes.string,
   isCategoryClassName: PropTypes.string,
@@ -76,7 +80,11 @@ InputSelect.propTypes = {
   name: PropTypes.string,
   defaultValue: PropTypes.string,
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.instanceOf(File)]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(File),
+  ]),
   onChange: PropTypes.func,
   dataType: PropTypes.string,
 };
