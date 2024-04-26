@@ -52,7 +52,7 @@ const Navbar = () => {
             <img className="w-32 h-10 " src={logo} alt="Verifex" />
           </a>
         </div>
-        <div className="items-center space-x-32 hiden lg:flex">
+        <div className="items-center space-x-32 sm:flex hidden">
           {routes.map((route) => (
             <Link key={route.path} to={route.path}>
               {route.name}
@@ -61,14 +61,13 @@ const Navbar = () => {
         </div>
         <button
           onClick={toggleMenu}
-          className={`menu-icon text-4xl lg:hidden ${isMenuOpen ? 'open' : ''}`}
+          className='text-4xl sm:hidden'
+          // className={`menu-icon text-4xl lg:hidden ${isMenuOpen ? 'open' : ''}`}
         >
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
         <div
-          className={`absolute top-14 bg-primary w-full left-0 px-5 ${
-            isMenuOpen ? 'flex flex-wrap' : 'hidden'
-          } lg:hidden`}
+          className={`absolute top-14 w-full left-0 px-5 bg-primary ${isMenuOpen ? 'flex' : 'hidden'} flex-wrap sm:hidden`}
         >
           {routes.map((route) => (
             <Link
