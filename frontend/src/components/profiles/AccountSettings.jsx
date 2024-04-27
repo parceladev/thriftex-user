@@ -4,6 +4,7 @@ import SecurityForm from './SecurityForm';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import LogOut from './LogOut';
+import MyLegit from './MyLegit';
 import updateProfile from '../../utils/profile-api-service';
 import { decodeToken, getAccessToken } from '../../utils/token-utilities';
 
@@ -134,7 +135,8 @@ const AccountSettings = () => {
           />
         </button>
       </form>
-      <div>
+      <div className="mt-14">
+        <MyLegit />
         <LogOut />
       </div>
     </section>

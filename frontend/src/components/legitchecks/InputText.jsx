@@ -10,7 +10,7 @@ const InputText = (props) => {
     isRequired = 'none',
     value,
     onChange,
-    placeholder
+    placeholder,
   } = props;
 
   return (
@@ -56,7 +56,6 @@ InputText.propTypes = {
     PropTypes.instanceOf(File),
   ]),
   onChange: PropTypes.func,
-  data: PropTypes.array.isRequired,
 };
 
 export default InputText;

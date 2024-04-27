@@ -1,19 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import { InputText, InputImage, InputTextArea, InputSelect } from '../../components/legitchecks';
+import {
+  InputText,
+  InputImage,
+  InputTextArea,
+  InputSelect,
+} from '../../components/legitchecks';
 import AlertLegitCheck from '../../components/legitchecks/AlertLegitCheck';
+import { useNavigate } from 'react-router-dom';
+import { saveLegitCheck } from '../../utils/legit-api-service';
+import { getAccessToken, decodeToken } from '../../utils/token-utilities';
 
 const LegitCheckFormPage = () => {
-  // State untuk tiap-tiap field dan gambar.
+  const navigate = useNavigate();
   const [itemCategory, setItemCategory] = useState('');
   const [itemBrand, setItemBrand] = useState('');
   const [itemName, setItemName] = useState('');
+  const [storeName, setStoreName] = useState('');
+  const [purchase, setPurchase] = useState('');
+  const [itemCondition, setItemCondition] = useState('');
+  const [otherNotes, setOtherNotes] = useState('');
   const [images, setImages] = useState([]);
-
-  // State untuk tombol submit.
   const [isButtonActive, setIsButtonActive] = useState(false);
+  const [isAlertVisible, setAlertVisible] = useState(false);
+  const [imagePreviews, setImagePreviews] = useState([]);
 
-  // Efek untuk menentukan apakah semua syarat terpenuhi.
   useEffect(() => {
     if (
       itemCategory.trim() !== '' &&
@@ -21,57 +32,108 @@ const LegitCheckFormPage = () => {
       itemName.trim() !== '' &&
       images.length >= 6
     ) {
-      setIsButtonActive(true); // Aktifkan tombol jika semua syarat terpenuhi.
+      setIsButtonActive(true);
     } else {
-      setIsButtonActive(false); // Tetap non-aktif jika ada syarat yang belum terpenuhi.
+      setIsButtonActive(false);
     }
-  }, [itemCategory, itemBrand, itemName, images]); // Dependensi efek.
+  }, [itemCategory, itemBrand, itemName, images]);
 
-  // Fungsi untuk menangani perubahan gambar yang diunggah
-  const handleImageChange = (files) => {
+  const handleImageChange = (event) => {
     const newFiles = Array.from(event.target.files);
-    // Memastikan total gambar tidak melebihi 12 setelah menambahkan yang baru
-    if (images.length + newFiles.length <= 12) {
-      // Validasi ukuran file jika diperlukan
+    const newImages = [];
+    const newImagePreviews = [];
+
+    for (let i = 0; i < newFiles.length; i++) {
+      const file = newFiles[i];
+      newImages.push(file);
+      newImagePreviews.push(URL.createObjectURL(file));
+    }
+
+    if (images.length + newImages.length <= 12) {
       if (newFiles.every((file) => file.size <= 1000000)) {
-        setImages(prevImages => [...prevImages, ...newFiles].map(file => 
-          file instanceof File ? URL.createObjectURL(file) : file
-        ));
+        setImages((prevImages) => [...prevImages, ...newImages]);
+        setImagePreviews((prevPreviews) => [...prevPreviews, ...newImagePreviews]);
       } else {
-        // Handle error ukuran file
         alert('All images must be less than 1000KB.');
       }
     } else {
-      // Handle error jika melebihi batas gambar
-      alert(`You can only upload up to 12 images. You've already selected ${images.length} images.`);
+      alert(
+        `You can only upload up to 12 images. You've already selected ${images.length} images.`
+      );
     }
   };
 
-  
-  // Fungsi untuk menangani submit form
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     if (isButtonActive) {
-      // Proses data form di sini
-      // console.log('Form Submitted:', { itemName, itemCategory, itemBrand, images });
-      setAlertVisible(true); // Menampilkan alert sukses
+      try {
+        const accessToken = getAccessToken();
+        if (!accessToken) {
+          console.error('Access token not found.');
+          return;
+        }
+
+        const decodedToken = decodeToken(accessToken);
+        const userId = decodedToken.user_id;
+        if (!userId) {
+          console.error('User ID not found in token.');
+          return;
+        }
+
+        const formData = new FormData();
+        formData.append('user_id', userId);
+        formData.append('kategori', itemCategory);
+        formData.append('brand', itemBrand);
+        formData.append('nama_item', itemName);
+        formData.append('purchase', purchase);
+        formData.append('nama_toko', storeName);
+        formData.append('kondisi_barang', itemCondition);
+        formData.append('catatan', otherNotes);
+        for (let i = 0; i < images.length; i++) {
+          formData.append('legitimage[]', images[i]);
+        }
+
+        console.log('user_id: ', userId);
+        console.log('kategori: ', itemCategory);
+        console.log('brand: ', itemBrand);
+        console.log('nama_item: ', itemName);
+        console.log('purchase: ', purchase);
+        console.log('nama_toko: ', storeName);
+        console.log('kondisi_barang: ', itemCondition);
+        console.log('catatan: ', otherNotes);
+        console.log('legitImage: ', images);
+
+        const result = await saveLegitCheck(formData, navigate);
+        console.log('result:', result);
+
+        if (result && result.status) {
+          setAlertVisible(true);
+        } else {
+          console.error('Error submitting form:', result.message);
+        }
+      } catch (error) {
+        console.error('Error submitting form:', error);
+        setAlertVisible(false);
+      }
     }
   };
-  
- 
-  const [isAlertVisible, setAlertVisible] = useState(false); // State untuk menampilkan alert
- 
+
   const closeAlert = () => {
     setAlertVisible(false);
   };
 
   return (
     <div className="flex flex-col justify-start w-full min-h-screen p-10">
-      <a href="/users/legit-check" className="flex items-center justify-start mt-32">
+      <a
+        href="/user/legit-check"
+        className="flex items-center justify-start mt-32"
+      >
         <FaArrowLeft /> <span className="pl-2">Back</span>
       </a>
       <div className="w-full p-8 mt-5 bg-white rounded">
-        <div className="mb-6 text-2xl italic text-center uppercase">Legit Check Form</div>
+        <div className="mb-6 text-2xl italic text-center uppercase">
+          Legit Check Form
+        </div>
         <form onSubmit={handleSubmit}>
           <InputSelect
             label="Item Category"
@@ -110,9 +172,9 @@ const LegitCheckFormPage = () => {
             htmlFor="imageUpload"
             id="imageUpload"
             isRequired="required"
-            images={images}
+            images={imagePreviews}
             setImages={setImages}
-            handleImageChange={(e) => handleImageChange(e.target.files)}
+            handleImageChange={(e) => handleImageChange(e)}
           />
           <InputSelect
             label="Purchase"
@@ -122,6 +184,8 @@ const LegitCheckFormPage = () => {
             isRequired="optional"
             dataType="purchases"
             defaultValue="Select Purchase"
+            value={purchase}
+            onChange={(e) => setPurchase(e.target.value)}
           />
           <InputText
             label="Store Name"
@@ -130,6 +194,8 @@ const LegitCheckFormPage = () => {
             htmlFor="store-name"
             isRequired="optional"
             placeholder="Enter Store Name"
+            value={storeName}
+            onChange={(e) => setStoreName(e.target.value)}
           />
           <InputSelect
             label="Item Condition"
@@ -139,6 +205,8 @@ const LegitCheckFormPage = () => {
             isRequired="optional"
             dataType="conditions"
             defaultValue="Select Item Condition"
+            value={itemCondition}
+            onChange={(e) => setItemCondition(e.target.value)}
           />
           <InputTextArea
             label="Other Notes"
@@ -146,11 +214,15 @@ const LegitCheckFormPage = () => {
             id="other-notes"
             htmlFor="other-notes"
             isRequired="optional"
+            value={otherNotes}
+            onChange={(e) => setOtherNotes(e.target.value)}
           />
           <button
-            // className={`py-3 w-full mt-4 uppercase text-center flex justify-center items-center`}
+            type="submit"
             className={`py-3 w-full mt-4 text-center flex justify-center items-center 
-            ${isButtonActive ? 'bg-black text-white' : 'bg-gray-300 text-black'}`}
+            ${
+              isButtonActive ? 'bg-black text-white' : 'bg-gray-300 text-black'
+            }`}
             disabled={!isButtonActive}
           >
             Legit Check <FaArrowRight className="ml-2" />
