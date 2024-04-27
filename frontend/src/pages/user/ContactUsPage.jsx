@@ -1,10 +1,10 @@
-import React from 'react';
-import ContactUs from '../../components/contact/ContactUs';
+import { ContactUs, Faq } from '../../components/contact/';
 
 const ContactUsPage = () => {
   return (
-    <section className='flex flex-col justify-center min-h-screen pt-24'>
-      <ContactUs/>
+    <section className="flex justify-center min-h-screen p-10 mt-36">
+      <ContactUs />
+      <Faq />
     </section>
   );
 };
