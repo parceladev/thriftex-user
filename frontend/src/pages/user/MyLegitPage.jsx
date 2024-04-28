@@ -59,7 +59,10 @@ const MyLegitPage = () => {
         ) : (
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
             {legitData.map((product) => (
-              <CardProduct key={product.id} product={product} />
+              <CardProduct
+                key={product.id}
+                product={product}
+              />
             ))}
           </div>
         )}

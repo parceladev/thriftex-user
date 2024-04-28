@@ -9,6 +9,7 @@ import {
   LegitCheckFormPage,
   ContactUsPage,
   MyLegitPage,
+  DetailMyLegitPage,
 } from './pages/user';
 import { SignInPage, SignUpPage } from './pages/auth';
 import PrivateRoute from './utils/PrivateRoute';
@@ -27,6 +28,10 @@ function App() {
         <Route
           path="my-legit"
           element={<PrivateRoute element={<MyLegitPage />} />}
+        />
+        <Route
+          path="my-legit/detail/:casecode"
+          element={<PrivateRoute element={<DetailMyLegitPage />} />}
         />
         <Route
           path="legit-check-form"

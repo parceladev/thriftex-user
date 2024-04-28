@@ -10,6 +10,7 @@ import LegitCheckFormPage from '../pages/user/LegitCheckFormPage';
 import ContactUsPage from '../pages/user/ContactUsPage';
 import PrivateRoute from './../utils/PrivateRoute';
 import MyLegitPage from './../pages/user/MyLegitPage';
+import { DetailMyLegitPage } from '../components/legitchecks';
 
 export function UserLayout() {
   return (
@@ -33,8 +34,11 @@ export function UserLayout() {
             path="my-legit"
             element={<PrivateRoute element={<MyLegitPage />} />}
           />
+          <Route
+            path="my-legit/detail/:caseCode"
+            element={<PrivateRoute element={<DetailMyLegitPage />} />}
+          />
           <Route path="contact-us" element={<ContactUsPage />} />
-          {/* Tambahkan Route lain jika diperlukan */}
         </Routes>
       </main>
       <Footer routes={routes} />
