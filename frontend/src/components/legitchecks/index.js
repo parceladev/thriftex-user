@@ -1,6 +1,7 @@
 import Banner from './Banner';
 import ButtonFormLegit from './ButtonFormLegit';
-import CardProduct from './CardProduct';
+import CardProductLegitPublish from './CardProductLegitPublish';
+import CardProductMyLegit from './CardProductMyLegit';
 import SearchProduct from './SearchProduct';
 import ItemConditionOption from './ItemConditionOption';
 import PurchaseOption from './PurchaseOption';
@@ -15,7 +16,8 @@ import DetailMyLegitPage from '../../pages/user/DetailMyLegitPage';
 export {
   Banner,
   ButtonFormLegit,
-  CardProduct,
+  CardProductLegitPublish,
+  CardProductMyLegit,
   SearchProduct,
   ItemConditionOption,
   PurchaseOption,

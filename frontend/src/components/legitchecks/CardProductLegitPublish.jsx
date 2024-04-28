@@ -1,22 +1,19 @@
 import { PropTypes } from 'prop-types';
 
-const CardProduct = (props) => {
+const CardProductLegitPublish = (props) => {
   const { product } = props;
   return (
-    <a
-      href={`/user/my-legit/detail/${product.case_code}`}
-      className="flex flex-col gap-5 border border-black dark:border-gray-600"
-    >
+    <div className="flex flex-col gap-5 border border-black dark:border-gray-600">
       <img className="h-72" src={product.file_path} alt={product.nama_item} />
       <p className="text-center text-black">{product.nama_item}</p>
       <p className="py-3 font-bold text-center text-white uppercase bg-black dark:bg-gray-300 dark:text-black">
         {product.check_result || 'waiting'}
       </p>
-    </a>
+    </div>
   );
 };
 
-CardProduct.propTypes = {
+CardProductLegitPublish.propTypes = {
   product: PropTypes.shape({
     case_code: PropTypes.string.isRequired,
     file_path: PropTypes.string,
@@ -24,4 +21,4 @@ CardProduct.propTypes = {
     check_result: PropTypes.string,
   }).isRequired,
 };
-export default CardProduct;
+export default CardProductLegitPublish;
