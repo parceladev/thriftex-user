@@ -11,7 +11,7 @@ import InputText from './InputText';
 import InputTextArea from './InputTextArea';
 import InputImage from './InputImage';
 import ImageUploadBox from './ImageUploadBox';
-import DetailMyLegitPage from '../../pages/user/DetailMyLegitPage';
+import LegitDetail from './LegitDetail';
 
 export {
   Banner,
@@ -27,5 +27,5 @@ export {
   InputTextArea,
   InputImage,
   ImageUploadBox,
-  DetailMyLegitPage,
+  LegitDetail,
 };

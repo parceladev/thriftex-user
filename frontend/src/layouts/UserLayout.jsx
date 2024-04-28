@@ -10,13 +10,11 @@ import LegitCheckFormPage from '../pages/user/LegitCheckFormPage';
 import ContactUsPage from '../pages/user/ContactUsPage';
 import PrivateRoute from './../utils/PrivateRoute';
 import MyLegitPage from './../pages/user/MyLegitPage';
-import { DetailMyLegitPage } from '../components/legitchecks';
 
 export function UserLayout() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar routes={routes} />
-      {/* Elemen Routes harus berada dalam satu blok */}
       <main className="flex-grow">
         <Routes>
           <Route path="home" element={<HomePage />} />
@@ -33,10 +31,6 @@ export function UserLayout() {
           <Route
             path="my-legit"
             element={<PrivateRoute element={<MyLegitPage />} />}
-          />
-          <Route
-            path="my-legit/detail/:caseCode"
-            element={<PrivateRoute element={<DetailMyLegitPage />} />}
           />
           <Route path="contact-us" element={<ContactUsPage />} />
         </Routes>
