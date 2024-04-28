@@ -1,7 +1,7 @@
 import {
   SearchProduct,
   ButtonFormLegit,
-  CardProduct,
+  CardProductMyLegit,
 } from '../../components/legitchecks';
 import { fetchMyLegit } from '../../utils/legit-api-service';
 import { useEffect, useState } from 'react';
@@ -59,7 +59,7 @@ const MyLegitPage = () => {
         ) : (
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
             {legitData.map((product) => (
-              <CardProduct
+              <CardProductMyLegit
                 key={product.id}
                 product={product}
               />
