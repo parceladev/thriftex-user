@@ -1,6 +1,6 @@
 import {
   ButtonFormLegit,
-  CardProduct,
+  CardProductLegitPublish,
   SearchProduct,
   Banner,
 } from '../../components/legitchecks';
@@ -67,7 +67,7 @@ const LegitCheckPage = () => {
         ) : filteredData.length > 0 ? (
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
             {filteredData.map((product) => (
-              <CardProduct key={product.id} product={product} />
+              <CardProductLegitPublish key={product.id} product={product} />
             ))}
           </div>
         ) : (

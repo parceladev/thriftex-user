@@ -6,6 +6,7 @@ import {
   MyLegitPage,
   LegitCheckFormPage,
   ContactUsPage,
+  // DetailMyLegitPage,
 } from './pages/user';
 import { SignInPage, SignUpPage } from './pages/auth';
 

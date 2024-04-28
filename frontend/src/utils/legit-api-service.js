@@ -49,6 +49,33 @@ export const fetchMyLegit = async (navigate) => {
   }
 };
 
+export const fetchDetailMyLegit = async (caseCode) => {
+  const token = getAccessToken();
+  if (!token) {
+    alert('You are not logged in. Please log in and try again.');
+    deleteToken();
+    // navigate('/user/auth');
+    return { success: false, message: 'Not logged in' };
+  }
+
+  try {
+    const response = await axios.get(`${API_BASE_URL}/legits/datadetail`, {
+      params: { case_code: caseCode },
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `${token}`,
+      },
+    });
+
+    const datas = response.data;
+
+    return datas;
+  } catch (error) {
+    console.error('Error fetching legit publish data:', error);
+    throw error;
+  }
+};
+
 export const saveLegitCheck = async (formData, navigate) => {
   const token = getAccessToken();
   if (!token) {

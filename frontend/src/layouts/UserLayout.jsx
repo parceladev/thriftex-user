@@ -15,7 +15,6 @@ export function UserLayout() {
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar routes={routes} />
-      {/* Elemen Routes harus berada dalam satu blok */}
       <main className="flex-grow">
         <Routes>
           <Route path="home" element={<HomePage />} />
@@ -34,7 +33,6 @@ export function UserLayout() {
             element={<PrivateRoute element={<MyLegitPage />} />}
           />
           <Route path="contact-us" element={<ContactUsPage />} />
-          {/* Tambahkan Route lain jika diperlukan */}
         </Routes>
       </main>
       <Footer routes={routes} />

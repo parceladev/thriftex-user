@@ -1,4 +1,4 @@
-import { SearchProduct, ButtonFormLegit, CardProduct } from '../../components/legitchecks';
+import { SearchProduct, ButtonFormLegit, CardProductMyLegit } from '../../components/legitchecks';
 import { fetchMyLegit } from '../../utils/legit-api-service';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -67,17 +67,13 @@ const MyLegitPage = () => {
         ) : (
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
             {legitData.map((product) => (
-              <CardProduct key={product.id} product={product} onClick={() => handleOpenModal(product)} />
+              <CardProductMyLegit key={product.id} product={product} />
             ))}
           </div>
         )}
       </section>
       {selectedProduct && (
-        <LegitDetail
-          isOpen={isModalOpen}
-          onClose={handleCloseModal}
-          product={selectedProduct}
-        />
+        <LegitDetail isOpen={isModalOpen} onClose={handleCloseModal} product={selectedProduct} />
       )}
     </div>
   );

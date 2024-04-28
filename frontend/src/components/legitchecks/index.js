@@ -1,6 +1,7 @@
 import Banner from './Banner';
 import ButtonFormLegit from './ButtonFormLegit';
-import CardProduct from './CardProduct';
+import CardProductLegitPublish from './CardProductLegitPublish';
+import CardProductMyLegit from './CardProductMyLegit';
 import SearchProduct from './SearchProduct';
 import ItemConditionOption from './ItemConditionOption';
 import PurchaseOption from './PurchaseOption';
@@ -10,11 +11,13 @@ import InputText from './InputText';
 import InputTextArea from './InputTextArea';
 import InputImage from './InputImage';
 import ImageUploadBox from './ImageUploadBox';
+import LegitDetail from './LegitDetail';
 
 export {
   Banner,
   ButtonFormLegit,
-  CardProduct,
+  CardProductLegitPublish,
+  CardProductMyLegit,
   SearchProduct,
   ItemConditionOption,
   PurchaseOption,
@@ -24,4 +27,5 @@ export {
   InputTextArea,
   InputImage,
   ImageUploadBox,
+  LegitDetail,
 };
