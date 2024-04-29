@@ -10,9 +10,12 @@ import AlertLegitCheck from '../../components/legitchecks/AlertLegitCheck';
 import { useNavigate } from 'react-router-dom';
 import { saveLegitCheck } from '../../utils/legit-api-service';
 import { getAccessToken, decodeToken } from '../../utils/token-utilities';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const LegitCheckFormPage = () => {
   const navigate = useNavigate();
+
   const [itemCategory, setItemCategory] = useState('');
   const [itemBrand, setItemBrand] = useState('');
   const [itemName, setItemName] = useState('');
@@ -21,22 +24,35 @@ const LegitCheckFormPage = () => {
   const [itemCondition, setItemCondition] = useState('');
   const [otherNotes, setOtherNotes] = useState('');
   const [images, setImages] = useState([]);
+
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isAlertVisible, setAlertVisible] = useState(false);
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     if (
       itemCategory.trim() !== '' &&
       itemBrand.trim() !== '' &&
       itemName.trim() !== '' &&
+      storeName.trim() !== '' &&
+      purchase.trim() !== '' &&
+      itemCondition.trim() !== '' &&
       images.length >= 6
     ) {
       setIsButtonActive(true);
     } else {
       setIsButtonActive(false);
     }
-  }, [itemCategory, itemBrand, itemName, images]);
+  }, [
+    itemCategory,
+    itemBrand,
+    itemName,
+    storeName,
+    purchase,
+    itemCondition,
+    images,
+  ]);
 
   const handleImageChange = (event) => {
     const newFiles = Array.from(event.target.files);
@@ -52,7 +68,10 @@ const LegitCheckFormPage = () => {
     if (images.length + newImages.length <= 12) {
       if (newFiles.every((file) => file.size <= 1000000)) {
         setImages((prevImages) => [...prevImages, ...newImages]);
-        setImagePreviews((prevPreviews) => [...prevPreviews, ...newImagePreviews]);
+        setImagePreviews((prevPreviews) => [
+          ...prevPreviews,
+          ...newImagePreviews,
+        ]);
       } else {
         alert('All images must be less than 1000KB.');
       }
@@ -66,6 +85,7 @@ const LegitCheckFormPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isButtonActive) {
+      setIsLoading(true);
       try {
         const accessToken = getAccessToken();
         if (!accessToken) {
@@ -104,6 +124,8 @@ const LegitCheckFormPage = () => {
       } catch (error) {
         console.error('Error submitting form:', error);
         setAlertVisible(false);
+      } finally {
+        setIsLoading(false);
       }
     }
   };
@@ -124,6 +146,14 @@ const LegitCheckFormPage = () => {
         <div className="mb-6 text-2xl italic text-center uppercase">
           Legit Check Form
         </div>
+        {isLoading && (
+          <div className="fixed z-50 flex items-center justify-center w-full h-full gap-6 text-2xl text-white transform -translate-x-1/2 -translate-y-1/2 bg-black gap- opacity-70 top-1/2 left-1/2">
+            <FontAwesomeIcon icon={faCircleNotch} spin />
+            <p className="text-white">
+              Please Wait, Your legit style is being sent to the validator...
+            </p>
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
           <InputSelect
             label="Item Category"
@@ -171,7 +201,7 @@ const LegitCheckFormPage = () => {
             name="purchase"
             id="purchase"
             htmlFor="purchase"
-            isRequired="optional"
+            isRequired="required"
             dataType="purchases"
             defaultValue="Select Purchase"
             value={purchase}
@@ -182,7 +212,7 @@ const LegitCheckFormPage = () => {
             name="store-name"
             id="store-name"
             htmlFor="store-name"
-            isRequired="optional"
+            isRequired="required"
             placeholder="Enter Store Name"
             value={storeName}
             onChange={(e) => setStoreName(e.target.value)}
@@ -192,7 +222,7 @@ const LegitCheckFormPage = () => {
             name="item-condition"
             id="item-condition"
             htmlFor="item-condition"
-            isRequired="optional"
+            isRequired="required"
             dataType="conditions"
             defaultValue="Select Item Condition"
             value={itemCondition}
