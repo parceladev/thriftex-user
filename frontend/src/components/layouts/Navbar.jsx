@@ -46,7 +46,7 @@ const Navbar = () => {
 
   return (
     <div className="relative flex flex-col">
-      <div className="fixed top-0 left-0 z-40 flex flex-row-reverse items-center justify-between w-full px-10 py-2 border-b lg:flex-row border-slate-200 bg-primary">
+      <div className="fixed top-0 left-0 z-[48] flex flex-row-reverse items-center justify-between w-full px-10 py-2 border-b lg:flex-row border-slate-200 bg-primary">
         <div className="logo">
           <a href="/user/home">
             <img className="w-32 h-10 " src={logo} alt="Verifex" />

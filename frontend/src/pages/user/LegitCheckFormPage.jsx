@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import {
   InputText,
   InputImage,
@@ -28,7 +28,7 @@ const LegitCheckFormPage = () => {
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isAlertVisible, setAlertVisible] = useState(false);
   const [imagePreviews, setImagePreviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (
@@ -85,7 +85,7 @@ const LegitCheckFormPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isButtonActive) {
-      setIsLoading(true);
+      setIsSubmitting(true);
       try {
         const accessToken = getAccessToken();
         if (!accessToken) {
@@ -125,7 +125,7 @@ const LegitCheckFormPage = () => {
         console.error('Error submitting form:', error);
         setAlertVisible(false);
       } finally {
-        setIsLoading(false);
+        setIsSubmitting(false);
       }
     }
   };
@@ -146,14 +146,6 @@ const LegitCheckFormPage = () => {
         <div className="mb-6 text-2xl italic text-center uppercase">
           Legit Check Form
         </div>
-        {isLoading && (
-          <div className="fixed z-50 flex items-center justify-center w-full h-full gap-6 text-2xl text-white transform -translate-x-1/2 -translate-y-1/2 bg-black gap- opacity-70 top-1/2 left-1/2">
-            <FontAwesomeIcon icon={faCircleNotch} spin />
-            <p className="text-white">
-              Please Wait, Your legit style is being sent to the validator...
-            </p>
-          </div>
-        )}
         <form onSubmit={handleSubmit}>
           <InputSelect
             label="Item Category"
@@ -239,13 +231,14 @@ const LegitCheckFormPage = () => {
           />
           <button
             type="submit"
-            className={`py-3 w-full mt-4 text-center flex justify-center items-center 
+            className={`py-3 w-full mt-4 text-center flex gap-3 justify-center items-center 
             ${
               isButtonActive ? 'bg-black text-white' : 'bg-gray-300 text-black'
             }`}
-            disabled={!isButtonActive}
+            disabled={!isButtonActive || isSubmitting}
           >
-            Legit Check <FaArrowRight className="ml-2" />
+            {isSubmitting && <FontAwesomeIcon icon={faCircleNotch} spin />}
+            <span>{isSubmitting ? 'Submitting...' : 'Legit Check'}</span>
           </button>
         </form>
         <AlertLegitCheck isVisible={isAlertVisible} onClose={closeAlert} />
