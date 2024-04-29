@@ -93,16 +93,6 @@ const LegitCheckFormPage = () => {
           formData.append('legitimage[]', images[i]);
         }
 
-        console.log('user_id: ', userId);
-        console.log('kategori: ', itemCategory);
-        console.log('brand: ', itemBrand);
-        console.log('nama_item: ', itemName);
-        console.log('purchase: ', purchase);
-        console.log('nama_toko: ', storeName);
-        console.log('kondisi_barang: ', itemCondition);
-        console.log('catatan: ', otherNotes);
-        console.log('legitImage: ', images);
-
         const result = await saveLegitCheck(formData, navigate);
         console.log('result:', result);
 
