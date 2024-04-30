@@ -6,8 +6,8 @@ const CardProductMyLegit = (props) => {
   const { product } = props;
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const toggleModal = (product) => {
-    setModalOpen(product);
+  const toggleModal = () => {
+    setModalOpen(!isModalOpen);
   };
 
   return (
