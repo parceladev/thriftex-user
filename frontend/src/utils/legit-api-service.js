@@ -49,7 +49,7 @@ export const fetchMyLegit = async (navigate) => {
   }
 };
 
-export const fetchDetailMyLegit = async (caseCode) => {
+export const fetchDetailMyLegit = async (case_code) => {
   const token = getAccessToken();
   if (!token) {
     alert('You are not logged in. Please log in and try again.');
@@ -60,7 +60,7 @@ export const fetchDetailMyLegit = async (caseCode) => {
 
   try {
     const response = await axios.get(`${API_BASE_URL}/legits/datadetail`, {
-      params: { case_code: caseCode },
+      params: { case_code },
       headers: {
         'Content-Type': 'multipart/form-data',
         Authorization: `${token}`,
@@ -87,16 +87,12 @@ export const saveLegitCheck = async (formData, navigate) => {
   }
 
   try {
-    const response = await axios.post(
-      `${API_BASE_URL}/legits/savelegit`,
-      formData,
-      {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-          Authorization: `${token}`,
-        },
-      }
-    );
+    const response = await axios.post(`${API_BASE_URL}/legits/savelegit`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `${token}`,
+      },
+    });
     return response.data;
   } catch (error) {
     if (error.response) {

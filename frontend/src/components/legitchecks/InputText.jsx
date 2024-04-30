@@ -15,10 +15,7 @@ const InputText = (props) => {
 
   return (
     <div className="mb-8">
-      <label
-        htmlFor={htmlFor}
-        className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase"
-      >
+      <label htmlFor={htmlFor} className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase">
         {label}
         {isRequired === 'optional' && (
           <span className="text-xs font-normal text-gray-700"> (Optional)</span>
@@ -51,11 +48,7 @@ InputText.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
-  value: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.number,
-    PropTypes.instanceOf(File),
-  ]),
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.instanceOf(File)]),
   onChange: PropTypes.func,
 };
 

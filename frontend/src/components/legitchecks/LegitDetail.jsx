@@ -1,22 +1,83 @@
 import { PropTypes } from 'prop-types';
+import { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
-const LegitDetail = ({ product, onClose }) => {
+import {
+  InputField,
+  TextAreaField,
+  PhotosField,
+  AuthenticityStatus,
+} from '../../components/legitchecksdetail';
+import { fetchDetailMyLegit } from '../../utils/legit-api-service';
+
+const LegitDetail = ({ onClose, product }) => {
+  const [legitData, setDetailLegit] = useState([]);
+  
+  const checkNote = legitData.authentic_comment
+    ? legitData.authentic_comment[0].check_note
+    : 'waiting';
+  const checkResult = legitData.authentic_comment
+    ? legitData.authentic_comment[0].check_result
+    : 'waiting';
+
+  useEffect(() => {
+    const getDetailLegitData = async () => {
+      if (product?.case_code) {
+        console.log('Modal opened with product:', product);
+        try {
+          const data = await fetchDetailMyLegit(product.case_code);
+          console.log('Response:', data);
+          if (data && data.status && data.data.length > 0) {
+            console.log('Data fetched successfully:', data.data[0]);
+            setDetailLegit(data.data[0]);
+          } else {
+            throw new Error('Failed to fetch product details');
+          }
+        } catch (err) {
+          setError('Error fetching details: ' + err.message);
+          console.error('Error on fetching:', err);
+        }
+      } else {
+        setDetailLegit(null);
+      }
+    };
+
+    getDetailLegitData();
+  }, [product?.case_code]);
+
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-75">
-      <div className="p-4 bg-white rounded-lg">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg">{product.nama_item}</h2>
-          <button onClick={onClose} className="px-4 py-2">
-            Close
+    <div className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+      <div className="bg-white w-full max-w-5xl mx-auto rounded-lg shadow-lg overflow-hidden">
+        <div className=" flex flex-row justify-between items-center border-b-2 p-4 mb-5">
+          <p className="text-xl font-bold text-sans text-black ">Legit Check Detail</p>
+          <button type="button" onClick={onClose}>
+            <FontAwesomeIcon icon={faTimes} className="text-[16px]" />
           </button>
         </div>
-        <img
-          src={product.file_path}
-          alt={product.nama_item}
-          className="w-40 h-40 my-4"
-        />
-        <p>Case Code: {product.case_code}</p>
-        <p>Check Result: {product.check_result || 'waiting'}</p>
+        <div className="p-4 overflow-y-auto" style={{ maxHeight: '80vh' }}>
+          <InputField label="CASE CODE" name="name" value={legitData.case_code} />
+          {/* <InputField label="ITEM CATEGORY" name="category" value={legitData.category} />
+          <InputField label="ITEM BRAND" name="brand" value={legitData.brand} /> */}
+          <InputField label="ITEM NAME" name="name" value={legitData.nama_item} />
+          {/* <PhotosField photos={legitData.photos} /> */}
+          <InputField label="PURCHASE DATE" name="purchase" value={legitData.purchase} />
+          <InputField label="STORE NAME" name="storeName" value={legitData.toko_pembelian} />
+          <InputField label="ITEM CONDITION" name="condition" value={legitData.kondisi} />
+          <TextAreaField
+            label="OTHER NOTE"
+            name="otherNote"
+            value={legitData.catatan}
+            required={false}
+          />
+          <AuthenticityStatus status={legitData.check_result} message={checkResult} />
+          <InputField
+            label="DETAIL DESCRIPTION"
+            name="detailDescription"
+            value={checkNote}
+            type="textarea"
+          />
+        </div>
       </div>
     </div>
   );
@@ -30,6 +91,7 @@ LegitDetail.propTypes = {
     check_result: PropTypes.string,
   }),
   onClose: PropTypes.func.isRequired,
+  item: PropTypes.object.isRequired,
 };
 
 export default LegitDetail;
