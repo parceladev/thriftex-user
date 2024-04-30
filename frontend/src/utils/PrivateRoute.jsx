@@ -25,7 +25,7 @@ const PrivateRoute = ({ element }) => {
   }, []);
 
   if (!checked) {
-    return null; // Or loading spinner
+    return null;
   }
 
   return isUserLoggedIn ? element : <Navigate to="/auth/sign-in" replace />;

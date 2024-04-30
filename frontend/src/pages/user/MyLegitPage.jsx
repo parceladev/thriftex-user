@@ -47,23 +47,24 @@ const MyLegitPage = () => {
         </div>
         {loading ? (
           <div className="flex items-center justify-center h-48 gap-2">
-            {' '}
             <FontAwesomeIcon icon={faCircleNotch} spin />
             <p className="text-xl font-medium">Loading...</p>
           </div>
         ) : error ? (
           <div className="flex items-center justify-center h-48">
-            {' '}
             <p className="text-xl text-red-500">Error: {error}</p>
           </div>
-        ) : (
+        ) : legitData.length > 0 ? (
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
             {legitData.map((product) => (
-              <CardProductMyLegit
-                key={product.id}
-                product={product}
-              />
+              <CardProductMyLegit key={product.id} product={product} />
             ))}
+          </div>
+        ) : (
+          <div className="flex items-center justify-center h-48">
+            <p className="text-xl">
+              Youve never done a legit check, legit check now!
+            </p>
           </div>
         )}
       </section>
