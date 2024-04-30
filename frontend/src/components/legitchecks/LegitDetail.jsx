@@ -14,17 +14,20 @@ import { fetchDetailMyLegit } from '../../utils/legit-api-service';
 const LegitDetail = ({ onClose, product }) => {
   const [legitData, setDetailLegit] = useState([]);
 
-  const getCheckDetail = (field) => {
-    return legitData &&
-      legitData.authentic_comment &&
-      legitData.authentic_comment.length > 0 &&
-      legitData.authentic_comment[0][field]
-      ? legitData.authentic_comment[0][field]
-      : 'waiting'; // This could be 'waiting' for `check_note` and 'processing' for `check_result`.
-  };
+  const hasAuthenticityData =
+    legitData &&
+    legitData.authentic_comment &&
+    legitData.authentic_comment.length > 0;
 
-  const checkNote = getCheckDetail('check_note');
-  const checkResult = getCheckDetail('check_result');
+  const checkResult = hasAuthenticityData
+    ? legitData.authentic_comment[0].check_result === 'processing'
+      ? 'Declined'
+      : legitData.authentic_comment[0].check_result
+    : 'No result available';
+
+  const checkNote = hasAuthenticityData
+    ? legitData.authentic_comment[0].check_note
+    : 'No details available';
 
   useEffect(() => {
     const getDetailLegitData = async () => {
@@ -95,13 +98,27 @@ const LegitDetail = ({ onClose, product }) => {
             value={legitData.catatan}
             required={false}
           />
-          <AuthenticityStatus status={checkResult} message={checkResult} />
-          <InputField
-            label="DETAIL DESCRIPTION"
-            name="detailDescription"
-            value={checkNote}
-            type="textarea"
-          />
+          <div className="flex justify-center w-full p-5 mt-8 mb-6 border-b-2 border-b-gray-600">
+            <h3 className="text-2xl italic font-semibold text-center uppercase ">
+              Result
+            </h3>
+          </div>
+          {hasAuthenticityData ? (
+            <>
+              <AuthenticityStatus status={checkResult} message={checkResult} />
+              <InputField
+                label="DETAIL DESCRIPTION"
+                name="detailDescription"
+                value={checkNote}
+                type="textarea"
+              />
+            </>
+          ) : (
+            <div className="flex flex-col p-4 text-lg text-center text-gray-700 bg-orange-200">
+              <p>Authentication details are not available at this moment.</p>
+              <p>Please wait until it has been checked by the validator</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

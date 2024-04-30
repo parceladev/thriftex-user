@@ -4,9 +4,9 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 const AuthenticityStatus = ({ status, message }) => {
   const statusStyles = {
-    fake: 'text-red-600',
+    Declined: 'text-red-600',
     original: 'text-green-600',
-    processing: 'text-orange-300',
+    fake: 'text-orange-300',
   };
 
   return (
@@ -23,7 +23,7 @@ const AuthenticityStatus = ({ status, message }) => {
 };
 
 AuthenticityStatus.propTypes = {
-  status: PropTypes.oneOf(['fake', 'original', 'processing']),
+  status: PropTypes.oneOf(['fake', 'original', 'Declined']),
   message: PropTypes.string.isRequired,
 };
 
