@@ -31,7 +31,7 @@ const SearchProduct = (props) => {
 };
 
 SearchProduct.propTypes = {
-  onSearchChange: PropTypes.func.isRequired,
+  onSearchChange: PropTypes.func,
 };
 
 export default SearchProduct;

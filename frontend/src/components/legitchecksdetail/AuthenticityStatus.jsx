@@ -4,13 +4,16 @@ import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 const AuthenticityStatus = ({ status, message }) => {
   const statusStyles = {
-    FAKE: 'text-red-600', // Merah untuk produk palsu
-    ORIGINAL: 'text-green-600', // Hijau untuk produk asli
+    fake: 'text-red-600',
+    original: 'text-green-600',
+    processing: 'text-orange-300',
   };
 
   return (
-    <div className='mb-3'>
-      <h3 className="font-semibold text-lg text-black uppercase mb-2">AUTHENTICITY</h3>
+    <div className="mb-3">
+      <h3 className="mb-2 text-lg font-semibold text-black uppercase">
+        AUTHENTICITY
+      </h3>
       <div className={`flex items-center ${statusStyles[status]}`}>
         <FontAwesomeIcon icon={faExclamationCircle} />
         <span className="ml-2">{message}</span>
@@ -20,7 +23,7 @@ const AuthenticityStatus = ({ status, message }) => {
 };
 
 AuthenticityStatus.propTypes = {
-  status: PropTypes.oneOf(['FAKE', 'ORIGINAL']),
+  status: PropTypes.oneOf(['fake', 'original', 'processing']),
   message: PropTypes.string.isRequired,
 };
 

@@ -14,12 +14,17 @@ import { fetchDetailMyLegit } from '../../utils/legit-api-service';
 const LegitDetail = ({ onClose, product }) => {
   const [legitData, setDetailLegit] = useState([]);
 
-  const checkNote = legitData.authentic_comment
-    ? legitData.authentic_comment[0].check_note
-    : 'waiting';
-  const checkResult = legitData.authentic_comment
-    ? legitData.authentic_comment[0].check_result
-    : 'waiting';
+  const getCheckDetail = (field) => {
+    return legitData &&
+      legitData.authentic_comment &&
+      legitData.authentic_comment.length > 0 &&
+      legitData.authentic_comment[0][field]
+      ? legitData.authentic_comment[0][field]
+      : 'waiting'; // This could be 'waiting' for `check_note` and 'processing' for `check_result`.
+  };
+
+  const checkNote = getCheckDetail('check_note');
+  const checkResult = getCheckDetail('check_result');
 
   useEffect(() => {
     const getDetailLegitData = async () => {
@@ -90,10 +95,7 @@ const LegitDetail = ({ onClose, product }) => {
             value={legitData.catatan}
             required={false}
           />
-          <AuthenticityStatus
-            status={legitData.check_result}
-            message={checkResult}
-          />
+          <AuthenticityStatus status={checkResult} message={checkResult} />
           <InputField
             label="DETAIL DESCRIPTION"
             name="detailDescription"
@@ -108,13 +110,18 @@ const LegitDetail = ({ onClose, product }) => {
 
 LegitDetail.propTypes = {
   product: PropTypes.shape({
-    case_code: PropTypes.string.isRequired,
-    file_path: PropTypes.string,
+    case_code: PropTypes.string,
     nama_item: PropTypes.string,
+    photos: PropTypes.string,
+    purchase: PropTypes.string,
+    kondisi: PropTypes.string,
+    toko_pembelian: PropTypes.string,
     check_result: PropTypes.string,
+    catatan: PropTypes.string,
+    authentic_comment: PropTypes.string,
   }),
   onClose: PropTypes.func.isRequired,
-  item: PropTypes.object.isRequired,
+  item: PropTypes.object,
 };
 
 export default LegitDetail;
