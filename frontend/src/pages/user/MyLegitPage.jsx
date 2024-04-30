@@ -1,28 +1,20 @@
-import { SearchProduct, ButtonFormLegit, CardProductMyLegit } from '../../components/legitchecks';
+import {
+  SearchProduct,
+  ButtonFormLegit,
+  CardProductMyLegit,
+} from '../../components/legitchecks';
 import { fetchMyLegit } from '../../utils/legit-api-service';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { LegitDetail } from './LegitDetail';
 
 const MyLegitPage = () => {
   const navigate = useNavigate();
+
   const [legitData, setLegitData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false);
-  const [selectedProduct, setSelectedProduct] = useState(null);
-
-  const handleOpenModal = (product) => {
-    setSelectedProduct(product);
-    setModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalOpen(false);
-    setSelectedProduct(null);
-  };
 
   useEffect(() => {
     setLoading(true);
@@ -76,9 +68,6 @@ const MyLegitPage = () => {
           </div>
         )}
       </section>
-      {selectedProduct && (
-        <LegitDetail isOpen={isModalOpen} onClose={handleCloseModal} product={selectedProduct} />
-      )}
     </div>
   );
 };

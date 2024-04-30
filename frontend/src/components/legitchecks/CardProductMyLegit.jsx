@@ -6,12 +6,14 @@ const CardProductMyLegit = (props) => {
   const { product } = props;
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const toggleModal = () => setModalOpen(!isModalOpen);
+  const toggleModal = (product) => {
+    setModalOpen(product);
+  };
 
   return (
     <>
       <div
-        onClick={toggleModal}
+        onClick={() => toggleModal(product)}
         className="flex flex-col gap-5 border border-black cursor-pointer dark:border-gray-600"
       >
         <img className="h-72" src={product.file_path} alt={product.nama_item} />

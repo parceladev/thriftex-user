@@ -90,13 +90,12 @@ export const LegitDetail = ({ isOpen, onClose }) => {
             value={formData.condition}
             onChange={handleChange}
           />
-          {/* <InputField label="OTHER NOTE" name="otherNote" value={formData.otherNote} onChange={handleChange} type="textarea" /> */}
           <TextAreaField
             label="OTHER NOTE"
             name="otherNote"
             value={formData.otherNote}
             onChange={handleChange}
-            // required={false} // Atau true, tergantung kebutuhan Anda
+            required={false} 
           />
           <AuthenticityStatus
             status={formData.authenticity}
@@ -111,9 +110,6 @@ export const LegitDetail = ({ isOpen, onClose }) => {
             onChange={handleChange}
             type="textarea"
           />
-          {/* <div className="flex justify-end pt-2">
-            <button type="submit" className="px-4 py-2 text-sm text-white bg-blue-500 rounded hover:bg-blue-600">Save Information</button>
-          </div> */}
         </div>
       </div>
     </div>
