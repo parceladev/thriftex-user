@@ -32,6 +32,7 @@ const InputText = (props) => {
         value={value}
         onChange={onChange}
         placeholder={placeholder}
+        required
       />
     </div>
   );

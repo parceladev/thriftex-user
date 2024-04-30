@@ -57,6 +57,7 @@ const InputSelect = (props) => {
         className={`w-full p-2 border-b-2 border-gray-500 ${className}`}
         value={value}
         onChange={onChange}
+        required
       >
         <option value="" disabled className="text-gray-400">
           {defaultValue}

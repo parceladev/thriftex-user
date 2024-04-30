@@ -46,13 +46,13 @@ const Navbar = () => {
 
   return (
     <div className="relative flex flex-col">
-      <div className="fixed top-0 left-0 z-50 flex flex-row-reverse items-center justify-between w-full px-10 py-2 border-b lg:flex-row border-slate-200 bg-primary">
+      <div className="fixed top-0 left-0 z-[48] flex flex-row-reverse items-center justify-between w-full px-10 py-2 border-b lg:flex-row border-slate-200 bg-primary">
         <div className="logo">
           <a href="/user/home">
             <img className="w-32 h-10 " src={logo} alt="Verifex" />
           </a>
         </div>
-        <div className="items-center space-x-32 sm:flex hidden">
+        <div className="items-center hidden space-x-32 sm:flex">
           {routes.map((route) => (
             <Link key={route.path} to={route.path}>
               {route.name}
@@ -61,13 +61,15 @@ const Navbar = () => {
         </div>
         <button
           onClick={toggleMenu}
-          className='text-4xl sm:hidden'
+          className="text-4xl sm:hidden"
           // className={`menu-icon text-4xl lg:hidden ${isMenuOpen ? 'open' : ''}`}
         >
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
         <div
-          className={`absolute top-14 w-full left-0 px-5 bg-primary ${isMenuOpen ? 'flex' : 'hidden'} flex-wrap sm:hidden`}
+          className={`absolute top-14 w-full left-0 px-5 bg-primary ${
+            isMenuOpen ? 'flex' : 'hidden'
+          } flex-wrap sm:hidden`}
         >
           {routes.map((route) => (
             <Link

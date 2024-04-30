@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft } from 'react-icons/fa';
 import {
   InputText,
   InputImage,
@@ -10,9 +10,12 @@ import AlertLegitCheck from '../../components/legitchecks/AlertLegitCheck';
 import { useNavigate } from 'react-router-dom';
 import { saveLegitCheck } from '../../utils/legit-api-service';
 import { getAccessToken, decodeToken } from '../../utils/token-utilities';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 const LegitCheckFormPage = () => {
   const navigate = useNavigate();
+
   const [itemCategory, setItemCategory] = useState('');
   const [itemBrand, setItemBrand] = useState('');
   const [itemName, setItemName] = useState('');
@@ -21,22 +24,35 @@ const LegitCheckFormPage = () => {
   const [itemCondition, setItemCondition] = useState('');
   const [otherNotes, setOtherNotes] = useState('');
   const [images, setImages] = useState([]);
+
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isAlertVisible, setAlertVisible] = useState(false);
   const [imagePreviews, setImagePreviews] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (
       itemCategory.trim() !== '' &&
       itemBrand.trim() !== '' &&
       itemName.trim() !== '' &&
+      storeName.trim() !== '' &&
+      purchase.trim() !== '' &&
+      itemCondition.trim() !== '' &&
       images.length >= 6
     ) {
       setIsButtonActive(true);
     } else {
       setIsButtonActive(false);
     }
-  }, [itemCategory, itemBrand, itemName, images]);
+  }, [
+    itemCategory,
+    itemBrand,
+    itemName,
+    storeName,
+    purchase,
+    itemCondition,
+    images,
+  ]);
 
   const handleImageChange = (event) => {
     const newFiles = Array.from(event.target.files);
@@ -52,7 +68,10 @@ const LegitCheckFormPage = () => {
     if (images.length + newImages.length <= 12) {
       if (newFiles.every((file) => file.size <= 1000000)) {
         setImages((prevImages) => [...prevImages, ...newImages]);
-        setImagePreviews((prevPreviews) => [...prevPreviews, ...newImagePreviews]);
+        setImagePreviews((prevPreviews) => [
+          ...prevPreviews,
+          ...newImagePreviews,
+        ]);
       } else {
         alert('All images must be less than 1000KB.');
       }
@@ -66,6 +85,7 @@ const LegitCheckFormPage = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (isButtonActive) {
+      setIsSubmitting(true);
       try {
         const accessToken = getAccessToken();
         if (!accessToken) {
@@ -93,16 +113,6 @@ const LegitCheckFormPage = () => {
           formData.append('legitimage[]', images[i]);
         }
 
-        console.log('user_id: ', userId);
-        console.log('kategori: ', itemCategory);
-        console.log('brand: ', itemBrand);
-        console.log('nama_item: ', itemName);
-        console.log('purchase: ', purchase);
-        console.log('nama_toko: ', storeName);
-        console.log('kondisi_barang: ', itemCondition);
-        console.log('catatan: ', otherNotes);
-        console.log('legitImage: ', images);
-
         const result = await saveLegitCheck(formData, navigate);
         console.log('result:', result);
 
@@ -114,6 +124,8 @@ const LegitCheckFormPage = () => {
       } catch (error) {
         console.error('Error submitting form:', error);
         setAlertVisible(false);
+      } finally {
+        setIsSubmitting(false);
       }
     }
   };
@@ -181,7 +193,7 @@ const LegitCheckFormPage = () => {
             name="purchase"
             id="purchase"
             htmlFor="purchase"
-            isRequired="optional"
+            isRequired="required"
             dataType="purchases"
             defaultValue="Select Purchase"
             value={purchase}
@@ -192,7 +204,7 @@ const LegitCheckFormPage = () => {
             name="store-name"
             id="store-name"
             htmlFor="store-name"
-            isRequired="optional"
+            isRequired="required"
             placeholder="Enter Store Name"
             value={storeName}
             onChange={(e) => setStoreName(e.target.value)}
@@ -202,7 +214,7 @@ const LegitCheckFormPage = () => {
             name="item-condition"
             id="item-condition"
             htmlFor="item-condition"
-            isRequired="optional"
+            isRequired="required"
             dataType="conditions"
             defaultValue="Select Item Condition"
             value={itemCondition}
@@ -219,13 +231,14 @@ const LegitCheckFormPage = () => {
           />
           <button
             type="submit"
-            className={`py-3 w-full mt-4 text-center flex justify-center items-center 
+            className={`py-3 w-full mt-4 text-center flex gap-3 justify-center items-center 
             ${
               isButtonActive ? 'bg-black text-white' : 'bg-gray-300 text-black'
             }`}
-            disabled={!isButtonActive}
+            disabled={!isButtonActive || isSubmitting}
           >
-            Legit Check <FaArrowRight className="ml-2" />
+            {isSubmitting && <FontAwesomeIcon icon={faCircleNotch} spin />}
+            <span>{isSubmitting ? 'Submitting...' : 'Legit Check'}</span>
           </button>
         </form>
         <AlertLegitCheck isVisible={isAlertVisible} onClose={closeAlert} />
