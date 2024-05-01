@@ -5,10 +5,12 @@ const TextAreaField = (props) => {
 
   return (
     <div className="mb-4">
-      <label className="block text-lg font-semibold text-black uppercase mb-2">
+      <label className="block mb-2 text-lg font-semibold text-black uppercase">
         {label}
         {required && (
-          <span className="text-red-600 font-light text-sm ml-3">(Required)</span>
+          <span className="ml-3 text-sm font-light text-red-600">
+            (Required)
+          </span>
         )}
       </label>
       <textarea
@@ -16,10 +18,11 @@ const TextAreaField = (props) => {
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full p-3 border-2 border-black text-sm focus:outline-none rounded"
-        rows="4" // Atau jumlah yang Anda inginkan
+        className="w-full p-3 text-sm border-2 border-black rounded focus:outline-none"
+        rows="4"
+        readOnly
       />
-      {note && <p className="text-red-600 text-xs mt-1">{note}</p>}
+      {note && <p className="mt-1 text-xs text-red-600">{note}</p>}
     </div>
   );
 };

@@ -6,7 +6,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 import {
   InputField,
   TextAreaField,
-  // PhotosField,
+  PhotosField,
   AuthenticityStatus,
 } from '../../components/legitchecksdetail';
 import { fetchDetailMyLegit } from '../../utils/legit-api-service';
@@ -34,9 +34,7 @@ const LegitDetail = ({ onClose, product }) => {
       if (product?.case_code) {
         try {
           const data = await fetchDetailMyLegit(product.case_code);
-          console.log('Response:', data);
           if (data && data.status && data.data.length > 0) {
-            console.log('Data fetched successfully:', data.data[0]);
             setDetailLegit(data.data[0]);
           } else {
             throw new Error('Failed to fetch product details');
@@ -69,14 +67,28 @@ const LegitDetail = ({ onClose, product }) => {
             name="name"
             value={legitData.case_code}
           />
-          {/* <InputField label="ITEM CATEGORY" name="category" value={legitData.category} />
-          <InputField label="ITEM BRAND" name="brand" value={legitData.brand} /> */}
+          <InputField
+            label="ITEM CATEGORY"
+            name="category"
+            value={legitData.kategori_name}
+          />
+          <InputField
+            label="NAMA BRAND"
+            name="brand"
+            value={legitData.nama_brand}
+          />
           <InputField
             label="ITEM NAME"
             name="name"
             value={legitData.nama_item}
           />
-          {/* <PhotosField photos={legitData.photos} /> */}
+          <PhotosField
+            photos={
+              legitData.image_list
+                ? legitData.image_list.map((photo) => photo.file_path)
+                : []
+            }
+          />
           <InputField
             label="PURCHASE DATE"
             name="purchase"

@@ -43,11 +43,11 @@ const InputImage = (props) => {
 };
 
 InputImage.propTypes = {
-  label: PropTypes.string.isRequired,
+  label: PropTypes.string,
   htmlFor: PropTypes.string,
   id: PropTypes.string,
-  images: PropTypes.array.isRequired,
-  handleImageChange: PropTypes.func.isRequired,
+  images: PropTypes.array,
+  handleImageChange: PropTypes.func,
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
 };
 

@@ -5,8 +5,8 @@ const PurchaseOption = ({ value, children }) => {
 };
 
 PurchaseOption.propTypes = {
-  value: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
+  value: PropTypes.string,
+  children: PropTypes.node,
 };
 
 export default PurchaseOption;
