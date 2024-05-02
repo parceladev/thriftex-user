@@ -64,7 +64,7 @@ const LegitDetail = ({ onClose, product }) => {
         <div className="p-4 overflow-y-auto" style={{ maxHeight: '80vh' }}>
           <InputField
             label="CASE CODE"
-            name="name"
+            name="case-code"
             value={legitData.case_code}
           />
           <InputField

@@ -1,10 +1,13 @@
 export const data = {
   categories: [
-    { value: 'shoes', label: 'Shoes' },
-    { value: 'shirts', label: 'Shirts' },
-    { value: 'pants', label: 'Pants' },
-    { value: 'accessories', label: 'Accessories' },
-    { value: 'electronics', label: 'Electronics' },
+    { value: 1, label: 'Shoes' },
+    { value: 2, label: 'Bag' },
+    { value: 3, label: 'Shirt' },
+    { value: 4, label: 'Hoodie' },
+    { value: 5, label: 'Jacket' },
+    { value: 6, label: 'Hat' },
+    { value: 7, label: 'Pants' },
+    { value: 8, label: 'Etc' },
   ],
   brands: [
     { value: 'Vans', label: 'Vans' },

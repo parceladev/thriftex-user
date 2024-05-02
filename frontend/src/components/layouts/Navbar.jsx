@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import logo from '/src/assets/user/navbar/verifex 1.png';
+import logo from '../../../public/generals/thriftex-logo-text.jpg';
 import { Link } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BiGlobe } from 'react-icons/bi';
@@ -49,7 +49,7 @@ const Navbar = () => {
       <div className="fixed top-0 left-0 z-[48] flex flex-row-reverse items-center justify-between w-full px-10 py-2 border-b lg:flex-row border-slate-200 bg-primary">
         <div className="logo">
           <a href="/user/home">
-            <img className="w-32 h-10 " src={logo} alt="Verifex" />
+            <img className="w-44 h-10 m-2 " src={logo} alt="Verifex" />
           </a>
         </div>
         <div className="items-center hidden space-x-32 sm:flex">
