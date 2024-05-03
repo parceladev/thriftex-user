@@ -1,28 +1,27 @@
 import { getAccessToken } from '../../utils/token-utilities';
-import styles from './../../styles';
 
 const ButtonFormLegit = () => {
   const isUserLoggedIn = !!getAccessToken();
 
   return (
     <div
-      className={`${styles.flexCenter} bg-black dark:bg-white border border-black px-5`}
+      className={`bg-black hidden sm:flex dark:bg-white border border-black px-5`}
     >
-      <div>
+      <div className="flex justify-center min-w-[150px]">
         {isUserLoggedIn ? (
           <a
             href="/user/legit-check-form"
-            className={`${styles.flexCenter} text-white dark:text-black`}
+            className={`text-white dark:text-black flex gap-3 items-center`}
           >
-            <p className="w-32 text-xl uppercase">Legit Check</p>
+            <p className="text-xl uppercase">Legit Check</p>
             <p className="text-4xl">+</p>
           </a>
         ) : (
           <a
             href="/auth/sign-in"
-            className={`${styles.flexCenter} text-white dark:text-black`}
+            className={`text-white dark:text-black flex gap-3 items-center`}
           >
-            <p className="w-32 text-xl uppercase">Legit Check</p>
+            <p className="text-xl uppercase">Legit Check</p>
             <p className="text-4xl">+</p>
           </a>
         )}

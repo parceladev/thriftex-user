@@ -3,9 +3,13 @@ import { PropTypes } from 'prop-types';
 const CardProductLegitPublish = (props) => {
   const { product } = props;
   return (
-    <div className="flex flex-col gap-5 border border-black dark:border-gray-600">
-      <img className="h-72" src={product.file_path} alt={product.nama_item} />
-      <p className="text-center text-black">{product.nama_item}</p>
+    <div className="flex flex-col border border-black dark:border-gray-600">
+      <img
+        className="h-44 sm:h-80"
+        src={product.file_path}
+        alt={product.nama_item}
+      />
+      <p className="py-3 text-center text-black">{product.nama_item}</p>
       <p className="py-3 font-bold text-center text-white uppercase bg-black dark:bg-gray-300 dark:text-black">
         {product.check_result || 'waiting'}
       </p>

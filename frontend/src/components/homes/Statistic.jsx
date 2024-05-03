@@ -46,13 +46,13 @@ const Statistic = () => {
       ></div>
 
       <div className="flex flex-col justify-between w-full py-16 gap-14 md:w-1/2">
-        <div className="flex justify-center w-full">
+        <div className="flex justify-center w-full sm:justify-end">
           <p className="text-[15px] max-w-72 text-center sm:text-right">
             MAKING PEOPLE ENJOY WEARING THEIR OUTFITS
           </p>
         </div>
         <div className="flex flex-col justify-center w-full gap-10 text-center sm:text-right">
-          <h1 className="uppercase text-8xl sm:text-[150px] text-primary font-didot sm:mb-[-20px]">
+          <h1 className="uppercase text-8xl sm:text-[150px] text-primary font-didot sm:mb-[-5px]">
             {currentCount}
           </h1>
           <p className="text-xl font-roman mt-[-40px]">TOTAL CHECK</p>

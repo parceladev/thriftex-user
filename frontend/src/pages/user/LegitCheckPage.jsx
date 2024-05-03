@@ -44,10 +44,8 @@ const LegitCheckPage = () => {
 
   return (
     <div className="">
-      <section className="w-full h-screen">
-        <Banner />
-      </section>
-      <section className="flex flex-col gap-10 m-12">
+      <Banner />
+      <section className="flex flex-col gap-8 p-6 py-8 sm:p-16">
         <h2 className="text-3xl uppercase">Track a Legit Check</h2>
         <div className="flex gap-5">
           <SearchProduct
