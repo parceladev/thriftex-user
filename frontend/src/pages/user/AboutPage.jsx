@@ -7,7 +7,7 @@ import {
 
 const AboutPage = () => {
   return (
-    <div className="flex flex-col gap-5 p-16">
+    <div className="flex flex-col gap-5 px-6 sm:px-16">
       <Banner />
       <OurGoals />
       <PartnerBrands />

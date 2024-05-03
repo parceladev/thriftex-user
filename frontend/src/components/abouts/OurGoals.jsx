@@ -2,7 +2,9 @@ const OurGoals = () => {
   return (
     <section>
       <div className="flex flex-col gap-5 mt-10">
-        <h1 className="text-4xl font-bold uppercase font-didot">Our Goals</h1>
+        <h1 className="text-2xl font-bold uppercase sm:text-4xl font-didot">
+          Our Goals
+        </h1>
         <div className="flex flex-col gap-2 text-xl">
           <h5>
             Thriftex stands to educate people about{' '}
@@ -13,15 +15,15 @@ const OurGoals = () => {
             With Creativity & Technology, Thriftex is commited to help{' '}
             <span>
               <img
-                src="../../../public/icons/right-icon.svg"
+                src="../../../public/icons/right-icon-02.svg"
                 alt=""
                 className="w-20 h-4"
               />
             </span>
           </h5>
         </div>
-        <div className="flex justify-between mt-8">
-          <div className="flex gap-8 text-xl">
+        <div className="flex flex-col justify-between gap-8 mt-8 sm:flex-row">
+          <div className="flex justify-center gap-8 text-xl sm:justify-start">
             <h3>Consument</h3>
             <h3>Producer</h3>
             <h3>Stackholder</h3>
