@@ -65,7 +65,7 @@ const ContactUs = () => {
   };
 
   return (
-    <div className="flex flex-col w-full px-4 mb-10 md:flex-1">
+    <div className="flex flex-col w-full mb-10 md:flex-1">
       <h2 className="mb-6 text-xl font-semibold">CONTACT US</h2>
       {isSuccess && (
         <div className="px-4 py-2 mb-4 text-green-800 bg-green-200 rounded">

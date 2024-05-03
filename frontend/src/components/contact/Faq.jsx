@@ -52,7 +52,7 @@ const Faq = () => {
   ];
 
   return (
-    <div className="flex flex-col w-full px-4 md:flex-1">
+    <div className="flex flex-col w-full md:flex-1">
       <h2 className="mb-6 text-xl font-semibold">FREQUENTLY ASKED QUESTIONS</h2>
       {faqData.map((faq, index) => (
         <FAQItem
