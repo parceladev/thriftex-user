@@ -135,15 +135,15 @@ const LegitCheckFormPage = () => {
   };
 
   return (
-    <div className="flex flex-col justify-start w-full min-h-screen p-10">
+    <div className="flex flex-col justify-start w-full min-h-screen p-6 sm:p-16">
       <a
         href="/user/legit-check"
-        className="flex items-center justify-start mt-32"
+        className="flex items-center justify-start mt-14 sm:mt-28"
       >
-        <FaArrowLeft /> <span className="pl-2">Back</span>
+        <FaArrowLeft /> <span className="pl-2 text-lg font-semibold">Back</span>
       </a>
-      <div className="w-full p-8 mt-5 bg-white rounded">
-        <div className="mb-6 text-2xl italic text-center uppercase">
+      <div className="w-full mt-8 bg-white rounded">
+        <div className="mb-6 text-4xl font-semibold text-center uppercase">
           Legit Check Form
         </div>
         <form onSubmit={handleSubmit}>

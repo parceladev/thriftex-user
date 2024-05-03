@@ -4,7 +4,7 @@ import { FaPlus } from 'react-icons/fa';
 const ImageUploadBox = (props) => {
   const { onFileSelectSuccess } = props;
   return (
-    <label className="flex items-center justify-center w-40 h-40 border-2 border-gray-300 border-dashed rounded-md cursor-pointer lg:w-48 lg:h-48 hover:border-gray-500">
+    <label className="flex items-center justify-center w-full h-40 border-2 border-gray-300 border-dashed rounded-md cursor-pointer sm:w-56 sm:h-56 hover:border-gray-500">
       <input
         type="file"
         className="hidden"
