@@ -25,7 +25,6 @@ const Navbar = () => {
 
   const handleThemeChange = (theme) => {
     setSelectedTheme(theme);
-    // Logic to change theme
   };
 
   const isUserLoggedIn = getAccessToken();
@@ -45,11 +44,11 @@ const Navbar = () => {
       ];
 
   return (
-    <div className="relative flex flex-col">
-      <div className="fixed top-0 left-0 z-[48] flex flex-row-reverse items-center justify-between w-full px-10 py-2 border-b lg:flex-row border-slate-200 bg-primary">
+    <div className="fixed w-full flex flex-col z-[48]">
+      <div className="top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-6 py-2 border-b sm:px-16 lg:flex-row border-slate-200 bg-primary">
         <div className="logo">
           <a href="/user/home">
-            <img className="w-44 h-10 m-2 " src={logo} alt="Verifex" />
+            <img className="h-10 w-44" src={logo} alt="Verifex" />
           </a>
         </div>
         <div className="items-center hidden space-x-32 sm:flex">
@@ -59,11 +58,7 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
-        <button
-          onClick={toggleMenu}
-          className="text-4xl sm:hidden"
-          // className={`menu-icon text-4xl lg:hidden ${isMenuOpen ? 'open' : ''}`}
-        >
+        <button onClick={toggleMenu} className="text-4xl sm:hidden">
           {isMenuOpen ? <FiX /> : <FiMenu />}
         </button>
         <div
@@ -83,22 +78,19 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-      <div className="fixed z-40 items-center justify-end hidden w-full pt-16 space-x-4 shadow-md lg:flex bg-primary">
-        <div className="flex p-4 dropdown">
+      <div className="items-center justify-end hidden w-full pr-10 space-x-4 shadow-md lg:flex bg-primary">
+        <div className="flex py-4 dropdown">
           <BiGlobe className="text-xl cursor-pointer" />
-          {/* Language Dropdown */}
           <select
             value={selectedLanguage}
             onChange={(e) => handleLanguageChange(e.target.value)}
           >
             <option value="EN">EN</option>
             <option value="ID">ID</option>
-            {/* Add more languages as needed */}
           </select>
         </div>
         <div className="flex pr-5 dropdown">
           <IoMdSunny className="text-xl cursor-pointer" />
-          {/* Theme Dropdown */}
           <select
             value={selectedTheme}
             onChange={(e) => handleThemeChange(e.target.value)}
