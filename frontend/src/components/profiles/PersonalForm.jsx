@@ -8,11 +8,13 @@ const PersonalForm = (props) => {
   const { userData, handleInputChange } = props;
 
   return (
-    <div className="flex flex-col w-full gap-5">
-      <h1 className="mb-8 text-2xl font-semibold">Personal Information</h1>
-      <div className="relative flex items-center justify-center w-20 h-20 border-2 border-black rounded-full cursor-pointer bg-slate-300">
+    <div className="flex flex-col w-full gap-5 sm:justify-start">
+      <h1 className="text-2xl font-semibold text-center sm:text-start">
+        Personal Information
+      </h1>
+      <div className="relative flex items-center self-center justify-center w-20 h-20 border-2 border-black rounded-full cursor-pointer sm:self-start bg-slate-300">
         {userData.photo ? (
-          typeof userData.photo === 'object' ? ( // Periksa apakah userData.photo adalah objek File
+          typeof userData.photo === 'object' ? (
             <img
               src={URL.createObjectURL(userData.photo)}
               alt="Pratinjau"

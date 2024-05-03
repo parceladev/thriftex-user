@@ -1,33 +1,49 @@
 import { getAccessToken } from '../../utils/token-utilities';
-import styles from './../../styles';
 
 const ButtonFormLegit = () => {
   const isUserLoggedIn = !!getAccessToken();
 
   return (
-    <div
-      className={`${styles.flexCenter} bg-black dark:bg-white border border-black px-5`}
-    >
-      <div>
+    <>
+      {/* Desktop button */}
+      <div className="hidden sm:flex bg-black dark:bg-white border border-black px-5 justify-center min-w-[175px]">
         {isUserLoggedIn ? (
           <a
             href="/user/legit-check-form"
-            className={`${styles.flexCenter} text-white dark:text-black`}
+            className="flex items-center gap-3 text-white dark:text-black"
           >
-            <p className="w-32 text-xl uppercase">Legit Check</p>
+            <p className="text-xl uppercase">Legit Check</p>
             <p className="text-4xl">+</p>
           </a>
         ) : (
           <a
             href="/auth/sign-in"
-            className={`${styles.flexCenter} text-white dark:text-black`}
+            className="flex items-center gap-3 text-white dark:text-black"
           >
-            <p className="w-32 text-xl uppercase">Legit Check</p>
+            <p className="text-xl uppercase">Legit Check</p>
             <p className="text-4xl">+</p>
           </a>
         )}
       </div>
-    </div>
+      {/* Mobile floating button */}
+      <div className="fixed flex items-center justify-center w-24 h-24 p-3 bg-black border border-black rounded-full shadow-lg sm:hidden bottom-8 right-8 dark:bg-white">
+        {isUserLoggedIn ? (
+          <a
+            href="/user/legit-check-form"
+            className="flex items-center justify-center text-white dark:text-black"
+          >
+            <p className="text-6xl">+</p>
+          </a>
+        ) : (
+          <a
+            href="/auth/sign-in"
+            className="flex items-center justify-center text-white dark:text-black"
+          >
+            <p className="text-6xl">+</p>
+          </a>
+        )}
+      </div>
+    </>
   );
 };
 

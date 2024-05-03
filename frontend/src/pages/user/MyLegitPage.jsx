@@ -38,8 +38,8 @@ const MyLegitPage = () => {
   }, [navigate]);
 
   return (
-    <div className="mt-44">
-      <section className="flex flex-col gap-10 m-12">
+    <div className="p-6 mt-14 sm:mt-28 sm:p-16">
+      <section className="flex flex-col gap-10">
         <h2 className="text-3xl uppercase">My Legit Check</h2>
         <div className="flex gap-5">
           <SearchProduct />

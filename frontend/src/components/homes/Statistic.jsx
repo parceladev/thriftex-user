@@ -5,7 +5,7 @@ const Statistic = () => {
   const [animate, setAnimate] = useState(false);
   const [currentCount, setCurrentCount] = useState(0);
   const [endCount, setEndCount] = useState(0);
-  
+
   useEffect(() => {
     fetchTotalLegitChecks().then((data) => {
       if (data && data.total) {
@@ -17,7 +17,6 @@ const Statistic = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  
   useEffect(() => {
     if (animate && endCount > 0) {
       let start = 0;
@@ -36,9 +35,9 @@ const Statistic = () => {
       return () => clearInterval(counter);
     }
   }, [animate, endCount]);
-  
+
   return (
-    <section className="flex flex-col justify-between w-full mt-4 md:flex-row">
+    <section className="flex flex-col justify-between w-full md:flex-row">
       <div
         className="w-full md:w-1/2 h-[350px] bg-cover bg-center"
         style={{
@@ -46,15 +45,17 @@ const Statistic = () => {
         }}
       ></div>
 
-      <div className="flex flex-col justify-between w-full text-right md:w-1/2">
-        <div>
-          <p className="text-[15px]">
+      <div className="flex flex-col justify-between w-full py-16 gap-14 md:w-1/2">
+        <div className="flex justify-center w-full sm:justify-end">
+          <p className="text-[15px] max-w-72 text-center sm:text-right">
             MAKING PEOPLE ENJOY WEARING THEIR OUTFITS
           </p>
         </div>
-        <div>
-          <h1 className="uppercase text-9xl text-primary font-didot">{currentCount}</h1>
-          <p className="font-roman text-[18px]">TOTAL CHECK</p>
+        <div className="flex flex-col justify-center w-full gap-10 text-center sm:text-right">
+          <h1 className="uppercase text-8xl sm:text-[150px] text-primary font-didot sm:mb-[-5px]">
+            {currentCount}
+          </h1>
+          <p className="text-xl font-roman mt-[-40px]">TOTAL CHECK</p>
         </div>
       </div>
     </section>

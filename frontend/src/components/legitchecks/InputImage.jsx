@@ -18,22 +18,23 @@ const InputImage = (props) => {
           <span className="text-xs font-normal text-red-500"> (Required)</span>
         )}
       </label>
-      <p className="text-gray-600">
+      <p className="mb-5 text-gray-600">
         Make sure to upload 6 images. <br />
         Image size must be less than 1,000KB.
       </p>
-      <div className="flex flex-wrap -mx-2">
-        {images.map((image, index) => (
-          <div key={index} className="w-40 h-40 px-2 mb-4 lg:w-48 lg:h-48">
+      <div className="flex flex-wrap gap-3">
+        <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
+          {images.map((image, index) => (
             <img
+              key={index}
               src={image}
               alt={`upload ${index}`}
-              className="object-cover w-full h-full rounded-md"
+              className="object-cover rounded-md h-36 w-36 sm:w-56 sm:h-56"
             />
-          </div>
-        ))}
+          ))}
+        </div>
         {images.length < 12 && (
-          <div className="px-2 mb-4">
+          <div className="w-full">
             <ImageUploadBox onFileSelectSuccess={handleImageChange} />
           </div>
         )}
