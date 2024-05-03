@@ -66,7 +66,7 @@ const Banner = () => {
 
   return (
     <div
-      className={`p-14 mt-16 w-full overflow-hidden h-full flex flex-col gap-48 justify-center text-white relative bg-black ${
+      className={`sm:p-16 sm:h-screen mt-16 w-full overflow-hidden h-[250px] p-6 flex flex-col gap-48 justify-center text-white relative bg-black ${
         animate ? 'bg-animate' : ''
       }`}
     >
@@ -78,7 +78,7 @@ const Banner = () => {
         }}
       ></div>
 
-      <div className="z-10 flex flex-col">
+      <div className="z-10 flex-col hidden sm:flex">
         <h1 ref={styleRef} className="w-full uppercase opacity-0 text-7xl">
           Is Your Fashion Style
         </h1>
@@ -90,19 +90,19 @@ const Banner = () => {
         </h1>
       </div>
       <div
-        className="z-10 flex justify-between"
+        className="z-10 flex justify-center sm:justify-between"
         style={{
           opacity: 0,
           animation: 'fadeIn 1000ms ease-in-out forwards',
           animationDelay: '2500ms',
         }}
       >
-        <div className="flex flex-col gap-3 text-center w-52">
+        <div className="flex flex-col gap-8 text-center sm:gap-3 w-52">
           <p className="text-7xl">{currentCount}</p>
-          <span className="w-full h-1 bg-white"></span>
-          <p className="text-3xl uppercase">Total Check</p>
+          <span className="hidden w-full h-1 bg-white sm:block"></span>
+          <p className="text-xl uppercase sm:text-3xl">Total Check</p>
         </div>
-        <div className="self-end">
+        <div className="self-end hidden sm:flex">
           <p className="text-3xl italic uppercase">Check Below</p>
         </div>
       </div>

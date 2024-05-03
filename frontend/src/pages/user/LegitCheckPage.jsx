@@ -43,7 +43,7 @@ const LegitCheckPage = () => {
   }, [searchQuery, legitData]);
 
   return (
-    <div>
+    <div className="">
       <section className="w-full h-screen">
         <Banner />
       </section>
