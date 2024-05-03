@@ -51,10 +51,10 @@ const LegitDetail = ({ onClose, product }) => {
   }, [product, product.case_code]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="fixed inset-0 top-0 z-50 flex items-center justify-center p-6 bg-black bg-opacity-50 sm:p-0">
       <div className="w-full max-w-5xl mx-auto overflow-hidden bg-white rounded-lg shadow-lg">
         <div className="flex flex-row items-center justify-between p-4 mb-5 border-b-2 ">
-          <p className="text-xl font-bold text-black text-sans ">
+          <p className="text-xl font-bold text-black text-sans">
             Legit Check Detail
           </p>
           <button type="button" onClick={onClose}>
