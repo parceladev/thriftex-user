@@ -1,6 +1,6 @@
 const Tagline = () => {
   return (
-    <div className="flex flex-col items-center justify-between w-full gap-8 py-8 text-center sm:flex-row">
+    <div className="flex flex-col items-center justify-between w-full gap-8 py-16 text-center sm:py-8 sm:flex-row">
       <h2 className="sm:w-1/3 text-center font-didot text-[30px] uppercase  sm:text-left">
         Original With Us
       </h2>
