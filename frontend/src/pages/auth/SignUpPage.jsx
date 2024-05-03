@@ -10,12 +10,16 @@ const SignUpPage = () => {
         backgroundPosition: 'center',
       }}
     >
-      <div className="flex flex-col items-center p-8">
+      <div className="flex flex-col items-center w-full px-8">
         <div className="flex gap-3 py-8 text-white">
           <img src="../../../public/icons/globe-icon.svg" alt="globe-icon" />
-          <select className="bg-transparent">
-            <option value="">English</option>
-            <option value="">Indonesia</option>
+          <select className="text-white bg-transparent">
+            <option className="text-black" value="">
+              English
+            </option>
+            <option className="text-black" value="">
+              Indonesia
+            </option>
           </select>
         </div>
         <FormSignUp />
@@ -27,7 +31,7 @@ const SignUpPage = () => {
         </div>
       </div>
       <footer className="w-full">
-        <div className="flex gap-16 py-3 text-white uppercase border border-gray-400 px-9">
+        <div className="flex justify-center gap-16 py-3 text-sm text-center text-white uppercase border border-gray-400 sm:text-xs sm:justify-start px-9">
           <li>
             <a href="">Contact Us</a>
           </li>
@@ -50,7 +54,7 @@ const SignUpPage = () => {
               alt="youtube-icon"
             />
             <img
-              src="../../../public/icons/youtube-icon.svg"
+              src="../../../public/icons/xtwitter-icon.svg"
               alt="youtube-icon"
             />
           </div>
