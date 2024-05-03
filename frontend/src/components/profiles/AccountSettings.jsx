@@ -115,7 +115,7 @@ const AccountSettings = () => {
   return (
     <section className="flex flex-col">
       <form onSubmit={handleSubmit} className="flex flex-col w-full">
-        <div className="flex w-full gap-16">
+        <div className="flex flex-col w-full gap-16 sm:flex-row">
           <PersonalForm
             userData={userData}
             handleInputChange={handleInputChange}

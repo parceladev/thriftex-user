@@ -2,8 +2,8 @@ import AccountSettings from './../../components/profiles/AccountSettings';
 
 const ProfilePage = () => {
   return (
-    <div className="p-8 mt-32">
-      <div className="w-full p-8 border rounded shadow-md bg-primary">
+    <div className="px-6 mt-20 sm:mt-44 sm:px-16 sm:mb-10">
+      <div className="w-full p-6 border rounded shadow-md sm:p-16 bg-primary">
         <AccountSettings />
       </div>
     </div>
