@@ -2,7 +2,7 @@ const Banner = () => {
   return (
     <section>
       <div className="flex flex-col gap-4 sm:gap-10">
-        <h1 className="mt-20 text-2xl font-bold text-black uppercase sm:text-4xl font-didot sm:mt-28">
+        <h1 className="text-2xl font-bold text-black uppercase sm:text-4xl font-didot sm:mt-28">
           About Thriftex
         </h1>
         <div className="flex items-center gap-5">
