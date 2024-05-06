@@ -43,6 +43,31 @@ const Navbar = () => {
         { path: '/auth/sign-up', name: 'Sign Up' },
       ];
 
+  const settingsComponent = (
+    <div className="flex justify-between w-full">
+      <div className="flex py-4 dropdown">
+        <BiGlobe className="text-xl cursor-pointer" />
+        <select
+          value={selectedLanguage}
+          onChange={(e) => handleLanguageChange(e.target.value)}
+        >
+          <option value="EN">EN</option>
+          <option value="ID">ID</option>
+        </select>
+      </div>
+      <div className="flex items-center pr-5 dropdown">
+        <IoMdSunny className="text-xl cursor-pointer" />
+        <select
+          value={selectedTheme}
+          onChange={(e) => handleThemeChange(e.target.value)}
+        >
+          <option value="light">Light</option>
+          <option value="dark">Dark</option>
+        </select>
+      </div>
+    </div>
+  );
+
   return (
     <div className="fixed w-full flex flex-col z-[48]">
       <div className="top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-6 py-2 border-b sm:px-16 lg:flex-row border-slate-200 bg-primary">
@@ -77,6 +102,23 @@ const Navbar = () => {
             </Link>
           ))}
         </div>
+      </div>
+      <div
+        className={`absolute top-14 w-full left-0 px-5 bg-primary ${
+          isMenuOpen ? 'flex' : 'hidden'
+        } flex-wrap sm:hidden`}
+      >
+        {routes.map((route) => (
+          <Link
+            className="block w-full py-5"
+            key={route.path}
+            to={route.path}
+            onClick={toggleMenu}
+          >
+            {route.name}
+          </Link>
+        ))}
+        {settingsComponent}
       </div>
       <div className="items-center justify-end hidden w-full pr-10 space-x-4 shadow-md lg:flex bg-primary">
         <div className="flex py-4 dropdown">
