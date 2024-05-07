@@ -15,7 +15,7 @@ const LogOut = () => {
     >
       <div className="flex items-center gap-4">
         <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-xl" />
-        <span className="text-xl font-thin uppercase font-didot">Log Out</span>
+        <span className="text-xl font-semibold uppercase font-sans">Log Out</span>
       </div>
       <FontAwesomeIcon className="text-xl" icon={faArrowRight} />
     </button>

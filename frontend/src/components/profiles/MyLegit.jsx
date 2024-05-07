@@ -9,7 +9,7 @@ const MyLegit = () => {
     >
       <div className="flex items-center gap-4">
         <FontAwesomeIcon icon={faCheckDouble} className="text-xl" />
-        <span className="text-xl font-thin uppercase font-didot">My Legit</span>
+        <span className="text-xl font-semibold uppercase font-sans">My Legit Check</span>
       </div>
       <FontAwesomeIcon className="text-xl" icon={faArrowRight} />
     </a>

@@ -2,7 +2,7 @@ const PartnerBrands = () => {
   return (
     <section>
       <div className="flex flex-col gap-5 mt-10">
-        <h1 className="text-2xl font-bold uppercase sm:text-4xl font-didot">
+        <h1 className="text-2xl font-bold uppercase sm:text-4xl font-didot mb-3">
           Partner Brands
         </h1>
         <div className="flex items-center gap-3">
@@ -17,7 +17,7 @@ const PartnerBrands = () => {
             />
           </span>
         </div>
-        <div className="flex justify-around mt-8">
+        <div className="flex justify-around mt-8 mb-20">
           <li>
             <img
               className="w-10 h-10 sm:w-20 sm:h-20"
