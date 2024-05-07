@@ -10,7 +10,7 @@ const Banner = () => {
           <img
             src="../../../public/icons/right-icon-02.svg"
             alt=""
-            className="w-20 h-4"
+            className="w-10 h-2 sm:h-4 sm:w-20"
           />
         </div>
         <div className="w-full h-[150px] sm:h-screen">

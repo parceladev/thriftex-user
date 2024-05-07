@@ -1,11 +1,11 @@
 const WhyWeDifferent = () => {
   return (
     <section>
-      <div className="flex flex-col w-full my-10">
-        <h1 className="mb-8 text-2xl font-bold uppercase sm:text-4xl sm:mb-16 font-didot">
+      <div className="flex flex-col w-full py-2 sm:py-10">
+        <h1 className="mb-4 text-2xl font-bold uppercase sm:text-4xl sm:mb-16 font-didot">
           Why We Different?
         </h1>
-        <table className="w-full text-center">
+        <table className="w-full my-10 text-center">
           <tr>
             <td className="p-4 border-b border-r border-gray-700 sm:p-16">
               <h3 className="text-md sm:text-xl">Free Lifetime</h3>
