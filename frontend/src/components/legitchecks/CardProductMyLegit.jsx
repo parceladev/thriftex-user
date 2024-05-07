@@ -10,6 +10,8 @@ const CardProductMyLegit = (props) => {
     setModalOpen(!isModalOpen);
   };
 
+  console.log('product:', product);
+
   return (
     <>
       <div
@@ -23,7 +25,7 @@ const CardProductMyLegit = (props) => {
         />
         <p className="py-3 text-center text-black">{product.nama_item}</p>
         <p className="py-3 font-bold text-center text-white uppercase bg-black dark:bg-gray-300 dark:text-black">
-          {product.check_result || 'waiting'}
+          {product.check_result}
         </p>
       </div>
       {isModalOpen && <LegitDetail product={product} onClose={toggleModal} />}

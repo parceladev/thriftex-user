@@ -10,7 +10,7 @@ const Footer = () => {
       path: '/user/terms-of-condition',
       name: 'TERMS OF CONDITION',
     },
-    { id: 'contact', path: '/user/contact-us', name: 'FAQ' },
+    { id: 'faq', path: '/user/contact-us', name: 'FAQ' },
   ];
 
   return (

@@ -21,6 +21,7 @@ const MyLegitPage = () => {
     const getLegitData = async () => {
       try {
         const data = await fetchMyLegit(navigate);
+        console.log('list my legit:', data);
         if (data.status) {
           setLegitData(data.data.data);
         } else {
