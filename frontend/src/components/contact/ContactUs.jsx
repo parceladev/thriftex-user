@@ -28,20 +28,14 @@ const ContactUs = () => {
     formData.append('email', email);
     formData.append('pesan', message);
 
-    console.log('nama', name);
-    console.log('email', email);
-    console.log('pesan', message);
     if (phoneNumber) {
       formData.append('no_tlp', phoneNumber);
     }
-    console.log('telepon', phoneNumber);
 
     setIsSubmitting(true);
 
     try {
       const response = await fetchContactEmail(formData);
-
-      console.log('response', response);
 
       if (response) {
         setIsSuccess(true);

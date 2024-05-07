@@ -10,8 +10,6 @@ const CardProductMyLegit = (props) => {
     setModalOpen(!isModalOpen);
   };
 
-  console.log('product:', product);
-
   return (
     <>
       <div

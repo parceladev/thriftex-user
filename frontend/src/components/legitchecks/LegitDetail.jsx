@@ -38,7 +38,6 @@ const LegitDetail = ({ onClose, product }) => {
       if (product?.case_code) {
         try {
           const data = await fetchDetailMyLegit(product.case_code);
-          console.log('detail product:', data);
           if (data && data.status && data.data.length > 0) {
             setDetailLegit(data.data[0]);
           } else {
