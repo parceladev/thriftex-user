@@ -11,11 +11,13 @@ const LogOut = () => {
   return (
     <button
       onClick={logout}
-      className="flex items-center justify-between w-full gap-4 py-4 cursor-pointer hover:bg-gray-200"
+      className="flex items-center justify-between w-full gap-4 py-4 cursor-pointer"
     >
       <div className="flex items-center gap-4">
         <FontAwesomeIcon icon={faArrowRightFromBracket} className="text-xl" />
-        <span className="text-xl font-semibold uppercase font-sans">Log Out</span>
+        <span className="font-sans text-xl font-semibold uppercase">
+          Log Out
+        </span>
       </div>
       <FontAwesomeIcon className="text-xl" icon={faArrowRight} />
     </button>
