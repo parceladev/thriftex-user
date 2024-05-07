@@ -13,7 +13,7 @@ const SecurityForm = (props) => {
   return (
     <div className="flex flex-col w-full gap-5">
       <h1 className="text-2xl font-semibold text-center sm:text-start">
-        Security
+        Security Information
       </h1>
       <InputForm
         label="Email"

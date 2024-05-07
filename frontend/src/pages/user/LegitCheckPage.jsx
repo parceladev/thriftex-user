@@ -46,8 +46,10 @@ const LegitCheckPage = () => {
     <div className="">
       <Banner />
       <section className="flex flex-col gap-8 p-6 py-8 sm:p-16">
-        <h2 className="text-3xl uppercase font-didot">Track a Legit Check</h2>
-        <div className="flex gap-5">
+        <h2 className="text-3xl text-center uppercase sm:text-left font-didot">
+          Track a Legit Check
+        </h2>
+        <div className="flex w-full gap-10">
           <SearchProduct
             onSearchChange={(e) => setSearchQuery(e.target.value)}
           />
