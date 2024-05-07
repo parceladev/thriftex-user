@@ -125,12 +125,12 @@ const AccountSettings = () => {
         </div>
         <button
           type="submit"
-          className="self-end p-4 mt-5 rounded-md w-fit bg-secondary"
+          className="self-end w-full p-4 rounded-md mt-14 sm:mt-5 sm:w-fit bg-secondary"
         >
-          <p className="text-2xl text-white">Save All</p>
+          <p className="text-2xl text-white">Save Information</p>
         </button>
       </form>
-      <div className="mt-14">
+      <div className="mt-28 sm:mt-14">
         <div className="p-4 border-2 border-gray-300 rounded hover:bg-gray-200">
           <MyLegit />
         </div>
