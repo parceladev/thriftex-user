@@ -1,4 +1,5 @@
 import { PropTypes } from 'prop-types';
+import { useRef, useEffect } from 'react';
 
 const InputField = (props) => {
   const {
@@ -9,8 +10,22 @@ const InputField = (props) => {
     required,
     type = 'text',
     note = '',
-    rows = 3,
+    rows = 1,
   } = props;
+
+  const textAreaRef = useRef(null);
+
+  const adjustHeight = () => {
+    const textArea = textAreaRef.current;
+    if (textArea) {
+      textArea.style.height = 'inherit'; 
+      textArea.style.height = `${textArea.scrollHeight}px`;
+    }
+  };
+
+  useEffect(() => {
+    adjustHeight();
+  }, [value]);
 
   return (
     <div className="mb-4">
@@ -24,6 +39,7 @@ const InputField = (props) => {
       </label>
       {type === 'textarea' ? (
         <textarea
+          ref={textAreaRef}
           name={name}
           value={value}
           onChange={onChange}

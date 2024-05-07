@@ -18,8 +18,8 @@ const TextAreaField = (props) => {
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full p-3 text-sm border-2 border-black rounded focus:outline-none"
-        rows="4"
+        className="w-full p-3 border-b-2 border-black text-[14px] focus:outline-none"
+        rows="1"
         readOnly
       />
       {note && <p className="mt-1 text-xs text-red-600">{note}</p>}
