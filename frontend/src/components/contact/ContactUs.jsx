@@ -146,7 +146,7 @@ const ContactUs = () => {
           type="submit"
           className={`w-full flex gap-4 items-center justify-center font-semibold py-2 transition-colors duration-200 transform rounded-md focus:outline-none ${
             isFormValid
-              ? 'bg-gray-800 text-white hover:bg-gray-700 focus:bg-gray-700'
+              ? 'bg-black text-white hover:bg-gray-700 focus:bg-gray-700'
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
           disabled={!isFormValid || isSubmitting}

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import logo from '../../../public/generals/thriftex-logo-text.jpg';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BiGlobe } from 'react-icons/bi';
 import { IoMdSunny } from 'react-icons/io';
@@ -31,13 +31,13 @@ const Navbar = () => {
 
   const routes = isUserLoggedIn
     ? [
-        { path: '/', name: 'Home' },
+        { path: '/user/home', name: 'Home' },
         { path: '/user/legit-check', name: 'Legit Check' },
         { path: '/user/about', name: 'About' },
         { path: '/user/profile', name: 'Profile' },
       ]
     : [
-        { path: '/', name: 'Home' },
+        { path: '/user/home', name: 'Home' },
         { path: '/user/legit-check', name: 'Legit Check' },
         { path: '/user/about', name: 'About' },
         { path: '/auth/sign-up', name: 'Sign Up' },
@@ -47,20 +47,14 @@ const Navbar = () => {
     <div className="flex justify-between w-full">
       <div className="flex py-4 dropdown">
         <BiGlobe className="text-xl cursor-pointer" />
-        <select
-          value={selectedLanguage}
-          onChange={(e) => handleLanguageChange(e.target.value)}
-        >
+        <select value={selectedLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
           <option value="EN">EN</option>
           <option value="ID">ID</option>
         </select>
       </div>
       <div className="flex items-center pr-5 dropdown">
         <IoMdSunny className="text-xl cursor-pointer" />
-        <select
-          value={selectedTheme}
-          onChange={(e) => handleThemeChange(e.target.value)}
-        >
+        <select value={selectedTheme} onChange={(e) => handleThemeChange(e.target.value)}>
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
@@ -78,9 +72,14 @@ const Navbar = () => {
         </div>
         <div className="items-center hidden space-x-32 sm:flex">
           {routes.map((route) => (
-            <Link key={route.path} to={route.path}>
+            <NavLink
+              key={route.path}
+              to={route.path}
+              end={route.path === '/'}
+              className={({ isActive }) => (isActive ? 'block py-5 font-bold' : 'block py-5')}
+            >
               {route.name}
-            </Link>
+            </NavLink>
           ))}
         </div>
         <button onClick={toggleMenu} className="text-4xl sm:hidden">
@@ -92,14 +91,14 @@ const Navbar = () => {
           } flex-wrap sm:hidden`}
         >
           {routes.map((route) => (
-            <Link
-              className="block w-full py-5"
+            <NavLink
               key={route.path}
               to={route.path}
-              onClick={toggleMenu}
+              end={route.path === '/'}
+              className={({ isActive }) => (isActive ? 'block py-5 font-bold' : 'block py-5')}
             >
               {route.name}
-            </Link>
+            </NavLink>
           ))}
         </div>
       </div>
@@ -109,34 +108,31 @@ const Navbar = () => {
         } flex-wrap sm:hidden`}
       >
         {routes.map((route) => (
-          <Link
-            className="block w-full py-5"
+          <NavLink
             key={route.path}
             to={route.path}
+            end={route.path === '/'}
+            className={({ isActive }) =>
+              isActive ? 'block w-full py-5 font-bold' : 'block w-full py-5'
+            }
             onClick={toggleMenu}
           >
             {route.name}
-          </Link>
+          </NavLink>
         ))}
         {settingsComponent}
       </div>
       <div className="items-center justify-end hidden w-full pr-10 space-x-4 shadow-md lg:flex bg-primary">
         <div className="flex py-4 dropdown">
           <BiGlobe className="text-xl cursor-pointer" />
-          <select
-            value={selectedLanguage}
-            onChange={(e) => handleLanguageChange(e.target.value)}
-          >
+          <select value={selectedLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
             <option value="EN">EN</option>
             <option value="ID">ID</option>
           </select>
         </div>
         <div className="flex pr-5 dropdown">
           <IoMdSunny className="text-xl cursor-pointer" />
-          <select
-            value={selectedTheme}
-            onChange={(e) => handleThemeChange(e.target.value)}
-          >
+          <select value={selectedTheme} onChange={(e) => handleThemeChange(e.target.value)}>
             <option value="light">Light</option>
             <option value="dark">Dark</option>
           </select>
