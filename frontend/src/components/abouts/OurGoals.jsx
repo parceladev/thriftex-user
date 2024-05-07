@@ -1,14 +1,14 @@
 const OurGoals = () => {
   return (
     <section>
-      <div className="flex flex-col gap-5 mt-10">
-        <h1 className="text-2xl font-bold uppercase sm:text-4xl font-didot">
+      <div className="flex flex-col gap-5 mt-24">
+        <h1 className="text-2xl font-bold uppercase sm:text-4xl font-didot mb-3">
           Our Goals
         </h1>
         <div className="flex flex-col gap-2 text-xl">
           <h5>
             Thriftex stands to educate people about{' '}
-            <span className="font-bold">FAKE</span> product and intellectual
+            fake product and intellectual
             property.
           </h5>
           <h5 className="flex items-center gap-3">
@@ -28,7 +28,7 @@ const OurGoals = () => {
             <h3>Producer</h3>
             <h3>Stackholder</h3>
           </div>
-          <div className="max-w-96">
+          <div className="max-w-96 mb-20">
             <h5>
               So they can understand and access every needs about product’s
               authenticity

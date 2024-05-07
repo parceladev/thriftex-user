@@ -60,11 +60,7 @@ const AccountSettings = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (
-      userData.newPassword ||
-      userData.confirmNewPassword ||
-      userData.oldPassword
-    ) {
+    if (userData.newPassword || userData.confirmNewPassword || userData.oldPassword) {
       if (!userData.oldPassword) {
         alert('Please enter your old password.');
         return;
@@ -103,8 +99,7 @@ const AccountSettings = () => {
         alert('Profile updated successfully!');
         window.location.reload();
       } else {
-        const message =
-          result.message || 'Failed to update profile. Please try again.';
+        const message = result.message || 'Failed to update profile. Please try again.';
         alert(message);
       }
     } catch (error) {
@@ -116,28 +111,20 @@ const AccountSettings = () => {
     <section className="flex flex-col">
       <form onSubmit={handleSubmit} className="flex flex-col w-full">
         <div className="flex flex-col w-full gap-16 sm:flex-row">
-          <PersonalForm
-            userData={userData}
-            handleInputChange={handleInputChange}
-          />
-          <SecurityForm
-            userData={userData}
-            handleInputChange={handleInputChange}
-          />
+          <PersonalForm userData={userData} handleInputChange={handleInputChange} />
+          <SecurityForm userData={userData} handleInputChange={handleInputChange} />
         </div>
-        <button
-          type="submit"
-          className="self-end p-4 mt-5 rounded-md w-fit bg-secondary"
-        >
-          <FontAwesomeIcon
-            icon={faFloppyDisk}
-            className="text-4xl text-white"
-          />
+        <button type="submit" className="self-end p-4 mt-5 rounded-md w-fit bg-secondary">
+          <FontAwesomeIcon icon={faFloppyDisk} className="text-4xl text-white" />
         </button>
       </form>
       <div className="mt-14">
-        <MyLegit />
-        <LogOut />
+        <div className="p-4 border-2 border-gray-300 rounded">
+          <MyLegit />
+        </div>
+        <div className="p-4 mt-4 border-2 border-gray-300 rounded">
+          <LogOut />
+        </div>
       </div>
     </section>
   );

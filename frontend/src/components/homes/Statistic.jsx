@@ -55,7 +55,7 @@ const Statistic = () => {
           <h1 className="uppercase text-8xl sm:text-[150px] text-primary font-didot sm:mb-[-5px]">
             {currentCount}
           </h1>
-          <p className="text-xl font-roman mt-[-40px]">TOTAL CHECK</p>
+          <p className="text-xl font-didot mt-[-40px]">TOTAL CHECK</p>
         </div>
       </div>
     </section>

@@ -79,12 +79,12 @@ const Banner = () => {
       ></div>
 
       <div className="z-10 flex-col hidden sm:flex">
-        <h1 ref={styleRef} className="w-full uppercase opacity-0 text-7xl">
+        <h1 ref={styleRef} className="w-full uppercase opacity-0 text-7xl font-didot">
           Is Your Fashion Style
         </h1>
         <h1
           ref={legitStyleRef}
-          className="self-end w-full uppercase opacity-0 text-end text-8xl"
+          className="self-end w-full uppercase opacity-0 text-end text-8xl font-didot"
         >
           Legit ?
         </h1>
@@ -97,13 +97,13 @@ const Banner = () => {
           animationDelay: '2500ms',
         }}
       >
-        <div className="flex flex-col gap-8 text-center sm:gap-3 w-52">
-          <p className="text-7xl">{currentCount}</p>
+        <div className="flex flex-col gap-8 text-center sm:gap-3 w-60">
+          <p className="text-7xl font-didot">{currentCount}</p>
           <span className="hidden w-full h-1 bg-white sm:block"></span>
-          <p className="text-xl uppercase sm:text-3xl">Total Check</p>
+          <p className="text-xl uppercase sm:text-3xl font-didot">Total Check</p>
         </div>
         <div className="self-end hidden sm:flex">
-          <p className="text-3xl italic uppercase">Check Below</p>
+          <p className="text-3xl uppercase font-didot italic">Check Below</p>
         </div>
       </div>
     </div>
