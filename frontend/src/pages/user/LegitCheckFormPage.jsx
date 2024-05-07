@@ -114,7 +114,6 @@ const LegitCheckFormPage = () => {
         }
 
         const result = await saveLegitCheck(formData, navigate);
-        console.log('result:', result);
 
         if (result && result.status) {
           setAlertVisible(true);
