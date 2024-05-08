@@ -28,20 +28,14 @@ const ContactUs = () => {
     formData.append('email', email);
     formData.append('pesan', message);
 
-    console.log('nama', name);
-    console.log('email', email);
-    console.log('pesan', message);
     if (phoneNumber) {
       formData.append('no_tlp', phoneNumber);
     }
-    console.log('telepon', phoneNumber);
 
     setIsSubmitting(true);
 
     try {
       const response = await fetchContactEmail(formData);
-
-      console.log('response', response);
 
       if (response) {
         setIsSuccess(true);
@@ -84,7 +78,7 @@ const ContactUs = () => {
         <div>
           <label
             htmlFor="name"
-            className="flex items-center gap-1 mb-2 text-sm font-semibold text-gray-700"
+            className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
             Name <span className="text-xs text-red-400">(Required)</span>
           </label>
@@ -92,7 +86,7 @@ const ContactUs = () => {
             type="text"
             id="name"
             placeholder="Enter your name"
-            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 focus:ring-0 focus:border-black"
+            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 outline-none dark:border-primary focus:ring-0 focus:border-black"
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
@@ -101,7 +95,7 @@ const ContactUs = () => {
         <div>
           <label
             htmlFor="email"
-            className="flex items-center gap-1 mb-2 text-sm font-semibold text-gray-700"
+            className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
             Email <span className="text-xs text-red-400">(Required)</span>
           </label>
@@ -109,7 +103,7 @@ const ContactUs = () => {
             type="email"
             id="email"
             placeholder="Enter your email"
-            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 focus:ring-0 focus:border-black"
+            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 outline-none dark:border-primary focus:ring-0 focus:border-black"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -118,7 +112,7 @@ const ContactUs = () => {
         <div>
           <label
             htmlFor="phone"
-            className="flex items-center gap-1 mb-2 text-sm font-semibold text-gray-700"
+            className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
             Phone Number{' '}
             <span className="text-xs text-gray-400">(Optional)</span>
@@ -128,21 +122,21 @@ const ContactUs = () => {
             id="phone"
             value={phoneNumber}
             placeholder="Enter your phone number"
-            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 focus:ring-0 focus:border-black"
+            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 outline-none dark:border-primary focus:ring-0 focus:border-black"
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </div>
         <div>
           <label
             htmlFor="message"
-            className="flex items-center gap-1 mb-2 text-sm font-semibold text-gray-700"
+            className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
             Message <span className="text-xs text-red-400">(Required)</span>
           </label>
           <textarea
             id="message"
             placeholder="Enter your message"
-            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 focus:ring-0 focus:border-black"
+            className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-700 outline-none dark:border-primary focus:ring-0 focus:border-secondary dark:focus:border-primary"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
@@ -152,7 +146,7 @@ const ContactUs = () => {
           type="submit"
           className={`w-full flex gap-4 items-center justify-center font-semibold py-2 transition-colors duration-200 transform rounded-md focus:outline-none ${
             isFormValid
-              ? 'bg-black text-white hover:bg-gray-700 focus:bg-gray-700'
+              ? 'bg-secondary text-textWhite dark:bg-primary dark:text-textBlack hover:bg-gray-700 focus:bg-gray-700'
               : 'bg-gray-300 text-gray-500 cursor-not-allowed'
           }`}
           disabled={!isFormValid || isSubmitting}
@@ -161,7 +155,7 @@ const ContactUs = () => {
           <span>{isSubmitting ? 'Submitting...' : 'SUBMIT MESSAGE'}</span>
         </button>
       </form>
-      <div className="mt-16 text-sm text-gray-700">
+      <div className="mt-16 text-sm">
         <p className="mb-3 font-semibold">CONTACT US</p>
         <p className="">thriftexcs@gmail.com</p>
         <p className="mt-8 mb-3 font-semibold">

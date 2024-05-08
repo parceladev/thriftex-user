@@ -15,7 +15,28 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --color-text-light: #000000;
+  --color-bg-light: #ffffff;
+  --color-border-light: #cccccc;
+
+  --color-text-dark: #ffffff;
+  --color-bg-dark: #333333;
+  --color-border-dark: #444444;
 }
+
+.dark {
+  --color-text: var(--color-text-dark);
+  --color-bg: var(--color-bg-dark);
+  --color-border: var(--color-border-dark);
+}
+
+.light {
+  --color-text: var(--color-text-light);
+  --color-bg: var(--color-bg-light);
+  --color-border: var(--color-border-light);
+}
+
 
 * {
   scroll-behavior: smooth;
@@ -31,14 +52,6 @@ body {
 
 li {
   list-style: none;
-}
-
-.bg-primary {
-  background-color: #FBFBFB;
-}
-
-.bg-secondary {
-  background-color: #282828;
 }
 
 /* Banner Legit Check Animations */

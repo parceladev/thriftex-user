@@ -15,10 +15,13 @@ const InputText = (props) => {
 
   return (
     <div className="mb-8">
-      <label htmlFor={htmlFor} className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase">
+      <label
+        htmlFor={htmlFor}
+        className="flex gap-2 mb-5 font-semibold uppercase"
+      >
         {label}
         {isRequired === 'optional' && (
-          <span className="text-xs font-normal text-gray-700"> (Optional)</span>
+          <span className="text-xs font-normal"> (Optional)</span>
         )}
         {isRequired === 'required' && (
           <span className="text-xs font-normal text-red-500"> (Required)</span>
@@ -28,7 +31,7 @@ const InputText = (props) => {
         name={name}
         id={id}
         type={type}
-        className="w-full p-2 border-b-2 border-gray-500"
+        className="w-full outline-none p-2 border-b-2 border-gray-700 bg-primary dark:border-gray-200 dark:bg-secondary"
         value={value}
         onChange={onChange}
         placeholder={placeholder}
@@ -48,7 +51,11 @@ InputText.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
-  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.instanceOf(File)]),
+  value: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.instanceOf(File),
+  ]),
   onChange: PropTypes.func,
 };
 

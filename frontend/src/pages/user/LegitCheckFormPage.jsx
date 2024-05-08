@@ -114,7 +114,6 @@ const LegitCheckFormPage = () => {
         }
 
         const result = await saveLegitCheck(formData, navigate);
-        console.log('result:', result);
 
         if (result && result.status) {
           setAlertVisible(true);
@@ -142,8 +141,8 @@ const LegitCheckFormPage = () => {
       >
         <FaArrowLeft /> <span className="pl-2 text-lg font-semibold">Back</span>
       </a>
-      <div className="w-full mt-8 bg-white rounded">
-        <div className="mb-6 text-4xl font-semibold text-center uppercase">
+      <div className="w-full mt-8 rounded">
+        <div className="mb-6 text-4xl font-semibold text-center uppercase font-didot">
           Legit Check Form
         </div>
         <form onSubmit={handleSubmit}>
@@ -231,9 +230,11 @@ const LegitCheckFormPage = () => {
           />
           <button
             type="submit"
-            className={`py-3 w-full mt-4 text-center flex gap-3 justify-center items-center 
+            className={`py-3 w-full mt-8 text-center flex gap-3 justify-center items-center 
             ${
-              isButtonActive ? 'bg-black text-white' : 'bg-gray-300 text-black'
+              isButtonActive
+                ? 'dark:bg-primary bg-secondary text-textWhite'
+                : 'bg-gray-300 text-textBlack'
             }`}
             disabled={!isButtonActive || isSubmitting}
           >

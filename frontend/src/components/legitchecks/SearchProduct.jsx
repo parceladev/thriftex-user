@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faMagnifyingGlass,
-  faArrowDownWideShort,
+  // faArrowDownWideShort,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles';
 import { PropTypes } from 'prop-types';
@@ -14,18 +14,21 @@ const SearchProduct = (props) => {
         type="text"
         placeholder="Example: ID- 040121"
         onChange={onSearchChange}
-        className="w-4/5 h-full p-3 border border-black light:bg-white dark:border-gray-400"
+        className="w-full h-full p-3 border border-black dark:border-white"
       />
       <button
         className={`${styles.flexCenter} p-5 border border-black dark:border-gray-400`}
       >
         <FontAwesomeIcon icon={faMagnifyingGlass} className="text-2xl" />
       </button>
-      <button
+
+      {/* The filter has not been used temporarily */}
+
+      {/* <button
         className={`${styles.flexCenter} p-5 border border-black dark:border-gray-400 ml-5`}
       >
         <FontAwesomeIcon icon={faArrowDownWideShort} className="text-2xl" />
-      </button>
+      </button> */}
     </div>
   );
 };

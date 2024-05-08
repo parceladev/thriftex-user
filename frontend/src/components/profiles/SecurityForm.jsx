@@ -13,7 +13,7 @@ const SecurityForm = (props) => {
   return (
     <div className="flex flex-col w-full gap-5">
       <h1 className="text-2xl font-semibold text-center sm:text-start">
-        Security
+        Security Information
       </h1>
       <InputForm
         label="Email"
@@ -93,7 +93,7 @@ const SecurityForm = (props) => {
         <a
           href="#"
           onClick={toggleChangePassword}
-          className="px-4 py-3 text-lg text-white rounded-sm bg-secondary w-fit"
+          className="px-4 py-3 text-lg rounded-sm bg-secondary text-textWhite dark:bg-primary dark:text-textBlack w-fit"
         >
           Change Password
         </a>
