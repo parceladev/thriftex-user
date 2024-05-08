@@ -8,17 +8,17 @@ const InputImage = (props) => {
     <div className="mb-8">
       <label
         htmlFor={htmlFor}
-        className="flex gap-2 mb-2 font-semibold text-gray-700 uppercase"
+        className="flex gap-2 mb-2 font-semibold uppercase"
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="font-normal text-gray-700"> (Optional)</span>
+          <span className="font-normal"> (Optional)</span>
         )}
         {isRequired === 'required' && (
           <span className="text-xs font-normal text-red-500"> (Required)</span>
         )}
       </label>
-      <p className="mb-5 text-gray-600">
+      <p className="mb-5">
         Make sure to upload 6 images. <br />
         Image size must be less than 1,000KB.
       </p>

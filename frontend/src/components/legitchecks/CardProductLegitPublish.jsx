@@ -21,7 +21,7 @@ const CardProductLegitPublish = (props) => {
           src={product.file_path}
           alt={product.nama_item}
         />
-        <p className="py-3 text-center text-black">{product.nama_item}</p>
+        <p className="py-3 text-center">{product.nama_item}</p>
         <p className="py-3 font-bold text-center text-white uppercase bg-black dark:bg-gray-300 dark:text-black">
           {product.check_result || 'waiting'}
         </p>

@@ -2,16 +2,19 @@
 // eslint-disable-next-line no-undef
 module.exports = {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
+  darkMode: 'class',
   mode: "jit",
   theme: {
     extend: {
       colors: {
-        primary: "#282828",
-        secondary: "#F4F4F4",
+        primary: "#F4F4F4",
+        secondary: "#282828",
+        textWhite: "#FFFFFF",
+        textBlack: "#000000",
       },
       fontFamily: {
-        sans: ["Encode Sans Semi Condensed", "sans-serif"], // Font family dari Google Fonts
-        didot: ["Linotype Didot", "serif"], // Font family yang sudah didefinisikan dengan font-face
+        sans: ["Encode Sans Semi Condensed", "sans-serif"], 
+        didot: ["Linotype Didot", "serif"], 
       },
     },
     screens: {

@@ -17,11 +17,11 @@ const InputTextArea = (props) => {
     <div className="mb-4">
       <label
         htmlFor={htmlFor}
-        className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase"
+        className="flex gap-2 mb-5 font-semibold uppercase"
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="text-xs font-normal text-gray-700"> (Optional)</span>
+          <span className="text-xs font-normal"> (Optional)</span>
         )}
         {isRequired === 'required' && (
           <span className="text-xs font-normal text-red-500"> (Required)</span>
@@ -29,7 +29,7 @@ const InputTextArea = (props) => {
       </label>
       <textarea
         id={id}
-        className="w-full p-2 border-b-2 border-gray-500"
+        className="w-full p-2 border-b-2 outline-none bg-primary dark:bg-secondary"
         value={value}
         onChange={onChange}
       ></textarea>
