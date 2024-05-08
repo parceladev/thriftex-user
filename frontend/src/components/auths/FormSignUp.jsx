@@ -34,7 +34,7 @@ const FormSignUp = () => {
     }
 
     if (password !== confirmPassword) {
-      setErrorMessage('Passwords do not match!');
+      setErrorMessage('Password does not match!');
       return false;
     }
 
