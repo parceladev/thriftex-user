@@ -1,11 +1,11 @@
-import FormSignUp from './../../components/auths/FormSignUp';
+import FormForgetPass from './../../components/auths/FormForgetPass';
 
-const SignUpPage = () => {
-  const title = 'Have any account?';
+const ForgetPassPage = () => {
+  const title = "Don't have any account?";
 
   return (
     <div
-      className="flex flex-col items-center justify-center w-full h-full min-h-screen gap-10"
+      className="flex flex-col items-center justify-center w-full h-full min-h-screen gap-8"
       style={{
         backgroundImage: "url('/src/assets/auth/bg-img-auth.png')",
         backgroundSize: 'cover',
@@ -24,11 +24,11 @@ const SignUpPage = () => {
             </option>
           </select>
         </div>
-        <FormSignUp />
+        <FormForgetPass />
         <div className="flex gap-1 py-8 text-white">
           <p>{title}</p>
-          <a href="/auth/sign-in" className="font-bold">
-            Sign In
+          <a href="/auth/sign-up" className="font-bold">
+            Sign Up
           </a>
         </div>
       </div>
@@ -69,4 +69,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default ForgetPassPage;

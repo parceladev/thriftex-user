@@ -6,9 +6,8 @@ import {
   MyLegitPage,
   LegitCheckFormPage,
   ContactUsPage,
-  // DetailMyLegitPage,
 } from './pages/user';
-import { SignInPage, SignUpPage } from './pages/auth';
+import { SignInPage, SignUpPage, ForgetPassPage, CreatePassPage } from './pages/auth';
 
 export const routes = [
   {
@@ -65,6 +64,16 @@ export const routes = [
         name: 'Sign Up',
         path: '/sign-up',
         element: <SignUpPage />,
+      },
+      {
+        name: 'Forget Password',
+        path: '/forgot-password',
+        element: <ForgetPassPage />,
+      },
+      {
+        name: 'Forget Password',
+        path: '/create-password',
+        element: <CreatePassPage />,
       },
     ],
   },

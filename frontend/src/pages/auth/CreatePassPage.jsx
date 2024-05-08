@@ -1,36 +1,20 @@
-import FormSignUp from './../../components/auths/FormSignUp';
+import { FormCreateNewPass } from '../../components/auths';
 
-const SignUpPage = () => {
-  const title = 'Have any account?';
-
+const CreatePassPage = () => {
   return (
     <div
-      className="flex flex-col items-center justify-center w-full h-full min-h-screen gap-10"
+      className="flex flex-col items-center justify-center w-full h-full min-h-screen gap-8"
       style={{
         backgroundImage: "url('/src/assets/auth/bg-img-auth.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
     >
-      <div className="flex flex-col items-center w-full px-8">
-        <div className="flex gap-3 py-8 text-white">
-          <img src="../../../public/icons/globe-icon.svg" alt="globe-icon" />
-          <select className="text-white bg-transparent">
-            <option className="text-black" value="">
-              English
-            </option>
-            <option className="text-black" value="">
-              Indonesia
-            </option>
-          </select>
-        </div>
-        <FormSignUp />
-        <div className="flex gap-1 py-8 text-white">
-          <p>{title}</p>
-          <a href="/auth/sign-in" className="font-bold">
-            Sign In
-          </a>
-        </div>
+      <a href="#" className="flex justify-center mt-4 mb-2">
+        <img src="/src/assets/auth/form-logo.png" alt="Auth Form Logo" />
+      </a>
+      <div className="flex flex-col items-center w-full px-8 mb-8">
+        <FormCreateNewPass />
       </div>
       <footer className="w-full">
         <div className="flex justify-center gap-16 py-3 text-sm text-center text-white uppercase border border-gray-400 sm:text-xs sm:justify-start px-9">
@@ -69,4 +53,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default CreatePassPage;

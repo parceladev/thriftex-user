@@ -1,6 +1,8 @@
 import FormSignIn from './../../components/auths/FormSignIn';
 
 const SignInPage = () => {
+  const title = "Don't have any account?";
+  
   return (
     <div
       className="flex flex-col items-center justify-center w-full h-full min-h-screen gap-8"
@@ -24,7 +26,7 @@ const SignInPage = () => {
         </div>
         <FormSignIn />
         <div className="flex gap-1 py-8 text-white">
-          <p>Dont have any account?</p>
+          <p>{title}</p>
           <a href="/auth/sign-up" className="font-bold">
             Sign Up
           </a>
