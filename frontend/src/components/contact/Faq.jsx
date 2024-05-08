@@ -9,12 +9,12 @@ const FAQItem = ({ question, answer, isActive, setActive }) => {
         onClick={setActive}
         className="flex items-center justify-between w-full py-3 text-left"
       >
-        <h3 className="pr-16 font-semibold text-black">{question}</h3>
+        <h3 className="pr-16 font-semibold">{question}</h3>
         {isActive ? <FiChevronUp /> : <FiChevronDown />}
       </button>
       {isActive && (
         <div className="pb-4">
-           <p className="text-gray-500 font-sans">{answer}</p>
+          <p className="font-sans">{answer}</p>
         </div>
       )}
       <hr />
@@ -58,7 +58,7 @@ const Faq = () => {
     {
       question: 'Is the legit check service from Thriftex really costless?',
       answer:
-        'Ya, layanan legit check di Thriftex benar-benar gratis. Kami percaya bahwa semua orang harus memiliki akses ke informasi keaslian produk, terutama ketika berbelanja barang thrift atau second-hand. Kami berkomitmen untuk menyediakan layanan ini secara gratis kepada pengguna kami.',
+        'Yes, the legit check service at Thriftex is completely free. We believe that everyone should have access to product authenticity information, especially when shopping for thrift or second-hand goods. We are committed to providing this service free of charge to our users.',
     },
     {
       question: 'Does Thriftex sell products?',

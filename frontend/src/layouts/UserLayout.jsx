@@ -10,10 +10,19 @@ import LegitCheckFormPage from '../pages/user/LegitCheckFormPage';
 import ContactUsPage from '../pages/user/ContactUsPage';
 import PrivateRoute from './../utils/PrivateRoute';
 import MyLegitPage from './../pages/user/MyLegitPage';
+import { useTheme } from '../ThemeContext';
 
 export function UserLayout() {
+  const { selectedTheme } = useTheme();
+
   return (
-    <div className="flex flex-col min-h-screen">
+    <div
+      className={`flex flex-col min-h-screen ${
+        selectedTheme === 'dark'
+          ? 'bg-secondary border-white text-textWhite'
+          : 'bg-primary border-gray-700 text-textBlack'
+      }`}
+    >
       <Navbar routes={routes} />
       <main className="flex-grow">
         <Routes>

@@ -6,13 +6,14 @@ import { NavLink } from 'react-router-dom';
 import { FiMenu, FiX } from 'react-icons/fi';
 import { BiGlobe } from 'react-icons/bi';
 import { IoMdSunny } from 'react-icons/io';
-import './Navbar.css';
 import { getAccessToken } from '../../utils/token-utilities';
+import { useTheme } from '../../ThemeContext';
 
 const Navbar = () => {
+  const { selectedTheme, setSelectedTheme } = useTheme();
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('EN'); // Default language
-  const [selectedTheme, setSelectedTheme] = useState('light'); // Default theme
+  const [selectedLanguage, setSelectedLanguage] = useState('EN');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,12 +21,14 @@ const Navbar = () => {
 
   const handleLanguageChange = (language) => {
     setSelectedLanguage(language);
-    // Logic to change language
   };
 
   const handleThemeChange = (theme) => {
     setSelectedTheme(theme);
+    document.documentElement.className = theme;
   };
+
+  console.log(selectedTheme);
 
   const isUserLoggedIn = getAccessToken();
 
@@ -47,14 +50,20 @@ const Navbar = () => {
     <div className="flex justify-between w-full">
       <div className="flex py-4 dropdown">
         <BiGlobe className="text-xl cursor-pointer" />
-        <select value={selectedLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
+        <select
+          value={selectedLanguage}
+          onChange={(e) => handleLanguageChange(e.target.value)}
+        >
           <option value="EN">EN</option>
           <option value="ID">ID</option>
         </select>
       </div>
       <div className="flex items-center pr-5 dropdown">
         <IoMdSunny className="text-xl cursor-pointer" />
-        <select value={selectedTheme} onChange={(e) => handleThemeChange(e.target.value)}>
+        <select
+          value={selectedTheme}
+          onChange={(e) => handleThemeChange(e.target.value)}
+        >
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
@@ -64,7 +73,13 @@ const Navbar = () => {
 
   return (
     <div className="fixed w-full flex flex-col z-[48]">
-      <div className="top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-6 py-2 border-b sm:px-16 lg:flex-row border-slate-200 bg-primary">
+      <div
+        className={`top-0 left-0 flex flex-row-reverse items-center justify-between w-full px-6 py-2 border-b sm:px-16 lg:flex-row ${
+          selectedTheme === 'dark'
+            ? 'bg-secondary border-gray-900 text-textWhite'
+            : 'bg-primary border-slate-400 text-textBlack'
+        }`}
+      >
         <div className="logo">
           <a href="/user/home">
             <img className="h-10 w-44" src={logo} alt="Verifex" />
@@ -76,7 +91,9 @@ const Navbar = () => {
               key={route.path}
               to={route.path}
               end={route.path === '/'}
-              className={({ isActive }) => (isActive ? 'block py-5 font-bold' : 'block py-5')}
+              className={({ isActive }) =>
+                isActive ? 'block py-5 font-bold' : 'block py-5'
+              }
             >
               {route.name}
             </NavLink>
@@ -95,7 +112,9 @@ const Navbar = () => {
               key={route.path}
               to={route.path}
               end={route.path === '/'}
-              className={({ isActive }) => (isActive ? 'block py-5 font-bold' : 'block py-5')}
+              className={({ isActive }) =>
+                isActive ? 'block py-5 font-bold' : 'block py-5'
+              }
             >
               {route.name}
             </NavLink>
@@ -122,17 +141,39 @@ const Navbar = () => {
         ))}
         {settingsComponent}
       </div>
-      <div className="items-center justify-end hidden w-full pr-10 space-x-4 shadow-md lg:flex bg-primary">
+      <div
+        className={`items-center justify-end hidden w-full pr-10 space-x-4 shadow-md lg:flex ${
+          selectedTheme === 'dark'
+            ? 'bg-secondary text-textWhite'
+            : 'bg-primary text-textBlack'
+        }`}
+      >
         <div className="flex py-4 dropdown">
           <BiGlobe className="text-xl cursor-pointer" />
-          <select value={selectedLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
+          <select
+            value={selectedLanguage}
+            onChange={(e) => handleLanguageChange(e.target.value)}
+            className={`${
+              selectedTheme === 'dark'
+                ? 'bg-secondary text-textWhite'
+                : 'bg-primary text-textBlack'
+            }`}
+          >
             <option value="EN">EN</option>
             <option value="ID">ID</option>
           </select>
         </div>
-        <div className="flex pr-5 dropdown">
+        <div className="flex items-center pr-5 dropdown ">
           <IoMdSunny className="text-xl cursor-pointer" />
-          <select value={selectedTheme} onChange={(e) => handleThemeChange(e.target.value)}>
+          <select
+            value={selectedTheme}
+            onChange={(e) => handleThemeChange(e.target.value)}
+            className={`outline-none items-center ${
+              selectedTheme === 'dark'
+                ? 'bg-secondary text-textWhite'
+                : 'bg-primary text-textBlack'
+            }`}
+          >
             <option value="light">Light</option>
             <option value="dark">Dark</option>
           </select>

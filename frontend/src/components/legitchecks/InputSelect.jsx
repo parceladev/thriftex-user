@@ -38,14 +38,11 @@ const InputSelect = (props) => {
     <div className="mb-8">
       <label
         htmlFor={htmlFor}
-        className="flex gap-2 mb-5 font-semibold text-gray-700 uppercase"
+        className="flex gap-2 mb-5 font-semibold uppercase"
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="text-xs font-normal text-gray-700 ">
-            {' '}
-            (Optional)
-          </span>
+          <span className="text-xs font-normal"> (Optional)</span>
         )}
         {isRequired === 'required' && (
           <span className="text-xs font-normal text-red-500"> (Required)</span>
@@ -54,7 +51,7 @@ const InputSelect = (props) => {
       <select
         name={name}
         id={id}
-        className={`w-full p-2 border-b-2 border-gray-500 ${className}`}
+        className={`w-full outline-none p-2 border-b-2 bg-primary border-gray-700 dark:border-gray-200 dark:bg-secondary ${className}`}
         value={value}
         onChange={onChange}
         required

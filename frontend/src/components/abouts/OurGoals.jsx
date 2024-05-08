@@ -13,11 +13,17 @@ const OurGoals = () => {
           <h5 className="flex items-center gap-3">
             With Creativity & Technology, Thriftex is commited to help{' '}
             <span>
-              <img
-                src="../../../public/icons/right-icon-02.svg"
-                alt=""
+              <svg
                 className="w-10 h-2 sm:h-4 sm:w-20"
-              />
+                viewBox="0 0 25 8"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M23.206 4.23798H0.5V3.76202H23.206L20.2549 0.836555L20.5945 0.5L23.9553 3.83172L24.125 4L23.9553 4.16828L20.5945 7.5L20.2549 7.16345L23.206 4.23798Z"
+                  fill="currentColor"
+                />
+              </svg>
             </span>
           </h5>
         </div>

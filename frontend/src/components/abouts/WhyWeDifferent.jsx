@@ -7,21 +7,21 @@ const WhyWeDifferent = () => {
         </h1>
         <table className="w-full my-10 text-center">
           <tr>
-            <td className="p-4 border-b border-r border-gray-700 sm:p-16">
+            <td className="p-4 border-b border-r border-gray-400 sm:p-16">
               <h3 className="text-md sm:text-xl">Free Lifetime</h3>
             </td>
-            <td className="p-4 border-b border-r border-gray-700 sm:p-16">
+            <td className="p-4 border-b border-r border-gray-400 sm:p-16">
               <h3 className="text-md sm:text-xl">Community & Brand Expert</h3>
             </td>
-            <td className="p-4 border-b border-gray-700 sm:p-16">
+            <td className="p-4 border-b border-gray-400 sm:p-16">
               <h3 className="text-md sm:text-xl">Result 1 x 24 Hour</h3>
             </td>
           </tr>
           <tr>
-            <td className="p-4 border-r border-gray-700 sm:p-16">
+            <td className="p-4 border-r border-gray-400 sm:p-16">
               <h3 className="text-md sm:text-xl">24/7 Service</h3>
             </td>
-            <td className="p-4 border-r border-gray-700 sm:p-16">
+            <td className="p-4 border-r border-gray-400 sm:p-16">
               <h3 className="text-md sm:text-xl">
                 Local & International Brand
               </h3>
