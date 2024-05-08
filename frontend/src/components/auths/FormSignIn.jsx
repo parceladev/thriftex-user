@@ -79,11 +79,11 @@ const FormSignIn = () => {
       {successMessage && (
         <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
-      <a href="#" className="mb-4 text-sm font-bold">
+      <a href="/auth/forgot-password" className="mb-4 text-sm font-bold">
         Forgot password?
       </a>
       <SubmitButton name="Sign In" />
-      <BorderButton />
+      <BorderButton name="Sign In with Google" />
     </form>
   );
 };

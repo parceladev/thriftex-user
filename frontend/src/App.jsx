@@ -10,7 +10,7 @@ import {
   ContactUsPage,
   MyLegitPage,
 } from './pages/user';
-import { SignInPage, SignUpPage } from './pages/auth';
+import { CreatePassPage, ForgetPassPage, SignInPage, SignUpPage } from './pages/auth';
 import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
@@ -37,6 +37,8 @@ function App() {
       <Route path="/auth/*" element={<AuthLayout />}>
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />
+        <Route path="forgot-passowrd" element={<ForgetPassPage />} />
+        <Route path="create-passowrd" element={<CreatePassPage />} />
       </Route>
       <Route path="*" element={<Navigate to="/user/home" replace />} />
     </Routes>

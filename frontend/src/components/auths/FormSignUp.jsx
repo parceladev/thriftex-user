@@ -103,7 +103,7 @@ const FormSignUp = () => {
         <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
       <SubmitButton name="Sign Up" onClick={handleSubmit} />
-      <BorderButton />
+      <BorderButton name="Sign Up with Google"/>
     </div>
   );
 };
