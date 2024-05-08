@@ -123,7 +123,7 @@ const Navbar = () => {
       </div>
       <div
         className={`absolute top-14 w-full left-0 px-5 bg-primary ${
-          isMenuOpen ? 'flex' : 'hidden'
+          isMenuOpen ? 'flex shadow-xl' : 'hidden'
         } flex-wrap sm:hidden`}
       >
         {routes.map((route) => (
