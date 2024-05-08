@@ -105,7 +105,7 @@ const Navbar = () => {
         <div
           className={`absolute top-14 w-full left-0 px-5 bg-primary ${
             isMenuOpen ? 'flex' : 'hidden'
-          } flex-wrap sm:hidden`}
+          } flex-wrap sm:hidden `}
         >
           {routes.map((route) => (
             <NavLink
@@ -123,8 +123,12 @@ const Navbar = () => {
       </div>
       <div
         className={`absolute top-14 w-full left-0 px-5 bg-primary ${
-          isMenuOpen ? 'flex shadow-xl' : 'hidden'
-        } flex-wrap sm:hidden`}
+          isMenuOpen ? 'flex shadow-lg' : 'hidden'
+        } flex-wrap sm:hidden  ${
+          selectedTheme === 'dark'
+            ? 'bg-secondary shadow-lg text-textWhite'
+            : 'bg-primary shadow-lg text-textBlack'
+        } `}
       >
         {routes.map((route) => (
           <NavLink
