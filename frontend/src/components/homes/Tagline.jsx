@@ -1,7 +1,7 @@
 const Tagline = () => {
   return (
-    <div className="flex flex-col items-center justify-between w-full gap-8 py-16 text-center sm:py-8 sm:flex-row">
-      <h2 className="sm:w-1/3 text-center font-didot text-[30px] uppercase  sm:text-left">
+    <div className="flex flex-col items-center justify-between w-full gap-8 py-16 text-center sm:py-20 sm:flex-row">
+      <h2 className="text-3xl text-center uppercase sm:text-4xl sm:w-1/3 font-didot sm:text-left">
         Original With Us
       </h2>
       <p className="sm:w-1/3  sm:text-left text-center text-[13px]">

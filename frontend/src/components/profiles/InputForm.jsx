@@ -57,7 +57,7 @@ const InputForm = (props) => {
               onChange={type === 'tel' ? handleNumericChange : onChange}
               placeholder={placeholder}
               readOnly={isRequired === 'none'}
-              className={`w-full p-2 border-b-2 dark:bg-[#555555] bg-primary rounded border-slate-800 focus:outline-none focus:ring-0 ${className}`}
+              className={`w-full p-2 border-b-2 bg-primary dark:bg-secondary rounded border-slate-800 dark:border-primary focus:outline-none focus:ring-0 ${className}`}
             />
             {type === 'password' && isRequired !== 'none' && (
               <button
@@ -76,7 +76,7 @@ const InputForm = (props) => {
             value={value}
             onChange={onChange}
             disabled={isRequired === 'none'}
-            className={`w-full p-2 border-b-2 rounded bg-primary dark:bg-[#555555] border-slate-800 focus:outline-none focus:ring-0 ${className}`}
+            className={`w-full p-2 border-b-2 rounded bg-primary dark:bg-secondary dark:border-primary border-slate-800 focus:outline-none focus:ring-0 ${className}`}
           >
             {children}
           </select>

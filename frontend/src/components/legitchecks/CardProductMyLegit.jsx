@@ -21,10 +21,10 @@ const CardProductMyLegit = (props) => {
           src={product.file_path}
           alt={product.nama_item}
         />
-        <p className="py-3 text-center bg-secondary text-textBlack dark:bg-gray-300">
+        <p className="py-3 text-center dark:bg-secondary text-textBlack dark:text-textWhite">
           {product.nama_item}
         </p>
-        <p className="py-3 font-bold text-center text-white uppercase bg-secondary dark:bg-primary dark:text-black">
+        <p className="py-3 font-bold text-center uppercase text-textWhite bg-secondary dark:bg-primary dark:text-black">
           {product.check_result}
         </p>
       </div>

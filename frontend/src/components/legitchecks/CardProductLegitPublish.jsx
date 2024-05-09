@@ -14,7 +14,7 @@ const CardProductLegitPublish = (props) => {
     <div>
       <div
         onClick={() => toggleModal(product)}
-        className="flex flex-col border border-black dark:border-gray-600"
+        className="flex flex-col border border-black dark:bg-[#0D1117] dark:border-gray-600"
       >
         <img
           className="h-44 sm:h-80"
@@ -22,7 +22,7 @@ const CardProductLegitPublish = (props) => {
           alt={product.nama_item}
         />
         <p className="py-3 text-center">{product.nama_item}</p>
-        <p className="py-3 font-bold text-center text-white uppercase bg-black dark:bg-gray-300 dark:text-black">
+        <p className="py-3 font-bold text-center uppercase text-primary dark:bg-primary dark:text-textBlack">
           {product.check_result || 'waiting'}
         </p>
       </div>
