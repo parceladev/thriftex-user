@@ -10,12 +10,18 @@ import {
   ContactUsPage,
   MyLegitPage,
 } from './pages/user';
-import { CreatePassPage, ForgetPassPage, SignInPage, SignUpPage } from './pages/auth';
+import {
+  CreatePassPage,
+  ForgetPassPage,
+  SignInPage,
+  SignUpPage,
+} from './pages/auth';
 import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
     <Routes>
+      <Route path="/" element={<Navigate to="/user/home" replace />} />
       <Route path="/user/*" element={<UserLayout />}>
         <Route path="home" element={<HomePage />} />
         <Route path="legit-check" element={<LegitCheckPage />} />
@@ -37,10 +43,9 @@ function App() {
       <Route path="/auth/*" element={<AuthLayout />}>
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="sign-up" element={<SignUpPage />} />
-        <Route path="forgot-passowrd" element={<ForgetPassPage />} />
-        <Route path="create-passowrd" element={<CreatePassPage />} />
+        <Route path="forgot-password" element={<ForgetPassPage />} />
+        <Route path="create-password/:token" element={<CreatePassPage />} />
       </Route>
-      <Route path="*" element={<Navigate to="/user/home" replace />} />
     </Routes>
   );
 }

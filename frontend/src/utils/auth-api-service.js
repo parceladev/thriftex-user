@@ -74,3 +74,56 @@ export const useLogout = () => {
 
   return logout;
 };
+
+export const forgetPassword = async (email) => {
+  try {
+    const formData = new FormData();
+    formData.append('email', email);
+
+    const response = await axios.post(
+      `${API_BASE_URL}/users/forgetpassword`,
+      formData,
+      {
+        headers: { 'Content-Type': 'multipart/form-data' },
+      }
+    );
+
+    const data = response.data;
+    if (data.message === 'success') {
+      return data.message;
+    } else {
+      return { error: data.message };
+    }
+  } catch (error) {
+    return { error: 'Server Error' };
+  }
+};
+
+export const resetPassword = async (token, password, passconf) => {
+  try {
+    const formData = new FormData();
+    formData.append('password', password);
+    formData.append('passconf', passconf);
+
+    const response = await axios.post(
+      `${API_BASE_URL}/users/updatepassword`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `${token}`,
+        },
+      }
+    );
+
+    const data = response.data;
+    if (data.status) {
+      return { message: 'success', data: data };
+    } else {
+      return { error: data.message || 'Failed to update password' };
+    }
+  } catch (error) {
+    console.error('Error during password reset:', error);
+    return { error: error.response?.data?.message || 'Server Error' };
+  }
+};

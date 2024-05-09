@@ -1,17 +1,44 @@
 import { useState } from 'react';
+
 import InputEmail from './InputEmail';
 import SubmitButton from './SubmitButton';
 import BorderButton from './BorderButton';
 import Modal from './Modal';
 
-const FormForgetPass = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [email, setEmail] = useState('');
-  const [showModal, setShowModal] = useState(false);
+import { forgetPassword } from '../../utils/auth-api-service';
 
-  const handleSubmit = (event) => {
+const FormForgetPass = () => {
+  const [email, setEmail] = useState('');
+  
+  const [loading, setLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState({
+    title: '',
+    description: '',
+  });
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    setShowModal(true);
+    setLoading(true);
+    const response = await forgetPassword(email);
+    setLoading(false);
+    if (response === 'success') {
+      setModalContent({
+        title: 'Email Sent',
+        description: `We sent an email to ${email} with a link to reset the password.`,
+      });
+      setShowModal(true);
+    } else {
+      setModalContent({
+        title: 'Error',
+        description: response.error || 'An unexpected error occurred',
+      });
+      setShowModal(true);
+    }
+  };
+
+  const handleEmailChange = (event) => {
+    setEmail(event.target.value);
   };
 
   return (
@@ -26,13 +53,20 @@ const FormForgetPass = () => {
           account
         </p>
       </div>
-      <InputEmail value={email} onChange="" placeholder="Your Email" />
-      <SubmitButton name="Send Login Link" />
+      <InputEmail
+        value={email}
+        onChange={handleEmailChange}
+        placeholder="Your Email"
+      />
+      <SubmitButton
+        name={loading ? 'Send Reset Link' : 'Send Reset Link'}
+        loading={loading}
+      />
       <BorderButton name="Login with different account" icon="hidden" />
 
       <Modal
-        title="Email Sent"
-        description="We sent an email to a********n@gmail.com with a link to reset the password."
+        title={modalContent.title}
+        description={modalContent.description}
         button="Close"
         show={showModal}
         onClose={() => setShowModal(false)}
