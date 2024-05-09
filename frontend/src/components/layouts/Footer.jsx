@@ -13,7 +13,7 @@ const Footer = () => {
   ];
 
   return (
-    <section className="w-full text-center border-t dark:border-gray-900 dark:shadow-md">
+    <section className="w-full text-center border-t">
       <div className="flex gap-20 px-6 py-5 sm:px-16">
         {routes.map((route) => (
           <Link key={route.id} to={route.path}>
@@ -21,7 +21,7 @@ const Footer = () => {
           </Link>
         ))}
       </div>
-      <div className="flex justify-between w-full gap-4 px-6 py-5 border-t sm:px-16 dark:border-gray-900">
+      <div className="flex justify-between w-full gap-4 px-6 py-5 border-t sm:px-16">
         <div className="flex items-center justify-start space-x-6">
           <a href="">
             <svg

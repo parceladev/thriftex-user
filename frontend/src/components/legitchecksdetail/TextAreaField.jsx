@@ -5,7 +5,7 @@ const TextAreaField = (props) => {
 
   return (
     <div className="mb-4">
-      <label className="block mb-2 text-lg font-semibold text-black uppercase">
+      <label className="block mb-2 text-lg font-semibold uppercase">
         {label}
         {required && (
           <span className="ml-3 text-sm font-light text-red-600">
@@ -18,7 +18,7 @@ const TextAreaField = (props) => {
         value={value}
         onChange={onChange}
         required={required}
-        className="w-full p-3 border-b-2 border-black text-[14px] focus:outline-none"
+        className="w-full p-3 border-b-2 bg-transparent text-[14px] focus:outline-none"
         rows="1"
         readOnly
       />

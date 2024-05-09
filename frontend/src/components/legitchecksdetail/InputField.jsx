@@ -29,7 +29,7 @@ const InputField = (props) => {
 
   return (
     <div className="mb-4">
-      <label className="block mb-2 font-sans text-lg font-semibold text-black uppercase text-sans">
+      <label className="block mb-2 font-sans text-lg font-semibold uppercase text-sans">
         {label}
         {required && (
           <span className="text-sans text-red-600 font-light capitalize text-[14px] ml-3">
@@ -45,7 +45,7 @@ const InputField = (props) => {
           onChange={onChange}
           required={required}
           rows={rows}
-          className="w-full p-3 border-b-2 border-black text-[14px] focus:outline-none"
+          className="w-full p-3 border-b-2 text-[14px] focus:outline-none"
           readOnly
         />
       ) : (
@@ -55,7 +55,7 @@ const InputField = (props) => {
           value={value}
           onChange={onChange}
           required={required}
-          className="w-full p-3 border-b-2 border-black text-[14px] focus:outline-none"
+          className="w-full p-3 border-b-2 bg-transparent text-[14px] focus:outline-none"
           readOnly
         />
       )}

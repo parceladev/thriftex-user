@@ -14,10 +14,10 @@ const SearchProduct = (props) => {
         type="text"
         placeholder="Example: ID- 040121"
         onChange={onSearchChange}
-        className="w-full h-full p-3 border border-black dark:border-white"
+        className="w-full h-full p-3 bg-transparent border border-black dark:border-white"
       />
       <button
-        className={`${styles.flexCenter} p-5 border border-black dark:border-gray-400`}
+        className={`${styles.flexCenter} p-5 border border-black dark:border-white border-l-0`}
       >
         <FontAwesomeIcon icon={faMagnifyingGlass} className="text-2xl" />
       </button>

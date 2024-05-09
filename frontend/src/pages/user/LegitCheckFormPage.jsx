@@ -230,11 +230,11 @@ const LegitCheckFormPage = () => {
           />
           <button
             type="submit"
-            className={`py-3 w-full mt-8 text-center flex gap-3 justify-center items-center 
+            className={`py-3 w-full mt-8 font-bold text-center flex gap-3 justify-center items-center 
             ${
               isButtonActive
-                ? 'dark:bg-primary bg-secondary text-textWhite'
-                : 'bg-gray-300 text-textBlack'
+                ? 'dark:bg-primary dark:text-textBlack bg-secondary text-textWhite'
+                : 'bg-gray-300 bg-opacity-30 text-textBlack'
             }`}
             disabled={!isButtonActive || isSubmitting}
           >

@@ -131,10 +131,10 @@ const AccountSettings = () => {
         </button>
       </form>
       <div className="mt-28 sm:mt-14">
-        <div className="border-2 border-gray-300 dark:border-[#555555] rounded hover:bg-gray-200 dark:hover:bg-[#1d1d1d]">
+        <div className="border-2 border-l-0 border-r-0 border-gray-300 dark:border-[#555555] rounded hover:bg-gray-200 dark:hover:bg-[#0f141b]">
           <MyLegit />
         </div>
-        <div className="mt-4 border-2 border-gray-300 dark:border-[#555555] rounded hover:bg-gray-200 dark:hover:bg-[#1d1d1d]">
+        <div className="mt-4 border-2 border-l-0 border-r-0 border-gray-300 dark:border-[#555555] rounded hover:bg-gray-200 dark:hover:bg-[#0f141b]">
           <LogOut />
         </div>
       </div>

@@ -31,7 +31,7 @@ const InputText = (props) => {
         name={name}
         id={id}
         type={type}
-        className="w-full outline-none p-2 border-b-2 border-gray-700 bg-primary dark:border-gray-200 dark:bg-secondary"
+        className="w-full p-2 bg-transparent border-b-2 border-gray-700 outline-none dark:bg-secondary dark:border-gray-200"
         value={value}
         onChange={onChange}
         placeholder={placeholder}

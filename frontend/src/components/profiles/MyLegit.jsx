@@ -5,7 +5,7 @@ const MyLegit = () => {
   return (
     <a
       href="/user/my-legit"
-      className="flex items-center justify-between w-full gap-4 p-6 cursor-pointer"
+      className="flex items-center justify-between w-full gap-4 py-6 cursor-pointer"
     >
       <div className="flex items-center gap-4">
         <FontAwesomeIcon icon={faCheckDouble} className="text-xl" />
