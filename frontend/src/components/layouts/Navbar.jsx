@@ -50,14 +50,30 @@ const Navbar = () => {
     <div className="flex justify-between w-full">
       <div className="flex py-4 dropdown">
         <BiGlobe className="text-xl cursor-pointer" />
-        <select value={selectedLanguage} onChange={(e) => handleLanguageChange(e.target.value)}>
+        <select
+          value={selectedLanguage}
+          onChange={(e) => handleLanguageChange(e.target.value)}
+          className={`outline-none items-center ${
+            selectedTheme === 'dark'
+              ? 'bg-transparent text-textWhite'
+              : 'bg-primary text-textBlack'
+          }`}
+        >
           <option value="EN">EN</option>
           <option value="ID">ID</option>
         </select>
       </div>
       <div className="flex items-center pr-5 dropdown">
         <IoMdSunny className="text-xl cursor-pointer" />
-        <select value={selectedTheme} onChange={(e) => handleThemeChange(e.target.value)}>
+        <select
+          value={selectedTheme}
+          onChange={(e) => handleThemeChange(e.target.value)}
+          className={`outline-none items-center ${
+            selectedTheme === 'dark'
+              ? 'bg-transparent text-textWhite'
+              : 'bg-primary text-textBlack'
+          }`}
+        >
           <option value="light">Light</option>
           <option value="dark">Dark</option>
         </select>
@@ -85,7 +101,9 @@ const Navbar = () => {
               key={route.path}
               to={route.path}
               end={route.path === '/'}
-              className={({ isActive }) => (isActive ? 'block py-5 font-bold' : 'block py-5')}
+              className={({ isActive }) =>
+                isActive ? 'block py-5 font-bold' : 'block py-5'
+              }
             >
               {route.name}
             </NavLink>
@@ -104,7 +122,9 @@ const Navbar = () => {
               key={route.path}
               to={route.path}
               end={route.path === '/'}
-              className={({ isActive }) => (isActive ? 'block py-5 font-bold' : 'block py-5')}
+              className={({ isActive }) =>
+                isActive ? 'block py-5 font-bold' : 'block py-5'
+              }
             >
               {route.name}
             </NavLink>
@@ -137,17 +157,18 @@ const Navbar = () => {
         ))}
         {settingsComponent}
       </div>
-      {/* Overlay hanya muncul di viewport mobile ketika menu terbuka dan hanya menutupi isi di bawah navbar */}
       {isMenuOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 sm:hidden"
+          className="fixed inset-0 z-40 bg-black bg-opacity-50 sm:hidden"
           style={{ top: '60px' }}
           onClick={toggleMenu}
         ></div>
       )}
       <div
         className={`items-center justify-end hidden w-full pr-10 space-x-4 shadow-md lg:flex ${
-          selectedTheme === 'dark' ? 'bg-secondary text-textWhite' : 'bg-primary text-textBlack'
+          selectedTheme === 'dark'
+            ? 'bg-secondary text-textWhite'
+            : 'bg-primary text-textBlack'
         }`}
       >
         <div className="flex py-4 dropdown">
@@ -156,7 +177,9 @@ const Navbar = () => {
             value={selectedLanguage}
             onChange={(e) => handleLanguageChange(e.target.value)}
             className={`${
-              selectedTheme === 'dark' ? 'bg-secondary text-textWhite' : 'bg-primary text-textBlack'
+              selectedTheme === 'dark'
+                ? 'bg-secondary text-textWhite'
+                : 'bg-primary text-textBlack'
             }`}
           >
             <option value="EN">EN</option>
@@ -169,7 +192,9 @@ const Navbar = () => {
             value={selectedTheme}
             onChange={(e) => handleThemeChange(e.target.value)}
             className={`outline-none items-center ${
-              selectedTheme === 'dark' ? 'bg-secondary text-textWhite' : 'bg-primary text-textBlack'
+              selectedTheme === 'dark'
+                ? 'bg-transparent text-textWhite'
+                : 'bg-primary text-textBlack'
             }`}
           >
             <option value="light">Light</option>
