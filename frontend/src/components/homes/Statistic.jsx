@@ -52,7 +52,7 @@ const Statistic = () => {
           </p>
         </div>
         <div className="flex flex-col justify-center w-full gap-10 text-center sm:text-right">
-          <h1 className="uppercase text-8xl sm:text-[150px] text-primary font-didot sm:mb-[-5px]">
+          <h1 className="uppercase text-8xl sm:text-[150px] text-secondary font-didot sm:mb-[-5px]">
             {currentCount}
           </h1>
           <p className="text-xl font-didot mt-[-40px]">TOTAL CHECK</p>

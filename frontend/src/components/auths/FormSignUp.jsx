@@ -70,6 +70,10 @@ const FormSignUp = () => {
     setErrorMessage(message);
   };
 
+  const isFormValid = name.trim() !== '' && email.trim() !== '' && password.trim() !== '' && confirmPassword.trim() !== '';
+  const buttonColor = isFormValid ? 'black' : 'rgba(0, 0, 0, 0.3)';
+
+
   return (
     <div className="flex flex-col gap-5 sm:p-12 p-9 rounded-2xl text-white bg-white/35 w-full sm:w-[475px]">
       <a href="" className="flex justify-center mb-4">
@@ -102,7 +106,7 @@ const FormSignUp = () => {
       {successMessage && (
         <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
-      <SubmitButton name="Sign Up" onClick={handleSubmit} />
+      <SubmitButton name="Sign Up" buttonColor={buttonColor} onClick={handleSubmit} />
       <BorderButton name="Sign Up with Google"/>
     </div>
   );
