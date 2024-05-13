@@ -74,8 +74,8 @@ const Navbar = () => {
               : 'bg-primary text-textBlack'
           }`}
         >
-          <option value="light">Light</option>
-          <option value="dark">Dark</option>
+          <option value="light" label="Light">Light Mode</option>
+          <option value="dark" label="Dark">Dark Mode</option>
         </select>
       </div>
     </div>
@@ -197,8 +197,8 @@ const Navbar = () => {
                 : 'bg-primary text-textBlack'
             }`}
           >
-            <option value="light">Light</option>
-            <option value="dark">Dark</option>
+            <option value="light">Light Mode</option>
+            <option value="dark">Dark Mode</option>
           </select>
         </div>
       </div>

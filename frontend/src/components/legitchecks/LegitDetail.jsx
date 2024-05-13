@@ -54,9 +54,13 @@ const LegitDetail = ({ onClose, product }) => {
     getDetailLegitData();
   }, [product, product.case_code]);
 
+  const handleOpenModal = () => {
+    setShowModal(true);
+  };
+
   return (
-    <div className="fixed inset-0 top-0 z-50 flex items-center justify-center p-6 bg-opacity-50 bg-secondary dark:bg-primary dark:bg-opacity-5 sm:p-0">
-      <div className="w-full max-w-5xl mx-auto overflow-hidden rounded-lg shadow-lg dark:bg-shadow-md dark:shadow-gray-800 bg-primary dark:bg-secondary">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-secondary dark:bg-primary dark:bg-opacity-5 ">
+      <div className="w-full sm:max-w-screen-sm mx-auto xs:h-full md:h-auto md:rounded-lg overflow-hidden shadow-lg dark:bg-shadow-md dark:shadow-gray-800 bg-primary">
         <div className="flex flex-row items-center justify-between p-4 mb-5 border-b-2 ">
           <p className="text-xl font-bold text-sans">Legit Check Detail</p>
           <button type="button" onClick={onClose}>

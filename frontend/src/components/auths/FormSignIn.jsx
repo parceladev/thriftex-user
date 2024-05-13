@@ -9,10 +9,10 @@ import BorderButton from './BorderButton';
 
 const FormSignIn = () => {
   const navigate = useNavigate();
-  
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  
+
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -57,6 +57,9 @@ const FormSignIn = () => {
     }
   };
 
+  const isFormValid = email.trim() !== '' && password.trim() !== '';
+  const buttonColor = isFormValid ? 'black' : 'rgba(0, 0, 0, 0.3)';
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -75,16 +78,12 @@ const FormSignIn = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Your Password"
       />
-      {errorMessage && (
-        <p className="mt-2 text-center text-red-500">{errorMessage}</p>
-      )}
-      {successMessage && (
-        <p className="mt-2 text-center text-green-500">{successMessage}</p>
-      )}
+      {errorMessage && <p className="mt-2 text-center text-red-500">{errorMessage}</p>}
+      {successMessage && <p className="mt-2 text-center text-green-500">{successMessage}</p>}
       <a href="/auth/forgot-password" className="mb-4 text-sm font-bold">
         Forgot password?
       </a>
-      <SubmitButton name="Sign In" />
+      <SubmitButton name="Sign In" buttonColor={buttonColor} />
       <BorderButton name="Sign In with Google" />
     </form>
   );
