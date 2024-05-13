@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signUp } from './../../utils/auth-api-service';
+import { signUp, signGoogle } from './../../utils/auth-api-service';
 
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
 import SubmitButton from './SubmitButton';
-import BorderButton from './BorderButton';
+// import BorderButton from './BorderButton';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 const FormSignUp = () => {
   const [name, setName] = useState('');
@@ -59,6 +60,11 @@ const FormSignUp = () => {
     signUp(userData, handleSuccess, handleError);
   };
 
+  const handleGoogleSubmit = async ({ credential }) => {
+    await signGoogle(credential);
+    navigate('/user/home');
+  };
+
   const handleSuccess = () => {
     setSuccessMessage('Registration Success! Redirecting to sign in...');
     setTimeout(() => {
@@ -103,7 +109,14 @@ const FormSignUp = () => {
         <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
       <SubmitButton name="Sign Up" onClick={handleSubmit} />
-      <BorderButton name="Sign Up with Google"/>
+      {/* <BorderButton name="Sign Up with Google" onClick={handleGoogleSubmit} /> */}
+
+      <GoogleOAuthProvider clientId="516243855300-ajgnmk64lo4sp73mlrubpef808lpglvc.apps.googleusercontent.com">
+        <GoogleLogin
+          onSuccess={handleGoogleSubmit}
+          onError={(e) => console.log(e)}
+        />
+      </GoogleOAuthProvider>
     </div>
   );
 };

@@ -31,6 +31,42 @@ export const signUp = async (userData, onSuccess, onError) => {
   }
 };
 
+export const signGoogle = async (credential) => {
+  console.log('Credential:', credential);
+
+  try {
+    const response = await axios.post(
+      `${API_BASE_URL}/users/googleauth`,
+      null,
+      {
+        headers: {
+          Authorization: `${credential}`,
+        },
+      }
+    );
+
+    const data = response.data;
+    if (data.status) {
+      if (!data.access_token) {
+        console.error('Token is undefined or null.');
+        return { error: 'No token received' };
+      } else {
+        saveToken(data.access_token, data.refresh_token);
+
+        const validationResult = await validateToken();
+        if (validationResult.valid) {
+          return { data };
+        } else {
+          return { error: 'Invalid or expired token' };
+        }
+      }
+    }
+  } catch (error) {
+    console.error('Registration Error:', error);
+    alert('Registration failed. Please try again.');
+  }
+};
+
 export const signIn = async (email, password) => {
   try {
     const formData = new FormData();
