@@ -28,10 +28,10 @@ const Navbar = () => {
 
   const handleThemeChange = (theme) => {
     setSelectedTheme(theme);
+    localStorage.setItem('theme', theme)
     document.documentElement.className = theme;
   };
 
-  console.log(selectedTheme);
 
   const isUserLoggedIn = getAccessToken();
 
@@ -135,7 +135,7 @@ const Navbar = () => {
                 isActive ? "block py-5 font-bold" : "block py-5"
               }
             >
-              {route.name}
+              {t(route.name)}
             </NavLink>
           ))}
         </div>

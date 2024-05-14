@@ -114,7 +114,6 @@ const AccountSettings = () => {
         window.location.reload();
       } else {
         const message = result.message || alertMessages[4];
-
         alert(message);
       }
     } catch (error) {
