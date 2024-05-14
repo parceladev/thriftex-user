@@ -15,9 +15,10 @@ i18n.use(initReactI18next).init({
         "Legit Check": "Legit Check",
         About: "About",
         Profile: "Profile",
-        "Sign Up": "Sign Up",
-        "Dark Mode": "Dark",
-        "Light Mode": "Light",
+
+        "Sign In": "Sign In",
+        "Dark Mode": "DARK",
+        "Light Mode": "LIGHT",
 
         //Jumbotron
         "IS YOUR FASHION STYLE LEGIT?": "IS YOUR FASHION STYLE LEGIT?",
@@ -74,6 +75,12 @@ i18n.use(initReactI18next).init({
         //Input
         Optional: "(Optional)",
         Required: "(Required)",
+        Old: "Old",
+        New: "New",
+
+        //Span Submit Legit Form
+        Submit: "Submitting...",
+        Close: "Close",
 
         //MyLegitPage
         "Heading My Legit": "My Legit Page",
@@ -131,11 +138,11 @@ i18n.use(initReactI18next).init({
         "Different 7": "Online Certification",
 
         //AccountSettings
-        "Settings Alert 1": "Please enter your old password.",
-        "Settings Alert 2": "New password must be at least 8 characters long.",
-        "Settings Alert 3": "New passwords do not match.",
-        "Settings Alert 4": "Profile updated successfully!",
-        "Settings Alert 5": "Failed to update profile. Please try again.",
+        "Old Password Required": "Please enter your old password.",
+        "Password Length": "New password must be at least 8 characters long.",
+        "Password Not Match": "New passwords do not match.",
+        "Update Success": "Profile updated successfully!",
+        "Update Failed": "Failed to update profile. Please try again.",
         "Settings Save": "Save Information",
 
         //PersonalForm
@@ -212,21 +219,31 @@ i18n.use(initReactI18next).init({
           "Yes, the legit check service at Thriftex is completely free. We believe that everyone should have access to product authenticity information, especially when shopping for thrift or second-hand goods. We are committed to providing this service free of charge to our users.",
         "Answer FAQ 7":
           "No, Thriftex is not an e-commerce that sell products. We only provide a legit check service to help you verify product authenticity. After receiving our verification results, you will need to find another place or platform to complete your purchase.",
+
+        //Footer
+        CONTACT: "CONTACT US",
+        "TERMS AND CONDITION": "TERM AND CONDITION",
+
+        //CardProductLegitPublish
+        Waiting: "waiting",
+        fake: "Fake",
+        Original: "Original",
       },
     },
     id: {
       translation: {
         //General
-        Loading: "Menunggu...",
+        Loading: "Memuat...",
 
         //Homepage
         Home: "Beranda",
         "Legit Check": "Cek Legit",
         About: "Tentang",
         Profile: "Profil",
-        "Sign Up": "Sign Up",
-        "Dark Mode": "Gelap",
-        "Light Mode": "Terang",
+
+        "Sign In": "Masuk",
+        "Dark Mode": "GELAP",
+        "Light Mode": "TERANG",
 
         //Jumbotron
         "IS YOUR FASHION STYLE LEGIT?": "APAKAH FASHION ANDA LEGIT?",
@@ -261,19 +278,19 @@ i18n.use(initReactI18next).init({
         //LegitCheckFormPage
         "Heading Legit Form": "Formulir Cek Legit",
         "Button Left": "Kembali",
-        "Label Form 1": "Kategori Item",
-        "Label Form 2": "Merek Item",
-        "Label Form 3": "Nama Item",
+        "Label Form 1": "Kategori Produk",
+        "Label Form 2": "Merek Produk",
+        "Label Form 3": "Nama Produk",
         "Label Form 4": "Unggah Gambar",
         "Label Form 5": "Pembelian",
         "Label Form 6": "Nama Toko",
-        "Label Form 7": "Kondisi Item",
+        "Label Form 7": "Kondisi Produk",
         "Label Form 8": "Catatan Lain",
-        "Default Value 1": "Pilih Kategori Item",
+        "Default Value 1": "Pilih Kategori Produk",
         "Default Value 2": "Pilih Merk",
         "Default Value 3": "Pilih Pembelian",
-        "Default Value 4": "Pilih Kondisi Item",
-        "PlaceHolder 1": "Masukkan Nama Item",
+        "Default Value 4": "Pilih Kondisi Produk",
+        "PlaceHolder 1": "Masukkan Nama Produk",
         "PlaceHolder 2": "Masukkan Nama Toko",
 
         //Input Image
@@ -283,9 +300,12 @@ i18n.use(initReactI18next).init({
         //Input
         Optional: "(Opsional)",
         Required: "(Wajib)",
+        Old: "Lama",
+        New: "Baru",
 
         //Span Submit Legit Form
         Submit: "Mengirimkan...",
+        Close: "Tutup",
 
         //MyLegitPage
         "Heading My Legit": "Halaman Legit Saya",
@@ -294,25 +314,25 @@ i18n.use(initReactI18next).init({
 
         //Alert Legit Check
         "Heading Alert": "TERIMA KASIH",
-        "Paraf Alert": "Please wait until your item is",
+        "Paraf Alert": "Mohon menunggu sampai produk anda",
         "Span Alert": "terverifikasi",
         "Continous Paraf Alert": "oleh validator kami",
 
         //Legit Check Detail
         "Heading Detail": "Detail Legit Cek",
         "Label Detail 1": "KODE KASUS",
-        "Label Detail 2": "KATEGORI ITEM",
+        "Label Detail 2": "KATEGORI PRODUK",
         "Label Detail 3": "NAMA BRAND",
-        "Label Detail 4": "NAMA ITEM",
+        "Label Detail 4": "NAMA PRODUK",
         "Label Detail 5": "TANGGAL PEMBELIAN",
         "Label Detail 6": "NAMA TOKO",
-        "Label Detail 7": "KONDISI ITEM",
+        "Label Detail 7": "KONDISI PRODUK",
         "Label Detail 8": "CATATAN LAIN",
         "Heading Result": "Hasil Legit Check",
         "Under Review": "Legit cek anda masih dalam peninjauan",
 
         //Photos Field
-        "Label Detail": "FOTO ITEM",
+        "Label Detail": "FOTO PRODUK",
 
         //Banner About
         "Heading About": "Tentang Thriftex",
@@ -344,12 +364,12 @@ i18n.use(initReactI18next).init({
         "Different 7": "Sertifikasi Online",
 
         //AccountSettings
-        "Settings Alert 1": "Silakan masukkan kata sandi lama Anda.",
-        "Settings Alert 2":
+        "Old Password Required": "Silakan masukkan kata sandi lama Anda.",
+        "Password Length":
           "Kata sandi baru harus terdiri dari minimal 8 karakter.",
-        "Settings Alert 3": "Kata sandi baru tidak cocok.",
-        "Settings Alert 4": "Profil berhasil diperbarui!",
-        "Settings Alert 5": "Gagal memperbarui profil. Silakan coba lagi.",
+        "Password Not Match": "Kata sandi baru tidak cocok.",
+        "Update Success": "Profil berhasil diperbarui!",
+        "Update Failed": "Gagal memperbarui profil. Silakan coba lagi.",
         "Settings Save": "Simpan Informasi",
 
         //Personal Form
@@ -361,7 +381,7 @@ i18n.use(initReactI18next).init({
         "PlaceHolder Personal": "Contoh: 081234xxxxxx",
         "Option Personal 1": "Pilih Jenis Kelamin",
         "Option Personal 2": "Pria",
-        "Option Personal 3": "Perempuan",
+        "Option Personal 3": "Wanita",
         "Option Personal 4": "Lainnya",
 
         //SecurityForm
@@ -429,8 +449,13 @@ i18n.use(initReactI18next).init({
           "Tidak, Thriftex bukanlah e-commerce yang menjual produk. Kami hanya menyediakan layanan pengecekan yang sah untuk membantu Anda memverifikasi keaslian produk. Setelah menerima hasil verifikasi kami, Anda perlu mencari tempat atau platform lain untuk menyelesaikan pembelian Anda.",
 
         //Footer
-        CONTACT: "KONTAK",
+        CONTACT: "KONTAK KAMI",
         "TERMS AND CONDITION": "SYARAT DAN KETENTUAN",
+
+        //CardProductLegitPublish
+        Waiting: "menunggu",
+        fake: "Palsu",
+        Original: "Asli",
       },
     },
   },

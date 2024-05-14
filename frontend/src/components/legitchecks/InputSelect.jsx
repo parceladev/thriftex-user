@@ -63,7 +63,7 @@ const InputSelect = (props) => {
         </option>
         {optionsData.map((item) => (
           <option key={item.value} value={item.value}>
-            {item.label}
+            {t(item.label)}
           </option>
         ))}
       </select>
