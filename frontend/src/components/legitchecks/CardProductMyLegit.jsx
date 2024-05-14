@@ -7,7 +7,6 @@ const CardProductMyLegit = (props) => {
   const { t } = useTranslation();
   const { product } = props;
   const [isModalOpen, setModalOpen] = useState(false);
-  console.log(product)
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);

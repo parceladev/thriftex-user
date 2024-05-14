@@ -65,7 +65,7 @@ const LegitDetail = ({ onClose, product }) => {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-secondary dark:bg-primary dark:bg-opacity-5 ">
-      <div className="w-full sm:max-w-screen-sm mx-auto xs:h-full md:h-auto md:rounded-lg overflow-hidden shadow-lg dark:bg-shadow-md dark:shadow-gray-800 bg-primary">
+      <div className="w-full sm:max-w-screen-sm mx-auto xs:h-full md:h-auto md:rounded-lg overflow-hidden shadow-lg dark:bg-shadow-md dark:shadow-gray-800 dark:bg-secondary bg-primary">
         <div className="flex flex-row items-center justify-between p-4 mb-5 border-b-2 ">
           <h4 className="text-xl font-bold text-sans">{t("Heading Detail")}</h4>
           <button type="button" onClick={onClose}>

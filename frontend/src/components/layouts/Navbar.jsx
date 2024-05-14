@@ -28,10 +28,10 @@ const Navbar = () => {
 
   const handleThemeChange = (theme) => {
     setSelectedTheme(theme);
+    localStorage.setItem('theme', theme)
     document.documentElement.className = theme;
   };
 
-  console.log(selectedTheme);
 
   const isUserLoggedIn = getAccessToken();
 
