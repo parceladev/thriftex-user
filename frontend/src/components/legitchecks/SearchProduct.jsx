@@ -1,18 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  // faArrowDownWideShort,
   faMagnifyingGlass,
   // faArrowDownWideShort,
 } from '@fortawesome/free-solid-svg-icons';
 import styles from '../../styles';
 import { PropTypes } from 'prop-types';
+import { useTranslation } from "react-i18next";
+
 
 const SearchProduct = (props) => {
+  const { t } = useTranslation();
   const { onSearchChange } = props;
   return (
     <div className="flex w-full h-14">
       <input
         type="text"
-        placeholder="Example: ID- 040121"
+        placeholder={t("search page")}
         onChange={onSearchChange}
         className="w-full h-full p-3 bg-transparent border border-black dark:border-white"
       />

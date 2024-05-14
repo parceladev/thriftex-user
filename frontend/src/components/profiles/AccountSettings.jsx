@@ -1,22 +1,24 @@
-import { useState, useEffect } from 'react';
-import PersonalForm from './PersonalForm';
-import SecurityForm from './SecurityForm';
-import LogOut from './LogOut';
-import MyLegit from './MyLegit';
-import updateProfile from '../../utils/profile-api-service';
-import { decodeToken, getAccessToken } from '../../utils/token-utilities';
+import { useState, useEffect } from "react";
+import PersonalForm from "./PersonalForm";
+import SecurityForm from "./SecurityForm";
+import LogOut from "./LogOut";
+import MyLegit from "./MyLegit";
+import updateProfile from "../../utils/profile-api-service";
+import { decodeToken, getAccessToken } from "../../utils/token-utilities";
+import { useTranslation } from "react-i18next";
 
 const AccountSettings = () => {
+  const { t } = useTranslation();
   const [userData, setUserData] = useState({
-    photo: '',
-    username: '',
-    name: '',
-    phoneNumber: '',
-    gender: '',
-    email: '',
-    oldPassword: '',
-    newPassword: '',
-    confirmNewPassword: '',
+    photo: "",
+    username: "",
+    name: "",
+    phoneNumber: "",
+    gender: "",
+    email: "",
+    oldPassword: "",
+    newPassword: "",
+    confirmNewPassword: "",
   });
 
   useEffect(() => {
@@ -25,15 +27,15 @@ const AccountSettings = () => {
       const decoded = decodeToken(token);
       if (decoded) {
         setUserData({
-          photo: decoded.foto || '',
-          username: decoded.username || '',
-          name: decoded.nama || '',
-          phoneNumber: decoded.no_hp || '',
-          gender: decoded.jenis_kelamin || '',
-          email: decoded.email || '',
-          oldPassword: '',
-          newPassword: '',
-          confirmNewPassword: '',
+          photo: decoded.foto || "",
+          username: decoded.username || "",
+          name: decoded.nama || "",
+          phoneNumber: decoded.no_hp || "",
+          gender: decoded.jenis_kelamin || "",
+          email: decoded.email || "",
+          oldPassword: "",
+          newPassword: "",
+          confirmNewPassword: "",
         });
       }
     }
@@ -41,7 +43,7 @@ const AccountSettings = () => {
 
   const handleInputChange = (e) => {
     const { name, type, value } = e.target;
-    if (type === 'file') {
+    if (type === "file") {
       const file = e.target.files[0];
       setUserData((prevState) => ({
         ...prevState,
@@ -64,15 +66,15 @@ const AccountSettings = () => {
       userData.oldPassword
     ) {
       if (!userData.oldPassword) {
-        alert('Please enter your old password.');
+        alert (`${t("Setting Alert 1")}`);
         return;
       }
       if (userData.newPassword.length < 8) {
-        alert('New password must be at least 8 characters long.');
+        alert(`${t("Setting Alert 2")}`);
         return;
       }
       if (userData.newPassword !== userData.confirmNewPassword) {
-        alert('New passwords do not match.');
+        alert(`${t("Setting Alert 3")}`);
         return;
       }
     }
@@ -94,19 +96,19 @@ const AccountSettings = () => {
       if (result.success) {
         setUserData({
           ...userData,
-          oldPassword: '',
-          newPassword: '',
-          confirmNewPassword: '',
+          oldPassword: "",
+          newPassword: "",
+          confirmNewPassword: "",
         });
-        alert('Profile updated successfully!');
+        alert(`${t("Setting Alert 4")}`);
         window.location.reload();
       } else {
         const message =
-          result.message || 'Failed to update profile. Please try again.';
+          result.message || `${t("Setting Alert 5")}`;
         alert(message);
       }
     } catch (error) {
-      console.error('Error during profile update:', error);
+      console.error("Error during profile update:", error);
     }
   };
 
@@ -127,7 +129,7 @@ const AccountSettings = () => {
           type="submit"
           className="self-end w-full px-6 py-4 rounded-md mt-14 sm:mt-5 sm:w-fit bg-secondary text-textWhite dark:bg-primary dark:text-textBlack"
         >
-          <p className="text-lg">Save Information</p>
+          <p className="text-lg">{t("Settings Save")}</p>
         </button>
       </form>
       <div className="mt-28 sm:mt-14">

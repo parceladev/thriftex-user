@@ -14,15 +14,15 @@ const CardProductLegitPublish = (props) => {
     <div>
       <div
         onClick={() => toggleModal(product)}
-        className="flex flex-col border border-black dark:bg-[#0D1117] dark:border-gray-600"
+        className="flex flex-col border border-black dark:bg-[#0D1117] dark:border-gray-600 cursor-pointer hover:bg-gray-200 rounded-md shadow-md shadow-gray-400"
       >
         <img
-          className="h-44 sm:h-80"
+          className="h-44 sm:h-80 rounded-md"
           src={product.file_path}
           alt={product.nama_item}
         />
         <p className="py-3 text-center">{product.nama_item}</p>
-        <p className="py-3 font-bold text-center uppercase text-primary dark:bg-primary dark:text-textBlack">
+        <p className="py-3 font-bold text-center uppercase text-primary dark:bg-primary dark:text-textBlack rounded-b-md">
           {product.check_result || 'waiting'}
         </p>
       </div>

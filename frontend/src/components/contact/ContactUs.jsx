@@ -2,8 +2,10 @@ import { useState } from 'react';
 import { fetchContactEmail } from './../../utils/email-api-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from "react-i18next";
 
 const ContactUs = () => {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
@@ -60,10 +62,10 @@ const ContactUs = () => {
 
   return (
     <div className="flex flex-col w-full mb-10 md:flex-1">
-      <h2 className="mb-6 text-xl font-semibold">CONTACT US</h2>
+      <h2 className="mb-6 text-xl font-semibold">{t("Heading Contact")}</h2>
       {isSuccess && (
         <div className="px-4 py-2 mb-4 text-green-800 bg-green-200 rounded">
-          Message sent successfully!
+          {t("Div Success")}
         </div>
       )}
       {error && (
@@ -80,12 +82,12 @@ const ContactUs = () => {
             htmlFor="name"
             className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
-            Name <span className="text-xs text-red-400">(Required)</span>
+            {t("Label Contact 1")} <span className="text-xs text-red-400">{t("Required")}</span>
           </label>
           <input
             type="text"
             id="name"
-            placeholder="Enter your name"
+            placeholder={t("PlaceHolder Contact 1")}
             className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 outline-none dark:border-primary focus:ring-0 focus:border-black"
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -97,12 +99,12 @@ const ContactUs = () => {
             htmlFor="email"
             className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
-            Email <span className="text-xs text-red-400">(Required)</span>
+            {t("Label Contact 2")} <span className="text-xs text-red-400">{t("Required")}</span>
           </label>
           <input
             type="email"
             id="email"
-            placeholder="Enter your email"
+            placeholder={t("PlaceHolder Contact 2")}
             className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 outline-none dark:border-primary focus:ring-0 focus:border-black"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -114,14 +116,14 @@ const ContactUs = () => {
             htmlFor="phone"
             className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
-            Phone Number{' '}
-            <span className="text-xs text-gray-400">(Optional)</span>
+            {t("Label Contact 3")} 
+            <span className="text-xs text-gray-400">{t("Optional")}</span>
           </label>
           <input
             type="tel"
             id="phone"
             value={phoneNumber}
-            placeholder="Enter your phone number"
+            placeholder={t("PlaceHolder Contact 3")}
             className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-800 outline-none dark:border-primary focus:ring-0 focus:border-black"
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
@@ -131,11 +133,11 @@ const ContactUs = () => {
             htmlFor="message"
             className="flex items-center gap-1 mb-2 text-sm font-semibold"
           >
-            Message <span className="text-xs text-red-400">(Required)</span>
+            {t("Label Contact 4")} <span className="text-xs text-red-400">{t("Required")}</span>
           </label>
           <textarea
             id="message"
-            placeholder="Enter your message"
+            placeholder={t("PlaceHolder Contact 4")}
             className="w-full py-2 pl-3 bg-transparent border-0 border-b-2 border-gray-700 outline-none dark:border-primary focus:ring-0 focus:border-secondary dark:focus:border-primary"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
@@ -152,17 +154,17 @@ const ContactUs = () => {
           disabled={!isFormValid || isSubmitting}
         >
           {isSubmitting && <FontAwesomeIcon icon={faCircleNotch} spin />}
-          <span>{isSubmitting ? 'Submitting...' : 'SUBMIT MESSAGE'}</span>
+          <span>{isSubmitting ? t("Submit Contact 1") : t("Submit Contact 2")}</span>
         </button>
       </form>
       <div className="mt-16 text-sm">
-        <p className="mb-3 font-semibold">CONTACT US</p>
+        <p className="mb-3 font-semibold">{t("Paraf Contact 1")}</p>
         <p className="">thriftexcs@gmail.com</p>
         <p className="mt-8 mb-3 font-semibold">
-          CUSTOMER SERVICE SUPPORT HOURS
+        {t("Paraf Contact 2")}
         </p>
-        <p className="mb-3">Monday – Friday 8:00 am - 4:00pm EST.</p>
-        <p>Excluding the weekend and major holidays.</p>
+        <p className="mb-3">{t("Paraf Contact 3")}</p>
+        <p>{t("Paraf Contact 4")}</p>
       </div>
     </div>
   );

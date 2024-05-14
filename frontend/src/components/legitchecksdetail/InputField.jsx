@@ -1,7 +1,10 @@
 import { PropTypes } from 'prop-types';
 import { useRef, useEffect } from 'react';
+import { useTranslation } from "react-i18next";
+
 
 const InputField = (props) => {
+  const { t } = useTranslation();
   const {
     label,
     name,
@@ -33,7 +36,7 @@ const InputField = (props) => {
         {label}
         {required && (
           <span className="text-sans text-red-600 font-light capitalize text-[14px] ml-3">
-            (Required)
+            {t("Required")}
           </span>
         )}
       </label>

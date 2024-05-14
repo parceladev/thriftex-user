@@ -1,6 +1,9 @@
 import PropTypes from 'prop-types';
+import { useTranslation } from "react-i18next";
+
 
 const TextAreaField = (props) => {
+  const { t } = useTranslation();
   const { label, name, value, onChange, required, note } = props;
 
   return (
@@ -9,7 +12,7 @@ const TextAreaField = (props) => {
         {label}
         {required && (
           <span className="ml-3 text-sm font-light text-red-600">
-            (Required)
+            {t("Required")}
           </span>
         )}
       </label>

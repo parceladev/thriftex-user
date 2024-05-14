@@ -1,6 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
 import backgroundImage from '/src/assets/user/legit-check-page/banner.png';
 import { fetchTotalLegitChecks } from '../../utils/legit-api-service';
+import { useTranslation } from "react-i18next";
 
 const Banner = () => {
   const [animate, setAnimate] = useState(false);
@@ -8,6 +9,8 @@ const Banner = () => {
   const [endCount, setEndCount] = useState(0);
   const styleRef = useRef();
   const legitStyleRef = useRef();
+  const { t } = useTranslation();
+
 
   // Set All Animations Start
   useEffect(() => {
@@ -81,15 +84,15 @@ const Banner = () => {
       <div className="z-10 flex-col hidden sm:mt-20 sm:flex">
         <h1
           ref={styleRef}
-          className="w-full uppercase opacity-0 text-7xl font-didot"
+          className="w-full uppercase opacity-0 text-6xl font-didot"
         >
-          Is Your Fashion Style
+          {t("bannerlegit 1")}
         </h1>
         <h1
           ref={legitStyleRef}
-          className="self-end w-full uppercase opacity-0 text-end text-8xl font-didot"
+          className="self-end w-full uppercase opacity-0 text-end text-9xl font-didot"
         >
-          Legit ?
+          {t("bannerLegit 2")}
         </h1>
       </div>
       <div
@@ -101,14 +104,14 @@ const Banner = () => {
         }}
       >
         <div className="flex flex-col gap-8 text-center sm:gap-3 w-60">
-          <p className="text-7xl font-didot">{currentCount}</p>
-          <span className="hidden w-full h-1 bg-white sm:block"></span>
-          <p className="text-xl uppercase sm:text-3xl font-didot">
-            Total Check
+          <p className="text-7xl sm:text-5xl font-didot">{currentCount}</p>
+          <span className="hidden w-full h-1 sm:block border-[2px] border-white"></span>
+          <p className="text-xl uppercase sm:text-2xl font-didot">
+            {t("bannerLegit 3")}
           </p>
         </div>
         <div className="self-end hidden sm:flex">
-          <p className="text-3xl italic uppercase font-didot">Check Below</p>
+          <h4 className="text-3xl uppercase font-didot">{t("bannerLegit 4")}</h4>
         </div>
       </div>
     </div>

@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
+  const { t } = useTranslation();
   const routes = [
     { id: 'contact', path: '/user/contact-us', name: 'CONTACT US' },
     {
@@ -17,7 +19,7 @@ const Footer = () => {
       <div className="flex gap-20 px-6 py-5 sm:px-16">
         {routes.map((route) => (
           <Link key={route.id} to={route.path}>
-            {route.name}
+            {t(route.name)}
           </Link>
         ))}
       </div>

@@ -1,6 +1,10 @@
-import { getAccessToken } from '../../utils/token-utilities';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { getAccessToken } from "../../utils/token-utilities";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
 const ButtonFormLegit = () => {
+  const { t } = useTranslation();
   const isUserLoggedIn = !!getAccessToken();
 
   return (
@@ -10,18 +14,20 @@ const ButtonFormLegit = () => {
         {isUserLoggedIn ? (
           <a
             href="/user/legit-check-form"
-            className="flex items-center gap-3 text-white dark:text-black"
+            className="flex items-center gap-3 text-white dark:text-black "
           >
-            <p className="text-xl uppercase">Legit Check</p>
-            <p className="text-4xl">+</p>
+            <p className="text-xl uppercase font-sans font-medium">
+              {t("button form legit")}
+            </p>
+            <FontAwesomeIcon icon={faPlus} className="text-2xl" />
           </a>
         ) : (
           <a
             href="/auth/sign-in"
             className="flex items-center gap-3 text-white dark:text-black"
           >
-            <p className="text-xl uppercase">Legit Check</p>
-            <p className="text-4xl">+</p>
+            <p className="text-xl uppercase"> {t("button form legit")}</p>
+            <FontAwesomeIcon icon={faPlus} className="text-2xl" />
           </a>
         )}
       </div>
@@ -32,14 +38,14 @@ const ButtonFormLegit = () => {
             href="/user/legit-check-form"
             className="flex items-center justify-center text-white dark:text-black"
           >
-            <p className="text-6xl">+</p>
+            <FontAwesomeIcon icon={faPlus} className="text-4xl" />
           </a>
         ) : (
           <a
             href="/auth/sign-in"
             className="flex items-center justify-center text-white dark:text-black"
           >
-            <p className="text-6xl">+</p>
+            <FontAwesomeIcon icon={faPlus} className="text-4xl" />
           </a>
         )}
       </div>

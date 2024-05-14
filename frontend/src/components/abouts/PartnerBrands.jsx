@@ -1,13 +1,14 @@
+import { useTranslation } from "react-i18next";
+
 const PartnerBrands = () => {
+  const { t } = useTranslation();
   return (
     <section>
       <div className="flex flex-col gap-5 sm:mt-8">
-        <h1 className="mb-3 text-2xl font-bold uppercase sm:text-4xl font-didot">
-          Partner Brands
-        </h1>
+        <h1 className="mb-3 text-2xl font-bold uppercase sm:text-4xl font-didot">{t("Heading Partners 1")}</h1>
         <div className="flex items-center gap-3 mt-4 sm:mt-8">
           <h3 className="text-xl">
-            We work together with these brand companies{' '}
+          {t("Heading Partners 2")}
           </h3>
           <span>
             <svg

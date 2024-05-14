@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import InputForm from './InputForm';
 import { PropTypes } from 'prop-types';
+import { useTranslation } from "react-i18next";
 
 const SecurityForm = (props) => {
+  const { t } = useTranslation();
   const { userData, handleInputChange } = props;
   const [showChangePassword, setShowChangePassword] = useState(false);
 
@@ -13,10 +15,10 @@ const SecurityForm = (props) => {
   return (
     <div className="flex flex-col w-full gap-5">
       <h1 className="text-2xl font-semibold text-center sm:text-start">
-        Security Information
+        {t("Heading Security 1")}
       </h1>
       <InputForm
-        label="Email"
+        label={t("Label Security 1")}
         type="email"
         name="email"
         id="email"
@@ -29,7 +31,7 @@ const SecurityForm = (props) => {
       />
       {!showChangePassword && (
         <InputForm
-          label="Password"
+          label={t("Label Security 2")}
           type="password"
           name="password"
           id="password"
@@ -45,36 +47,36 @@ const SecurityForm = (props) => {
       {showChangePassword && (
         <>
           <InputForm
-            label="Old Password"
+            label={t("Label Security 3")}
             type="password"
             name="oldPassword"
             id="old-password"
             htmlFor="old-password"
-            placeholder="Old Your Password"
+            placeholder={t("PlaceHolder Security 1")}
             isRequired="required"
             value={userData.oldPassword}
             onChange={handleInputChange}
             readOnly={false}
           />
           <InputForm
-            label="New Password"
+            label={t("Label Security 4")}
             type="password"
             name="newPassword"
             id="new-password"
             htmlFor="new-password"
-            placeholder="Your New Password"
+            placeholder={t("PlaceHolder Security 2")}
             isRequired="required"
             value={userData.newPassword}
             onChange={handleInputChange}
             readOnly={false}
           />
           <InputForm
-            label="Confirm New Password"
+            label={t("Label Security 5")}
             type="password"
             name="confirmNewPassword"
             id="confirm-new-password"
             htmlFor="confirm-new-password"
-            placeholder="Confirm Your New Password"
+            placeholder={t("PlaceHolder Security 3")}
             isRequired="required"
             value={userData.confirmNewPassword}
             onChange={handleInputChange}
@@ -85,7 +87,7 @@ const SecurityForm = (props) => {
             type="button"
             className="px-4 py-2 text-lg text-gray-600 bg-white border rounded-sm w-fit hover:bg-gray-100"
           >
-            Cancel
+            {t("Button Cancel")}
           </button>
         </>
       )}
@@ -95,7 +97,7 @@ const SecurityForm = (props) => {
           onClick={toggleChangePassword}
           className="px-4 py-3 text-lg rounded-sm bg-secondary text-textWhite dark:bg-primary dark:text-textBlack w-fit"
         >
-          Change Password
+          {t("Button Change Password")}
         </a>
       )}
     </div>
