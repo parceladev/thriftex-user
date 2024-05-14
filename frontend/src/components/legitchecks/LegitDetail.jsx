@@ -1,5 +1,3 @@
-/* eslint-disable no-undef */
-/* eslint-disable no-unused-vars */
 import { PropTypes } from 'prop-types';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -59,13 +57,9 @@ const LegitDetail = ({ onClose, product }) => {
     getDetailLegitData();
   }, [product, product.case_code]);
 
-  const handleOpenModal = () => {
-    setShowModal(true);
-  };
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-secondary dark:bg-primary dark:bg-opacity-5 ">
-      <div className="w-full sm:max-w-screen-sm mx-auto xs:h-full md:h-auto md:rounded-lg overflow-hidden shadow-lg dark:bg-shadow-md dark:shadow-gray-800 bg-primary">
+      <div className="w-full mx-auto overflow-hidden shadow-lg sm:max-w-screen-sm xs:h-full md:h-auto md:rounded-lg dark:bg-shadow-md dark:shadow-gray-800 bg-primary">
         <div className="flex flex-row items-center justify-between p-4 mb-5 border-b-2 ">
           <h4 className="text-xl font-bold text-sans">{t("Heading Detail")}</h4>
           <button type="button" onClick={onClose}>
@@ -139,7 +133,7 @@ const LegitDetail = ({ onClose, product }) => {
               />
             </div>
           ) : (
-            <div className="flex gap-3 py-3 items-center">
+            <div className="flex items-center gap-3 py-3">
               <FontAwesomeIcon icon={faRotate} className='w-6 h-6'/>
               <p>{t("Under Review")}</p>
             </div>
