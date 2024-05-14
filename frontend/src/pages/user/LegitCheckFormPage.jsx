@@ -12,9 +12,7 @@ import { saveLegitCheck } from '../../utils/legit-api-service';
 import { getAccessToken, decodeToken } from '../../utils/token-utilities';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
-import { useTranslation } from "react-i18next";
-
-
+import { useTranslation } from 'react-i18next';
 
 const LegitCheckFormPage = () => {
   const { t } = useTranslation();
@@ -135,6 +133,7 @@ const LegitCheckFormPage = () => {
 
   const closeAlert = () => {
     setAlertVisible(false);
+    window.location.reload();
   };
 
   return (
@@ -143,47 +142,48 @@ const LegitCheckFormPage = () => {
         href="/user/legit-check"
         className="flex items-center justify-start mt-14 sm:mt-28"
       >
-        <FaArrowLeft /> <span className="pl-2 text-lg font-semibold">{t("Button Left")}</span>
+        <FaArrowLeft />{' '}
+        <span className="pl-2 text-lg font-semibold">{t('Button Left')}</span>
       </a>
       <div className="w-full mt-8 rounded">
         <div className="mb-6 text-4xl font-semibold text-center uppercase font-didot">
-          {t("Heading Legit Form")}
+          {t('Heading Legit Form')}
         </div>
         <form onSubmit={handleSubmit}>
           <InputSelect
-            label={t("Label Form 1")}
+            label={t('Label Form 1')}
             name="item-category"
             id="item-category"
             htmlFor="item-category"
             isRequired="required"
             dataType="categories"
-            defaultValue={t("Default Value 1")}
+            defaultValue={t('Default Value 1')}
             value={itemCategory}
             onChange={(e) => setItemCategory(e.target.value)}
           />
           <InputSelect
-            label={t("Label Form 2")}
+            label={t('Label Form 2')}
             name="item-brand"
             id="item-brand"
             htmlFor="item-brand"
             isRequired="required"
             dataType="brands"
-            defaultValue={t("Default Value 2")}
+            defaultValue={t('Default Value 2')}
             value={itemBrand}
             onChange={(e) => setItemBrand(e.target.value)}
           />
           <InputText
-            label={t("Label Form 3")}
+            label={t('Label Form 3')}
             name="item-name"
             id="item-name"
             htmlFor="item-name"
             isRequired="required"
-            placeholder={t("PlaceHolder 1")}
+            placeholder={t('PlaceHolder 1')}
             value={itemName}
             onChange={(e) => setItemName(e.target.value)}
           />
           <InputImage
-            label={t("Label Form 4")}
+            label={t('Label Form 4')}
             htmlFor="imageUpload"
             id="imageUpload"
             isRequired="required"
@@ -192,39 +192,39 @@ const LegitCheckFormPage = () => {
             handleImageChange={(e) => handleImageChange(e)}
           />
           <InputSelect
-            label={t("Label Form 5")}
+            label={t('Label Form 5')}
             name="purchase"
             id="purchase"
             htmlFor="purchase"
             isRequired="required"
             dataType="purchases"
-            defaultValue={t("Default Value 3")}
+            defaultValue={t('Default Value 3')}
             value={purchase}
             onChange={(e) => setPurchase(e.target.value)}
           />
           <InputText
-            label={t("Label Form 6")}
+            label={t('Label Form 6')}
             name="store-name"
             id="store-name"
             htmlFor="store-name"
             isRequired="required"
-            placeholder={t("PlaceHolder 2")}
+            placeholder={t('PlaceHolder 2')}
             value={storeName}
             onChange={(e) => setStoreName(e.target.value)}
           />
           <InputSelect
-            label={t("Label Form 7")}
+            label={t('Label Form 7')}
             name="item-condition"
             id="item-condition"
             htmlFor="item-condition"
             isRequired="required"
             dataType="conditions"
-            defaultValue={t("Default Value 4")}
+            defaultValue={t('Default Value 4')}
             value={itemCondition}
             onChange={(e) => setItemCondition(e.target.value)}
           />
           <InputTextArea
-            label={t("Label Form 8")}
+            label={t('Label Form 8')}
             name="other-notes"
             id="other-notes"
             htmlFor="other-notes"
@@ -243,7 +243,7 @@ const LegitCheckFormPage = () => {
             disabled={!isButtonActive || isSubmitting}
           >
             {isSubmitting && <FontAwesomeIcon icon={faCircleNotch} spin />}
-            <span>{isSubmitting ? t("Submit") : t("button form legit")}</span>
+            <span>{isSubmitting ? t('Submit') : t('button form legit')}</span>
           </button>
         </form>
         <AlertLegitCheck isVisible={isAlertVisible} onClose={closeAlert} />

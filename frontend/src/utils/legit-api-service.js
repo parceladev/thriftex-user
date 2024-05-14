@@ -87,12 +87,16 @@ export const saveLegitCheck = async (formData, navigate) => {
   }
 
   try {
-    const response = await axios.post(`${API_BASE_URL}/legits/savelegit`, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `${token}`,
-      },
-    });
+    const response = await axios.post(
+      `${API_BASE_URL}/legits/savelegit`,
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          Authorization: `${token}`,
+        },
+      }
+    );
     return response.data;
   } catch (error) {
     if (error.response) {
