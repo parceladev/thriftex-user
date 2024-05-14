@@ -65,7 +65,8 @@ const updateProfile = async (updatedUserData) => {
       return { success: false, message: response.data.message };
     }
   } catch (error) {
-    // alert('Your Old Password is wrong!');
+
+    alert('Please fill in all mandatory data');
     return { success: false, error };
   }
 };
