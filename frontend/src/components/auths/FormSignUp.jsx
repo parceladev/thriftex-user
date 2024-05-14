@@ -148,15 +148,6 @@ const FormSignUp = () => {
           <GoogleLogin
             onSuccess={handleGoogleSubmit}
             onError={handleGoogleError}
-            render={(renderProps) => (
-              <button
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-                className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
-              >
-                Login with Google
-              </button>
-            )}
           />
         </GoogleOAuthProvider>
       </div>
