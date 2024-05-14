@@ -66,15 +66,15 @@ const AccountSettings = () => {
       userData.oldPassword
     ) {
       if (!userData.oldPassword) {
-        alert (`${t("Setting Alert 1")}`);
+        alert (`${t("Please enter your old password.")}`);
         return;
       }
       if (userData.newPassword.length < 8) {
-        alert(`${t("Setting Alert 2")}`);
+        alert(`${t("New password must be at least 8 characters long.")}`);
         return;
       }
       if (userData.newPassword !== userData.confirmNewPassword) {
-        alert(`${t("Setting Alert 3")}`);
+        alert(`${t("New passwords do not match.")}`);
         return;
       }
     }
@@ -100,11 +100,11 @@ const AccountSettings = () => {
           newPassword: "",
           confirmNewPassword: "",
         });
-        alert(`${t("Setting Alert 4")}`);
+        alert(`${t("Profile updated successfully!")}`);
         window.location.reload();
       } else {
         const message =
-          result.message || `${t("Setting Alert 5")}`;
+          result.message || `${t("Failed to update profile. Please try again.")}`;
         alert(message);
       }
     } catch (error) {

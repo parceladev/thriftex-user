@@ -5,7 +5,6 @@ import { signUp, signGoogle } from './../../utils/auth-api-service';
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
 import SubmitButton from './SubmitButton';
-// import BorderButton from './BorderButton';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 const FormSignUp = () => {
@@ -61,8 +60,31 @@ const FormSignUp = () => {
   };
 
   const handleGoogleSubmit = async ({ credential }) => {
-    await signGoogle(credential);
-    navigate('/user/home');
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    const handleSuccess = () => {
+      setSuccessMessage('Please Wait, Redirecting...');
+      setTimeout(() => {
+        navigate('/user/home');
+      }, 1000);
+    };
+
+    const handleError = (message) => {
+      setErrorMessage(message);
+    };
+
+    const response = await signGoogle(credential);
+    if (response.data) {
+      handleSuccess();
+    } else {
+      handleError(response.error);
+    }
+  };
+
+  const handleGoogleError = (error) => {
+    alert('Login dengan Google gagal. Silakan coba lagi.');
+    console.error('Login Error:', error);
   };
 
   const handleSuccess = () => {
@@ -76,9 +98,12 @@ const FormSignUp = () => {
     setErrorMessage(message);
   };
 
-  const isFormValid = name.trim() !== '' && email.trim() !== '' && password.trim() !== '' && confirmPassword.trim() !== '';
+  const isFormValid =
+    name.trim() !== '' &&
+    email.trim() !== '' &&
+    password.trim() !== '' &&
+    confirmPassword.trim() !== '';
   const buttonColor = isFormValid ? 'black' : 'rgba(0, 0, 0, 0.3)';
-
 
   return (
     <div className="flex flex-col gap-5 sm:p-12 p-9 rounded-2xl text-white bg-white/35 w-full sm:w-[475px]">
@@ -112,15 +137,29 @@ const FormSignUp = () => {
       {successMessage && (
         <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
-      <SubmitButton name="Sign Up" buttonColor={buttonColor} onClick={handleSubmit} />
-      {/* <BorderButton name="Sign Up with Google" onClick={handleGoogleSubmit} /> */}
+      <SubmitButton
+        name="Sign Up"
+        buttonColor={buttonColor}
+        onClick={handleSubmit}
+      />
 
-      <GoogleOAuthProvider clientId="516243855300-ajgnmk64lo4sp73mlrubpef808lpglvc.apps.googleusercontent.com">
-        <GoogleLogin
-          onSuccess={handleGoogleSubmit}
-          onError={(e) => console.log(e)}
-        />
-      </GoogleOAuthProvider>
+      <div className="flex justify-center w-full">
+        <GoogleOAuthProvider clientId="516243855300-ajgnmk64lo4sp73mlrubpef808lpglvc.apps.googleusercontent.com">
+          <GoogleLogin
+            onSuccess={handleGoogleSubmit}
+            onError={handleGoogleError}
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+              >
+                Login with Google
+              </button>
+            )}
+          />
+        </GoogleOAuthProvider>
+      </div>
     </div>
   );
 };

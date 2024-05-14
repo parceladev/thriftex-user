@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { signIn } from '../../utils/auth-api-service';
+import { signIn, signGoogle } from '../../utils/auth-api-service';
 
 import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
 import SubmitButton from './SubmitButton';
-import BorderButton from './BorderButton';
+import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 
 const FormSignIn = () => {
   const navigate = useNavigate();
@@ -57,6 +57,34 @@ const FormSignIn = () => {
     }
   };
 
+  const handleGoogleSubmit = async ({ credential }) => {
+    setErrorMessage('');
+    setSuccessMessage('');
+
+    const handleSuccess = () => {
+      setSuccessMessage('Please Wait, Redirecting...');
+      setTimeout(() => {
+        navigate('/user/home');
+      }, 1000);
+    };
+
+    const handleError = (message) => {
+      setErrorMessage(message);
+    };
+    
+    const response = await signGoogle(credential);
+    if (response.data) {
+      handleSuccess();
+    } else {
+      handleError(response.error);
+    }
+  };
+
+  const handleGoogleError = (error) => {
+    alert('Login dengan Google gagal. Silakan coba lagi.');
+    console.error('Login Error:', error);
+  };
+
   const isFormValid = email.trim() !== '' && password.trim() !== '';
   const buttonColor = isFormValid ? 'black' : 'rgba(0, 0, 0, 0.3)';
 
@@ -78,13 +106,33 @@ const FormSignIn = () => {
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Your Password"
       />
-      {errorMessage && <p className="mt-2 text-center text-red-500">{errorMessage}</p>}
-      {successMessage && <p className="mt-2 text-center text-green-500">{successMessage}</p>}
+      {errorMessage && (
+        <p className="mt-2 text-center text-red-500">{errorMessage}</p>
+      )}
+      {successMessage && (
+        <p className="mt-2 text-center text-green-500">{successMessage}</p>
+      )}
       <a href="/auth/forgot-password" className="mb-4 text-sm font-bold">
         Forgot password?
       </a>
       <SubmitButton name="Sign In" buttonColor={buttonColor} />
-      <BorderButton name="Sign In with Google" />
+      <div className="flex justify-center w-full">
+        <GoogleOAuthProvider clientId="516243855300-ajgnmk64lo4sp73mlrubpef808lpglvc.apps.googleusercontent.com">
+          <GoogleLogin
+            onSuccess={handleGoogleSubmit}
+            onError={handleGoogleError}
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
+              >
+                Login with Google
+              </button>
+            )}
+          />
+        </GoogleOAuthProvider>
+      </div>
     </form>
   );
 };
