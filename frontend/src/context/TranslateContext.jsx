@@ -15,6 +15,7 @@ i18n.use(initReactI18next).init({
         "Legit Check": "Legit Check",
         About: "About",
         Profile: "Profile",
+        "Sign Up": "Sign Up",
         "Dark Mode": "Dark",
         "Light Mode": "Light",
 
@@ -223,6 +224,7 @@ i18n.use(initReactI18next).init({
         "Legit Check": "Cek Legit",
         About: "Tentang",
         Profile: "Profil",
+        "Sign Up": "Sign Up",
         "Dark Mode": "Gelap",
         "Light Mode": "Terang",
 

@@ -104,7 +104,7 @@ const AccountSettings = () => {
         window.location.reload();
       } else {
         const message =
-          result.message || `${t("Setting Alert 5")}`;
+          result.message || t("Setting Alert 5");
         alert(message);
       }
     } catch (error) {

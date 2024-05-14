@@ -135,7 +135,7 @@ const Navbar = () => {
                 isActive ? "block py-5 font-bold" : "block py-5"
               }
             >
-              {route.name}
+              {t(route.name)}
             </NavLink>
           ))}
         </div>
@@ -161,7 +161,7 @@ const Navbar = () => {
             }
             onClick={toggleMenu}
           >
-            {route.name}
+            {t(route.name)}
           </NavLink>
         ))}
         {settingsComponent}
