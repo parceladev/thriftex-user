@@ -46,7 +46,7 @@ const Navbar = () => {
         { path: "/user/home", name: "Home" },
         { path: "/user/legit-check", name: "Legit Check" },
         { path: "/user/about", name: "About" },
-        { path: "/auth/sign-up", name: "Sign Up" },
+        { path: "/auth/sign-in", name: "Sign In" },
       ];
 
   const settingsComponent = (
@@ -58,9 +58,9 @@ const Navbar = () => {
           id="language-select"
           value={i18n.language}
           onChange={(e) => handleLanguageChange(e.target.value)}
-          className={`outline-none items-center cursor-pointer${
+          className={`outline-none items-center ${
             selectedTheme === "dark"
-              ? "bg-transparent text-textWhite"
+              ? "bg-secondary text-textWhite"
               : "bg-primary text-textBlack"
           }`}
         >
@@ -75,7 +75,7 @@ const Navbar = () => {
           onChange={(e) => handleThemeChange(e.target.value)}
           className={`outline-none items-center ${
             selectedTheme === "dark"
-              ? "bg-transparent text-textWhite"
+              ? "bg-secandary text-textWhite"
               : "bg-primary text-textBlack"
           }`}
         >
@@ -140,8 +140,6 @@ const Navbar = () => {
           ))}
         </div>
       </div>
-
-      {/* Mobile */}
       <div
         className={`absolute top-14 w-full left-0 px-5 bg-primary ${
           isMenuOpen ? "flex shadow-lg " : "hidden"
@@ -161,7 +159,7 @@ const Navbar = () => {
             }
             onClick={toggleMenu}
           >
-            {route.name}
+            {t(route.name)}
           </NavLink>
         ))}
         {settingsComponent}
@@ -185,11 +183,11 @@ const Navbar = () => {
           <select
             value={i18n.language}
             onChange={(e) => handleLanguageChange(e.target.value)}
-            className={`${
+            className={`outline-none items-center cursor-pointer ${
               selectedTheme === "dark"
                 ? "bg-secondary text-textWhite"
                 : "bg-primary text-textBlack"
-            } cursor-pointer`}
+            } `}
           >
             <option value="en">EN</option>
             <option value="id">ID</option>
@@ -200,9 +198,9 @@ const Navbar = () => {
           <select
             value={selectedTheme}
             onChange={(e) => handleThemeChange(e.target.value)}
-            className={`outline-none items-center ${
+            className={`outline-none items-center cursor-pointer ${
               selectedTheme === "dark"
-                ? "bg-transparent text-textWhite"
+                ? "bg-secondary text-textWhite"
                 : "bg-primary text-textBlack"
             }`}
           >

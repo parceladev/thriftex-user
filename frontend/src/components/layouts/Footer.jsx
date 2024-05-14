@@ -5,11 +5,11 @@ import { useTranslation } from "react-i18next";
 const Footer = () => {
   const { t } = useTranslation();
   const routes = [
-    { id: 'contact', path: '/user/contact-us', name: 'CONTACT US' },
+    { id: 'contact', path: '/user/contact-us', name: t("CONTACT") },
     {
       id: 'terms',
       path: '/user/terms-of-condition',
-      name: 'TERMS OF CONDITION',
+      name: t("TERMS AND CONDITION"),
     },
     { id: 'faq', path: '/user/contact-us', name: 'FAQ' },
   ];

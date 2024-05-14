@@ -60,21 +60,31 @@ const AccountSettings = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Array of alert messages
+    const alertMessages = [
+      t("Old Password Required"), 
+      t("Password Length"),
+      t("Password Not Match"), 
+      t("Update Success"), 
+      t("Update Failed"), 
+    ];
+
     if (
       userData.newPassword ||
       userData.confirmNewPassword ||
       userData.oldPassword
     ) {
       if (!userData.oldPassword) {
-        alert (`${t("Please enter your old password.")}`);
+        alert(alertMessages[0]);
         return;
       }
       if (userData.newPassword.length < 8) {
-        alert(`${t("New password must be at least 8 characters long.")}`);
+        alert(alertMessages[1]);
         return;
       }
       if (userData.newPassword !== userData.confirmNewPassword) {
-        alert(`${t("New passwords do not match.")}`);
+        alert(alertMessages[2]);
+
         return;
       }
     }
@@ -100,11 +110,11 @@ const AccountSettings = () => {
           newPassword: "",
           confirmNewPassword: "",
         });
-        alert(`${t("Profile updated successfully!")}`);
+        alert(alertMessages[3]);
         window.location.reload();
       } else {
-        const message =
-          result.message || `${t("Failed to update profile. Please try again.")}`;
+        const message = result.message || alertMessages[4];
+
         alert(message);
       }
     } catch (error) {

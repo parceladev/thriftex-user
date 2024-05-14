@@ -65,6 +65,7 @@ const updateProfile = async (updatedUserData) => {
       return { success: false, message: response.data.message };
     }
   } catch (error) {
+
     alert('Please fill in all mandatory data');
     return { success: false, error };
   }

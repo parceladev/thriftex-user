@@ -17,7 +17,7 @@ const AlertLegitCheck = (props) => {
           </h1>
           <p className="mt-10">
             {t("Paraf Alert")}
-            <span className="text-xl font-bold">{t("Span Alert")}</span> {t("Continous Paraf Alert")}
+            <span className="text-xl font-bold"> {t("Span Alert")} </span> {t("Continous Paraf Alert")}
           </p>
         </div>
         <div className="flex flex-col items-center gap-4 mb-8">
@@ -26,13 +26,13 @@ const AlertLegitCheck = (props) => {
             className={`${buttonStyle} dark:bg-primary bg-secondary text-textWhite dark:text-textBlack font-bold`}
             onClick={onClose}
           >
-            MY LEGIT CHECKS
+            {t("Span MyLegit")}
           </a>
           <button
             className={`${buttonStyle} border bg-transparent font-bold border-secondary`}
             onClick={onClose}
           >
-            CLOSE
+            {t("Close")}
           </button>
         </div>
       </div>
