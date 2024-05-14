@@ -8,8 +8,11 @@ import { fetchLegitPublish } from '../../utils/legit-api-service';
 import { useEffect, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from "react-i18next";
+
 
 const LegitCheckPage = () => {
+  const { t } = useTranslation();
   const [legitData, setLegitData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -47,7 +50,7 @@ const LegitCheckPage = () => {
       <Banner />
       <section className="flex flex-col gap-8 p-6 py-8 sm:p-16">
         <h2 className="text-3xl text-center uppercase sm:text-left font-didot">
-          Track a Legit Check
+          {t("LegitPage 1")}
         </h2>
         <div className="flex w-full gap-10">
           <SearchProduct
@@ -58,7 +61,7 @@ const LegitCheckPage = () => {
         {loading ? (
           <div className="flex items-center justify-center h-48 gap-2">
             <FontAwesomeIcon icon={faCircleNotch} spin />
-            <p className="text-xl font-medium">Loading...</p>
+            <p className="text-xl font-medium">{t("Loading")}</p>
           </div>
         ) : error ? (
           <div className="flex items-center justify-center h-48">
@@ -72,7 +75,7 @@ const LegitCheckPage = () => {
           </div>
         ) : (
           <div className="flex items-center justify-center h-48">
-            <p className="text-xl">No results found</p>
+            <p className="text-xl">{t("Not Found")}</p>
           </div>
         )}
       </section>

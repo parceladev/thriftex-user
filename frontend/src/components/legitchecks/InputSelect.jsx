@@ -1,7 +1,9 @@
 import { PropTypes } from 'prop-types';
 import { data } from '../../datas/options-legit-form';
+import { useTranslation } from "react-i18next";
 
 const InputSelect = (props) => {
+  const { t } = useTranslation();
   const {
     label,
     name,
@@ -42,10 +44,10 @@ const InputSelect = (props) => {
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="text-xs font-normal"> (Optional)</span>
+          <span className="text-xs font-normal"> {t("Optional")}</span>
         )}
         {isRequired === 'required' && (
-          <span className="text-xs font-normal text-red-500"> (Required)</span>
+          <span className="text-xs font-normal text-red-500"> {t("Required")}</span>
         )}
       </label>
       <select

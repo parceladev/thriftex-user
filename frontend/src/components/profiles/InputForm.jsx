@@ -1,9 +1,12 @@
-import { PropTypes } from 'prop-types';
-import { useState } from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { PropTypes } from "prop-types";
+import { useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
 
-const InputForm = (props) => {
+
+const InputForm = (props) => {  
+  const { t } = useTranslation();
   const {
     label,
     name,
@@ -11,7 +14,7 @@ const InputForm = (props) => {
     type,
     id,
     placeholder,
-    isRequired = 'none',
+    isRequired = "none",
     value,
     onChange,
     children,
@@ -26,7 +29,7 @@ const InputForm = (props) => {
 
   const handleNumericChange = (e) => {
     const regex = /^[0-9]*$/;
-    if (regex.test(e.target.value) || e.target.value === '') {
+    if (regex.test(e.target.value) || e.target.value === "") {
       onChange(e);
     }
   };
@@ -37,29 +40,29 @@ const InputForm = (props) => {
         <label htmlFor={htmlFor} className="text-xl font-semibold">
           {label}
         </label>
-        {isRequired === 'optional' && (
-          <span className="text-gray-700 dark:text-white">(Optional)</span>
+        {isRequired === "optional" && (
+          <span className="text-gray-700 dark:text-white">{t("Optional")}</span>
         )}
-        {isRequired === 'required' && (
-          <span className="text-red-500">(Required)</span>
+        {isRequired === "required" && (
+          <span className="text-red-500">{t("Required")}</span>
         )}
       </div>
       <div className="relative">
-        {type !== 'select' ? (
+        {type !== "select" ? (
           <>
             <input
               type={
-                type !== 'password' ? type : showPassword ? 'text' : 'password'
+                type !== "password" ? type : showPassword ? "text" : "password"
               }
               id={id}
               name={name}
               value={value}
-              onChange={type === 'tel' ? handleNumericChange : onChange}
+              onChange={type === "tel" ? handleNumericChange : onChange}
               placeholder={placeholder}
-              readOnly={isRequired === 'none'}
+              readOnly={isRequired === "none"}
               className={`w-full p-2 border-b-2 bg-primary dark:bg-secondary rounded border-slate-800 dark:border-primary focus:outline-none focus:ring-0 ${className}`}
             />
-            {type === 'password' && isRequired !== 'none' && (
+            {type === "password" && isRequired !== "none" && (
               <button
                 type="button"
                 className={`absolute inset-y-0 right-0 flex items-center pr-3 text-sm leading-5 ${className}`}
@@ -75,7 +78,7 @@ const InputForm = (props) => {
             name={name}
             value={value}
             onChange={onChange}
-            disabled={isRequired === 'none'}
+            disabled={isRequired === "none"}
             className={`w-full p-2 border-b-2 rounded bg-primary dark:bg-secondary dark:border-primary border-slate-800 focus:outline-none focus:ring-0 ${className}`}
           >
             {children}
@@ -94,7 +97,7 @@ InputForm.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   placeholder: PropTypes.string,
-  isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
+  isRequired: PropTypes.oneOf(["required", "optional", "none"]),
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,

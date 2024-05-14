@@ -1,5 +1,6 @@
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
 import { useState } from 'react';
+import { useTranslation } from "react-i18next";
 
 // eslint-disable-next-line react/prop-types
 const FAQItem = ({ question, answer, isActive, setActive }) => {
@@ -23,6 +24,7 @@ const FAQItem = ({ question, answer, isActive, setActive }) => {
 };
 
 const Faq = () => {
+  const { t } = useTranslation();
   const [activeIndex, setActiveIndex] = useState(null);
 
   const toggleActiveIndex = (index) => {
@@ -31,39 +33,39 @@ const Faq = () => {
 
   const faqData = [
     {
-      question: 'What is Thriftex ?',
+      question: t("Question FAQ 1"),
       answer:
-        'Thriftex is a website that offers free legit checks for fashion items like clothing, shoes, and accessories. We help you verify the authenticity of thrifted or second-hand goods before you purchase them.',
+        t("Answer FAQ 1"),
     },
     {
-      question: 'How does Thriftex’s legit check works?',
+      question: t("Question FAQ 2"),
       answer:
-        'To use Thriftex legit check service, simply visit our website, upload a photo of the product you want to verify, and our team will analyze and check its authenticity for free. We will then provide you with the results.',
+      t("Answer FAQ 2"),
     },
     {
-      question: 'How long does it take to get the result from a legit check?',
+      question: t("Question FAQ 3"),
       answer:
-        'Typically, the legit check process takes about 24 hours, but it may take longer depending on the volume of requests we are handling. We strive to deliver results as quickly as possible',
+      t("Answer FAQ 3"),
     },
     {
-      question: 'How does Thriftex process and protect user’s data?',
+      question: t("Question FAQ 4"),
       answer:
-        'We understand the importance of your data privacy. Thriftex processes user data securely and confidentially in accordance with our privacy policy. We do not share or sell user data to third parties without your consent. For more information, please refer to our privacy policy on our website.',
+      t("Answer FAQ 4"),
     },
     {
-      question: 'What happens if my bought product happen to be fake?',
+      question: t("Question FAQ 5"),
       answer:
-        'If a product you verify through our legit check service turns out to be fake, we will provide detailed information on why we believe it to be counterfeit. We recommend that you avoid purchasing fake items and exercise caution in transactions.',
+      t("Answer FAQ 5"),
     },
     {
-      question: 'Is the legit check service from Thriftex really costless?',
+      question: t("Question FAQ 6"),
       answer:
-        'Yes, the legit check service at Thriftex is completely free. We believe that everyone should have access to product authenticity information, especially when shopping for thrift or second-hand goods. We are committed to providing this service free of charge to our users.',
+      t("Answer FAQ 6"),
     },
     {
-      question: 'Does Thriftex sell products?',
+      question: t("Question FAQ 7"),
       answer:
-        'No, Thriftex is not an e-commerce that sell products. We only provide a legit check service to help you verify product authenticity. After receiving our verification results, you will need to find another place or platform to complete your purchase.',
+      t("Answer FAQ 7"),
     },
   ];
 

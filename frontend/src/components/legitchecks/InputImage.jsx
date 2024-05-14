@@ -1,8 +1,10 @@
-import PropTypes from 'prop-types';
-import ImageUploadBox from './ImageUploadBox';
+import PropTypes from "prop-types";
+import ImageUploadBox from "./ImageUploadBox";
+import { useTranslation } from "react-i18next";
 
 const InputImage = (props) => {
   const { label, htmlFor, isRequired, images, handleImageChange } = props;
+  const { t } = useTranslation();
 
   return (
     <div className="mb-8">
@@ -11,16 +13,16 @@ const InputImage = (props) => {
         className="flex gap-2 mb-2 font-semibold uppercase"
       >
         {label}
-        {isRequired === 'optional' && (
-          <span className="font-normal"> (Optional)</span>
+        {isRequired === "optional" && (
+          <span className="font-normal"> {t("Optional")}</span>
         )}
-        {isRequired === 'required' && (
-          <span className="text-xs font-normal text-red-500"> (Required)</span>
+        {isRequired === "required" && (
+          <span className="text-xs font-normal text-red-500"> {t("Required")}</span>
         )}
       </label>
       <p className="mb-5">
-        Make sure to upload 6 images. <br />
-        Image size must be less than 1,000KB.
+        {t("input image 1")} <br />
+        {t("continous")}
       </p>
       <div className="flex flex-wrap gap-3">
         <div className="grid grid-cols-3 gap-3 sm:grid-cols-6">
@@ -49,7 +51,7 @@ InputImage.propTypes = {
   id: PropTypes.string,
   images: PropTypes.array,
   handleImageChange: PropTypes.func,
-  isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
+  isRequired: PropTypes.oneOf(["required", "optional", "none"]),
 };
 
 export default InputImage;

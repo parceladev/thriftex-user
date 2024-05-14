@@ -1,20 +1,21 @@
-import { PropTypes } from 'prop-types';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
-
-import InputForm from './InputForm';
+import { PropTypes } from "prop-types";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { useTranslation } from "react-i18next";
+import InputForm from "./InputForm";
 
 const PersonalForm = (props) => {
+  const { t } = useTranslation();
   const { userData, handleInputChange } = props;
 
   return (
     <div className="flex flex-col w-full gap-5 sm:justify-start">
       <h1 className="text-2xl font-semibold text-center sm:text-start">
-        Personal Information
+        {t("Heading Personal 1")}
       </h1>
       <div className="relative flex items-center self-center justify-center w-20 h-20 border-2 border-black rounded-full cursor-pointer sm:self-start bg-slate-300">
         {userData.photo ? (
-          typeof userData.photo === 'object' ? (
+          typeof userData.photo === "object" ? (
             <img
               src={URL.createObjectURL(userData.photo)}
               alt="Pratinjau"
@@ -23,7 +24,7 @@ const PersonalForm = (props) => {
           ) : (
             <img
               src={userData.photo}
-              alt="Profile"
+              alt="Profil"
               className="object-cover w-full h-full rounded-full"
             />
           )
@@ -43,7 +44,7 @@ const PersonalForm = (props) => {
       </div>
 
       <InputForm
-        label="Username"
+        label={t("Label Personal 1")}
         name="username"
         type="text"
         id="username"
@@ -55,7 +56,7 @@ const PersonalForm = (props) => {
         readOnly={false}
       />
       <InputForm
-        label="Name"
+        label={t("Label Personal 2")}
         name="name"
         type="text"
         id="name"
@@ -67,19 +68,19 @@ const PersonalForm = (props) => {
         readOnly={false}
       />
       <InputForm
-        label="Phone Number"
+        label={t("Label Personal 3")}
         name="phoneNumber"
         type="tel"
         id="phone-number"
         htmlFor="phone-number"
-        placeholder="Example: 081234567890"
+        placeholder={t("PlaceHolder Personal")}
         isRequired="optional"
         value={userData.phoneNumber}
         onChange={handleInputChange}
         readOnly={false}
       />
       <InputForm
-        label="Gender"
+        label={t("Label Personal 4")}
         name="gender"
         type="select"
         id="gender"
@@ -89,10 +90,10 @@ const PersonalForm = (props) => {
         onChange={handleInputChange}
         readOnly={false}
       >
-        <option value="">Select Gender</option>
-        <option value="male">Male</option>
-        <option value="female">Female</option>
-        <option value="other">Other</option>
+        <option value="">{t("Option Personal 1")}</option>
+        <option value="male">{t("Option Personal 2")}</option>
+        <option value="female">{t("Option Personal 3")}</option>
+        <option value="other">{t("Option Personal 4")}</option>
       </InputForm>
     </div>
   );

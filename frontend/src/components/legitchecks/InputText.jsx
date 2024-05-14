@@ -1,6 +1,9 @@
 import { PropTypes } from 'prop-types';
+import { useTranslation } from "react-i18next";
+
 
 const InputText = (props) => {
+  const { t } = useTranslation();
   const {
     label,
     name,
@@ -21,10 +24,10 @@ const InputText = (props) => {
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="text-xs font-normal"> (Optional)</span>
+          <span className="text-xs font-normal"> {t("Optional")}</span>
         )}
         {isRequired === 'required' && (
-          <span className="text-xs font-normal text-red-500"> (Required)</span>
+          <span className="text-xs font-normal text-red-500"> {t("Required")}</span>
         )}
       </label>
       <input
