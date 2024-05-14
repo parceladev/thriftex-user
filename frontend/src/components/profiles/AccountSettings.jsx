@@ -60,21 +60,30 @@ const AccountSettings = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    // Array of alert messages
+    const alertMessages = [
+      t("Old Password Required"), 
+      t("Password Length"),
+      t("Password Not Match"), 
+      t("Update Success"), 
+      t("Update Failed"), 
+    ];
+
     if (
       userData.newPassword ||
       userData.confirmNewPassword ||
       userData.oldPassword
     ) {
       if (!userData.oldPassword) {
-        alert (`${t("Setting Alert 1")}`);
+        alert(alertMessages[0]);
         return;
       }
       if (userData.newPassword.length < 8) {
-        alert(`${t("Setting Alert 2")}`);
+        alert(alertMessages[1]);
         return;
       }
       if (userData.newPassword !== userData.confirmNewPassword) {
-        alert(`${t("Setting Alert 3")}`);
+        alert(alertMessages[2]);
         return;
       }
     }
@@ -100,11 +109,10 @@ const AccountSettings = () => {
           newPassword: "",
           confirmNewPassword: "",
         });
-        alert(`${t("Setting Alert 4")}`);
+        alert(alertMessages[3]);
         window.location.reload();
       } else {
-        const message =
-          result.message || `${t("Setting Alert 5")}`;
+        const message = result.message || alertMessages[4];
         alert(message);
       }
     } catch (error) {
