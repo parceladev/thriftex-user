@@ -1,15 +1,19 @@
-import { PropTypes } from 'prop-types';
-import { data } from '../../datas/options-legit-form';
+import { PropTypes } from "prop-types";
+import { data } from "../../datas/options-legit-form";
 import { useTranslation } from "react-i18next";
+import { fetchCategories } from "../../utils/brand-api-service";
+import { useState, useEffect } from "react";
 
 const InputSelect = (props) => {
   const { t } = useTranslation();
+  const [categories, setCategories] = useState([]);
+  console.log(categories)
   const {
     label,
     name,
     htmlFor,
     id,
-    isRequired = 'none',
+    isRequired = "none",
     value,
     defaultValue,
     onChange,
@@ -17,19 +21,35 @@ const InputSelect = (props) => {
     dataType,
   } = props;
 
+  useEffect(() => {
+    if (dataType === "categories" && categories.length === 0) {
+      fetchCategories()
+        .then((data) => {
+          if (data) {
+            setCategories(data);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching categories:", error);
+        });
+    }
+  }, [dataType, categories]);
   let optionsData = [];
 
   switch (dataType) {
     case 'categories':
-      optionsData = data.categories;
+      optionsData = categories.map(category => ({
+        value: category.id,
+        label: category.kategori_name
+      }));
       break;
-    case 'brands':
+    case "brands":
       optionsData = data.brands;
       break;
-    case 'purchases':
+    case "purchases":
       optionsData = data.purchases;
       break;
-    case 'conditions':
+    case "conditions":
       optionsData = data.conditions;
       break;
     default:
@@ -43,11 +63,14 @@ const InputSelect = (props) => {
         className="flex gap-2 mb-5 font-semibold uppercase"
       >
         {label}
-        {isRequired === 'optional' && (
+        {isRequired === "optional" && (
           <span className="text-xs font-normal"> {t("Optional")}</span>
         )}
-        {isRequired === 'required' && (
-          <span className="text-xs font-normal text-red-500"> {t("Required")}</span>
+        {isRequired === "required" && (
+          <span className="text-xs font-normal text-red-500">
+            {" "}
+            {t("Required")}
+          </span>
         )}
       </label>
       <select
@@ -79,7 +102,7 @@ InputSelect.propTypes = {
   id: PropTypes.string,
   name: PropTypes.string,
   defaultValue: PropTypes.string,
-  isRequired: PropTypes.oneOf(['required', 'optional', 'none']),
+  isRequired: PropTypes.oneOf(["required", "optional", "none"]),
   value: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number,
