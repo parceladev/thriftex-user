@@ -36,7 +36,7 @@ const LegitDetail = ({ onClose, product }) => {
     switch (result) {
       case 'real':
         return (
-          <div className="flex flex-col items-center justify-center text-center border border-black dark:border-white">
+          <div className="flex flex-col items-center justify-center w-full text-center border border-black dark:border-white">
             <p className="w-full p-3 font-bold text-white uppercase bg-secondary dark:bg-primary dark:text-black">
               Original
             </p>
@@ -119,7 +119,7 @@ const LegitDetail = ({ onClose, product }) => {
   }, [product, product.case_code]);
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 bg-secondary dark:bg-primary dark:bg-opacity-5 ">
+    <div className="fixed inset-0 z-50 flex items-center justify-center h-screen bg-opacity-50 bg-secondary dark:bg-primary dark:bg-opacity-5 ">
       <div className="w-full mx-auto overflow-hidden shadow-lg sm:max-w-screen-sm xs:h-full md:h-auto md:rounded-lg dark:bg-shadow-md dark:shadow-gray-800 dark:bg-secondary bg-primary">
         <div className="flex flex-row items-center justify-between p-4 mb-5 border-b-2 ">
           <h4 className="text-xl font-bold text-sans">{t('Heading Detail')}</h4>
@@ -127,34 +127,47 @@ const LegitDetail = ({ onClose, product }) => {
             <FontAwesomeIcon icon={faTimes} className="text-[16px]" />
           </button>
         </div>
-        <div className="p-4 overflow-y-auto" style={{ maxHeight: '80vh' }}>
+        <div className="p-4 overflow-y-auto h-full sm:max-h-[500px]">
           {loading ? (
-            <div className="min-h-[450px] flex items-center justify-center">
+            <div className="flex items-center justify-center h-full">
               <FontAwesomeIcon icon={faRotate} spin className="text-2xl" />
               <p className="ml-3">{t('Loading...')}</p>
             </div>
           ) : legitData ? (
             <>
-              <InputField
-                label={t('Label Detail 1')}
-                name="case-code"
-                value={legitData.case_code}
-              />
-              <InputField
-                label={t('Label Detail 2')}
-                name="category"
-                value={legitData.kategori_name}
-              />
-              <InputField
-                label={t('Label Detail 3')}
-                name="brand"
-                value={legitData.nama_brand}
-              />
-              <InputField
-                label={t('Label Detail 4')}
-                name="name"
-                value={legitData.nama_item}
-              />
+              <div className="flex items-center justify-center w-full gap-5">
+                <span className="h-[1px] w-1/2 sm:w-1/12 border border-gray-700 dark:border-white"></span>
+                <h3 className="text-lg font-semibold text-center uppercase w-[450px] sm:w-56">
+                  {t('Heading Result')}
+                </h3>
+                <span className="h-[1px] w-1/2 sm:w-10/12 border border-gray-700 dark:border-white"></span>
+              </div>
+              {hasAuthenticityData ? (
+                <div className="flex flex-col w-full gap-3">
+                  <AuthenticityStatus
+                    status={checkResult}
+                    message={getCheckResultComponent(checkResult)}
+                  />
+                  <InputField
+                    label="DETAIL DESCRIPTION"
+                    name="detailDescription"
+                    value={checkNote}
+                    type="textarea"
+                  />
+                </div>
+              ) : (
+                <div className="flex items-center gap-3 py-8">
+                  <FontAwesomeIcon icon={faRotate} className="w-6 h-6" />
+                  <p>{t('Under Review')}</p>
+                </div>
+              )}
+              <div className="flex items-center justify-center w-full gap-5 mb-5">
+                <span className="h-[1px] w-1/2 sm:w-1/12 border border-gray-700 dark:border-white"></span>
+                <h3 className="text-lg font-semibold text-center uppercase w-[450px] sm:w-56">
+                  {t('Item Information')}
+                </h3>
+                <span className="h-[1px] w-1/2 sm:w-10/12 border border-gray-700 dark:border-white"></span>
+              </div>
               <PhotosField
                 photos={
                   legitData.image_list
@@ -162,6 +175,27 @@ const LegitDetail = ({ onClose, product }) => {
                     : []
                 }
               />
+              <InputField
+                label={t('Label Detail 1')}
+                name="case-code"
+                value={legitData.case_code}
+              />
+              <InputField
+                label={t('Label Detail 4')}
+                name="name"
+                value={legitData.nama_item}
+              />
+              <InputField
+                label={t('Label Detail 3')}
+                name="brand"
+                value={legitData.nama_brand}
+              />
+              <InputField
+                label={t('Label Detail 2')}
+                name="category"
+                value={legitData.kategori_name}
+              />
+
               <InputField
                 label={t('Label Detail 5')}
                 name="purchase"
@@ -183,32 +217,6 @@ const LegitDetail = ({ onClose, product }) => {
                 value={legitData.catatan}
                 required={false}
               />
-              <div className="flex items-center justify-center w-full gap-5 pt-6">
-                <span className="h-[1px] w-1/2 sm:w-1/12 border border-gray-700 dark:border-white"></span>
-                <h3 className="text-lg font-semibold text-center uppercase w-[450px] sm:w-56">
-                  {t('Heading Result')}
-                </h3>
-                <span className="h-[1px] w-1/2 sm:w-10/12 border border-gray-700 dark:border-white"></span>
-              </div>
-              {hasAuthenticityData ? (
-                <div className="flex flex-col gap-3">
-                  <AuthenticityStatus
-                    status={checkResult}
-                    message={getCheckResultComponent(checkResult)}
-                  />
-                  <InputField
-                    label="DETAIL DESCRIPTION"
-                    name="detailDescription"
-                    value={checkNote}
-                    type="textarea"
-                  />
-                </div>
-              ) : (
-                <div className="flex items-center gap-3 py-3">
-                  <FontAwesomeIcon icon={faRotate} className="w-6 h-6" />
-                  <p>{t('Under Review')}</p>
-                </div>
-              )}
             </>
           ) : (
             <div className="min-h-[450px] flex items-center justify-center">

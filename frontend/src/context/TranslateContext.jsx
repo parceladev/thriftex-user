@@ -103,6 +103,7 @@ i18n.use(initReactI18next).init({
         'Label Detail 7': 'ITEM CONDITION',
         'Label Detail 8': 'OTHER NOTE',
         'Heading Result': 'Legit Check Result',
+        'Item Information': 'Item Information',
         'Under Review': 'Your legit check is still under review',
 
         //Photos Field
@@ -329,6 +330,7 @@ i18n.use(initReactI18next).init({
         'Label Detail 7': 'KONDISI PRODUK',
         'Label Detail 8': 'CATATAN LAIN',
         'Heading Result': 'Hasil Legit Check',
+        'Item Information': 'Item Information',
         'Under Review': 'Legit cek anda masih dalam peninjauan',
 
         //Photos Field
@@ -453,9 +455,10 @@ i18n.use(initReactI18next).init({
         'TERMS AND CONDITION': 'SYARAT DAN KETENTUAN',
 
         //CardProductLegitPublish
-        Waiting: 'menunggu',
+        Waiting: 'Menunggu',
         fake: 'Palsu',
         Original: 'Asli',
+        Declined: 'Ditolak',
       },
     },
   },
