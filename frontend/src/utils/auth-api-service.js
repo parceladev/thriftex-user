@@ -131,7 +131,7 @@ export const forgetPassword = async (email) => {
       return { error: data.message };
     }
   } catch (error) {
-    return { error: 'Server Error' };
+    return { error: 'Make Sure Input Your Email' };
   }
 };
 

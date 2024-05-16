@@ -6,7 +6,7 @@ import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 const SubmitButton = (props) => {
   const { name, onClick, onSubmit, loading, buttonColor } = props;
   const buttonStyle = {
-    backgroundColor: buttonColor // Menggunakan properti buttonColor untuk menentukan warna latar belakang tombol
+    backgroundColor: buttonColor, // Menggunakan properti buttonColor untuk menentukan warna latar belakang tombol
   };
 
   return (
@@ -14,7 +14,7 @@ const SubmitButton = (props) => {
       onClick={onClick}
       onSubmit={onSubmit}
       type="submit"
-      className="py-3 text-center rounded-md -full"
+      className="w-full py-3 text-center text-white rounded-md bg-secondary"
       style={buttonStyle}
       disabled={loading}
     >

@@ -1,7 +1,6 @@
 import { PropTypes } from 'prop-types';
 import { useRef, useEffect } from 'react';
-import { useTranslation } from "react-i18next";
-
+import { useTranslation } from 'react-i18next';
 
 const InputField = (props) => {
   const { t } = useTranslation();
@@ -21,7 +20,7 @@ const InputField = (props) => {
   const adjustHeight = () => {
     const textArea = textAreaRef.current;
     if (textArea) {
-      textArea.style.height = 'inherit'; 
+      textArea.style.height = 'inherit';
       textArea.style.height = `${textArea.scrollHeight}px`;
     }
   };
@@ -36,7 +35,7 @@ const InputField = (props) => {
         {label}
         {required && (
           <span className="text-sans text-red-600 font-light capitalize text-[14px] ml-3">
-            {t("Required")}
+            {t('Required')}
           </span>
         )}
       </label>
@@ -48,7 +47,7 @@ const InputField = (props) => {
           onChange={onChange}
           required={required}
           rows={rows}
-          className="w-full p-3 border-b-2 text-[14px] focus:outline-none"
+          className="w-full p-3 border-b-2 bg-transparent text-[14px] focus:outline-none"
           readOnly
         />
       ) : (

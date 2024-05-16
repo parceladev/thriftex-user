@@ -37,7 +37,7 @@ const LegitDetail = ({ onClose, product }) => {
       case 'real':
         return (
           <div className="flex flex-col items-center justify-center text-center border border-black dark:border-white">
-            <p className="w-full p-3 text-white uppercase bg-secondary dark:bg-primary dark:text-black">
+            <p className="w-full p-3 font-bold text-white uppercase bg-secondary dark:bg-primary dark:text-black">
               Original
             </p>
             <p className="w-full p-3 text-black uppercase dark:text-white dark:bg-secondary bg-primary">
