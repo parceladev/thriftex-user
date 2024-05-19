@@ -1,7 +1,7 @@
-import { useState } from "react";
-import { PropTypes } from "prop-types";
-import LegitDetail from "./LegitDetail";
-import { useTranslation } from "react-i18next";
+import { useState } from 'react';
+import { PropTypes } from 'prop-types';
+import LegitDetail from './LegitDetail';
+import { useTranslation } from 'react-i18next';
 
 const CardProductMyLegit = (props) => {
   const { t } = useTranslation();
@@ -12,22 +12,37 @@ const CardProductMyLegit = (props) => {
     setModalOpen(!isModalOpen);
   };
 
+  const transformCheckResult = (checkResult) => {
+    switch (checkResult) {
+      case 'Canceled':
+        return 'Declined';
+      case 'fake':
+        return 'fake';
+      case 'Original':
+        return 'Original';
+      case 'Waiting':
+        return 'Waiting';
+      default:
+        return checkResult;
+    }
+  };
+
   return (
     <>
       <div
         onClick={() => toggleModal(product)}
-        className="flex flex-col border border-black cursor-pointer dark:border-gray-600 hover:bg-gray-200 rounded-md shadow-md shadow-gray-400 dark:shadow-none"
+        className="flex flex-col border border-black shadow-md cursor-pointer hover:bg-dar dark:border-gray-60rounded-md rounded-b-md hover:shadow-gray-800 hover:shadow-md dark:shadow-none"
       >
         <img
-          className="h-48 sm:h-72 shadow-sm"
+          className="h-48 rounded-md sm:h-72"
           src={product.file_path}
           alt={product.nama_item}
         />
-        <p className="py-3 text-center dark:bg-secondary text-textBlack dark:text-textWhite rounded-md">
+        <p className="py-3 text-center border border-t-black dark:border-t-white dark:bg-secondary text-textBlack dark:text-textWhite">
           {product.nama_item}
         </p>
-        <p className="py-3 font-bold text-center uppercase text-textWhite dark:shadow-none bg-secondary dark:bg-primary dark:text-black rounded-b-md">
-          {t(product.check_result)}
+        <p className="py-3 font-bold text-center uppercase rounded-b-sm text-textWhite dark:shadow-none bg-secondary dark:bg-primary dark:text-black">
+          {t(transformCheckResult(product.check_result))}
         </p>
       </div>
       {isModalOpen && <LegitDetail product={product} onClose={toggleModal} />}

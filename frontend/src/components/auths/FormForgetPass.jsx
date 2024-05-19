@@ -9,7 +9,7 @@ import { forgetPassword } from '../../utils/auth-api-service';
 
 const FormForgetPass = () => {
   const [email, setEmail] = useState('');
-  
+
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState({
@@ -21,6 +21,7 @@ const FormForgetPass = () => {
     event.preventDefault();
     setLoading(true);
     const response = await forgetPassword(email);
+    console.log(response);
     setLoading(false);
     if (response === 'success') {
       setModalContent({

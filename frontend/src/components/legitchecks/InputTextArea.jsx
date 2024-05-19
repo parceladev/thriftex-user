@@ -1,7 +1,6 @@
 /* eslint-disable no-unused-vars */ // hapus ini kalo
 import { PropTypes } from 'prop-types';
-import { useTranslation } from "react-i18next";
-
+import { useTranslation } from 'react-i18next';
 
 const InputTextArea = (props) => {
   const { t } = useTranslation();
@@ -24,15 +23,18 @@ const InputTextArea = (props) => {
       >
         {label}
         {isRequired === 'optional' && (
-          <span className="text-xs font-normal"> {t("Optional")}</span>
+          <span className="text-xs font-normal"> {t('Optional')}</span>
         )}
         {isRequired === 'required' && (
-          <span className="text-xs font-normal text-red-500"> {t("Required")}</span>
+          <span className="text-xs font-normal text-red-500">
+            {' '}
+            {t('Required')}
+          </span>
         )}
       </label>
       <textarea
         id={id}
-        className="w-full p-2 border-b-2 outline-none bg-primary dark:bg-secondary"
+        className="w-full p-2 border-b-2 outline-none bg-primary border-secondary dark:border-primary dark:bg-secondary"
         value={value}
         onChange={onChange}
       ></textarea>
