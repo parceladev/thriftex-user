@@ -138,6 +138,7 @@ i18n.use(initReactI18next).init({
         "Different 7": "Online Certification",
 
         //AccountSettings
+        "All fields must be filled.": "All fields must be filled.",
         "Old Password Required": "Please enter your old password.",
         "Password Length": "New password must be at least 8 characters long.",
         "Password Not Match": "New passwords do not match.",
@@ -364,6 +365,7 @@ i18n.use(initReactI18next).init({
         "Different 7": "Sertifikasi Online",
 
         //AccountSettings
+        "All fields must be filled.": "Semua field harus diisi.",
         "Old Password Required": "Silakan masukkan kata sandi lama Anda.",
         "Password Length":
           "Kata sandi baru harus terdiri dari minimal 8 karakter.",

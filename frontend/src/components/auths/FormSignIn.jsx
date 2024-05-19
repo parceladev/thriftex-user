@@ -100,14 +100,18 @@ const FormSignIn = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
         placeholder="Username or Email"
+        error={!email && errorMessage === 'Both email and password are required.'}
       />
       <InputPassword
         value={password}
         onChange={(e) => setPassword(e.target.value)}
         placeholder="Your Password"
+        error={!password && errorMessage === 'Both email and password are required.'}
       />
       {errorMessage && (
-        <p className="mt-2 text-center text-red-500">{errorMessage}</p>
+        <p className={`mt-2 text-center ${errorMessage === 'Both email and password are required.' ? 'text-yellow-500' : 'text-red-500'}`}>
+          {errorMessage}
+        </p>
       )}
       {successMessage && (
         <p className="mt-2 text-center text-green-500">{successMessage}</p>
