@@ -1,8 +1,4 @@
-import {
-  SearchProduct,
-  ButtonFormLegit,
-  CardProductMyLegit,
-} from '../../components/legitchecks';
+import { SearchProduct, ButtonFormLegit, CardProductMyLegit } from '../../components/legitchecks';
 import { fetchMyLegit } from '../../utils/legit-api-service';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +11,9 @@ const MyLegitPage = () => {
   const navigate = useNavigate();
 
   const [legitData, setLegitData] = useState([]);
+  const [filteredLegitData, setFilteredLegitData] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  // const [search, setSearch] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -25,6 +24,7 @@ const MyLegitPage = () => {
         const data = await fetchMyLegit(navigate);
         if (data.status) {
           setLegitData(data.data.data);
+          setFilteredLegitData(data.data.data);
         } else {
           setError('No legit checks available at the moment.');
         }
@@ -39,12 +39,29 @@ const MyLegitPage = () => {
     getLegitData();
   }, [navigate]);
 
+
+  useEffect(() => {
+    const filtered = legitData.filter((product) =>
+      product.nama_item.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredLegitData(filtered);
+  }, [searchQuery, legitData]);
+
+  // const handleSearchChange = (event) => {
+  //   const searchText = event.target.value;
+  //   setSearch(searchText); // Memperbarui state search
+  //   const filteredProducts = legitData.filter(product =>
+  //     product.name ? product.name.toLowerCase().includes(searchText.toLowerCase()) : false
+  //   );
+  //   setFilteredLegitData(filteredProducts); // Memperbarui data yang ditampilkan berdasarkan pencarian
+  // };
+
   return (
     <div className="p-6 mt-14 sm:mt-28 sm:p-16">
       <section className="flex flex-col gap-10">
         <h2 className="text-3xl uppercase">{t('Heading My Legit')}</h2>
         <div className="flex gap-5">
-          <SearchProduct />
+          <SearchProduct onSearchChange={(e) => setSearchQuery(e.target.value)} />
           <ButtonFormLegit />
         </div>
         {loading ? (
@@ -56,9 +73,9 @@ const MyLegitPage = () => {
           <div className="flex items-center justify-center h-48">
             <p className="text-xl text-red-500">Error: {error}</p>
           </div>
-        ) : legitData.length > 0 ? (
+        ) : filteredLegitData.length > 0 ? (
           <div className="grid grid-cols-2 gap-8 sm:grid-cols-3 md:grid-cols-4">
-            {legitData.map((product) => (
+            {filteredLegitData.map((product) => (
               <CardProductMyLegit key={product.id} product={product} />
             ))}
           </div>

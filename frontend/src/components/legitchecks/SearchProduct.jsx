@@ -11,13 +11,14 @@ import { useTranslation } from "react-i18next";
 
 const SearchProduct = (props) => {
   const { t } = useTranslation();
-  const { onSearchChange } = props;
+  const { onSearchChange, value } = props;
   return (
     <div className="flex w-full h-14">
       <input
         type="text"
         placeholder={t("search page")}
         onChange={onSearchChange}
+        value={value}
         className="w-full h-full p-3 bg-transparent border border-black dark:border-white"
       />
       <button
@@ -39,6 +40,7 @@ const SearchProduct = (props) => {
 
 SearchProduct.propTypes = {
   onSearchChange: PropTypes.func,
+  value: PropTypes.string
 };
 
 export default SearchProduct;
