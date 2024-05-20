@@ -19,6 +19,7 @@ const ImageUploadBox = (props) => {
 
 ImageUploadBox.propTypes = {
   onFileSelectSuccess: PropTypes.func.isRequired,
+  inputKey: PropTypes.number.isRequired, 
 };
 
 export default ImageUploadBox;

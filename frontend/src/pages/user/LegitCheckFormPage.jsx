@@ -1,11 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
-import {
-  InputText,
-  InputImage,
-  InputTextArea,
-  InputSelect,
-} from '../../components/legitchecks';
+import { InputText, InputImage, InputTextArea, InputSelect } from '../../components/legitchecks';
 import AlertLegitCheck from '../../components/legitchecks/AlertLegitCheck';
 import { useNavigate } from 'react-router-dom';
 import { saveLegitCheck } from '../../utils/legit-api-service';
@@ -26,6 +21,7 @@ const LegitCheckFormPage = () => {
   const [itemCondition, setItemCondition] = useState('');
   const [otherNotes, setOtherNotes] = useState('');
   const [images, setImages] = useState([]);
+  const [inputKey, setInputKey] = useState('0');
 
   const [isButtonActive, setIsButtonActive] = useState(false);
   const [isAlertVisible, setAlertVisible] = useState(false);
@@ -46,15 +42,7 @@ const LegitCheckFormPage = () => {
     } else {
       setIsButtonActive(false);
     }
-  }, [
-    itemCategory,
-    itemBrand,
-    itemName,
-    storeName,
-    purchase,
-    itemCondition,
-    images,
-  ]);
+  }, [itemCategory, itemBrand, itemName, storeName, purchase, itemCondition, images]);
 
   const handleImageChange = (event) => {
     const newFiles = Array.from(event.target.files);
@@ -70,10 +58,7 @@ const LegitCheckFormPage = () => {
     if (images.length + newImages.length <= 12) {
       if (newFiles.every((file) => file.size <= 1000000)) {
         setImages((prevImages) => [...prevImages, ...newImages]);
-        setImagePreviews((prevPreviews) => [
-          ...prevPreviews,
-          ...newImagePreviews,
-        ]);
+        setImagePreviews((prevPreviews) => [...prevPreviews, ...newImagePreviews]);
       } else {
         alert('All images must be less than 1000KB.');
       }
@@ -82,6 +67,14 @@ const LegitCheckFormPage = () => {
         `You can only upload up to 12 images. You've already selected ${images.length} images.`
       );
     }
+  };
+
+  const removeImage = (index) => {
+    const filteredPreviews = imagePreviews.filter((_, idx) => idx !== index);
+    const filteredImages = images.filter((_, idx) => idx !== index);
+    setInputKey((prevKey) => prevKey + 1);
+    setImagePreviews(filteredPreviews);
+    setImages(filteredImages);
   };
 
   const handleSubmit = async (event) => {
@@ -138,12 +131,8 @@ const LegitCheckFormPage = () => {
 
   return (
     <div className="flex flex-col justify-start w-full min-h-screen p-6 sm:p-16">
-      <a
-        href="/user/legit-check"
-        className="flex items-center justify-start mt-14 sm:mt-28"
-      >
-        <FaArrowLeft />{' '}
-        <span className="pl-2 text-lg font-semibold">{t('Button Left')}</span>
+      <a href="/user/legit-check" className="flex items-center justify-start mt-14 sm:mt-28">
+        <FaArrowLeft /> <span className="pl-2 text-lg font-semibold">{t('Button Left')}</span>
       </a>
       <div className="w-full mt-8 rounded">
         <div className="mb-6 text-4xl font-semibold text-center uppercase font-didot">
@@ -183,12 +172,14 @@ const LegitCheckFormPage = () => {
             onChange={(e) => setItemName(e.target.value)}
           />
           <InputImage
+            inputKey={inputKey}
             label={t('Label Form 4')}
             htmlFor="imageUpload"
             id="imageUpload"
             isRequired="required"
             images={imagePreviews}
             setImages={setImages}
+            removeImage={removeImage}
             handleImageChange={(e) => handleImageChange(e)}
           />
           <InputSelect
