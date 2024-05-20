@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 const InputPassword = (props) => {
-  const { placeholder, value, onChange } = props;
+  const { placeholder, value, onChange, error } = props;
   const [showPassword, setShowPassword] = useState(false);
 
   const togglePasswordVisibility = () => {
@@ -18,7 +18,7 @@ const InputPassword = (props) => {
         type={showPassword ? 'text' : 'password'}
         onChange={onChange}
         placeholder={placeholder}
-        className="p-4 bg-[rgba(217,217,217,0.2)] placeholder-white text-white w-full rounded-md"
+        className={`p-4 bg-[rgba(217,217,217,0.2)] placeholder-white text-white w-full rounded-md focus:outline-none ${error ? 'border border-red-500' : 'focus:ring-1 focus:ring-white border-none'}`}
       />
       <FontAwesomeIcon
         icon={showPassword ? faEye : faEyeSlash}
@@ -33,6 +33,7 @@ InputPassword.propTypes = {
   value: PropTypes.string.isRequired,
   onChange: PropTypes.func,
   placeholder: PropTypes.string,
+  error: PropTypes.bool, // Add this line
 };
 
 export default InputPassword;

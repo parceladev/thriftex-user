@@ -20,6 +20,7 @@ const AccountSettings = () => {
     newPassword: "",
     confirmNewPassword: "",
   });
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const token = getAccessToken();
@@ -59,8 +60,8 @@ const AccountSettings = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setErrorMessage("");
 
-    // Array of alert messages
     const alertMessages = [
       t("Old Password Required"), 
       t("Password Length"),
@@ -75,16 +76,15 @@ const AccountSettings = () => {
       userData.oldPassword
     ) {
       if (!userData.oldPassword) {
-        alert(alertMessages[0]);
+        setErrorMessage(alertMessages[0]);
         return;
       }
       if (userData.newPassword.length < 8) {
-        alert(alertMessages[1]);
+        setErrorMessage(alertMessages[1]);
         return;
       }
       if (userData.newPassword !== userData.confirmNewPassword) {
-        alert(alertMessages[2]);
-
+        setErrorMessage(alertMessages[2]);
         return;
       }
     }
@@ -114,10 +114,11 @@ const AccountSettings = () => {
         window.location.reload();
       } else {
         const message = result.message || alertMessages[4];
-        alert(message);
+        setErrorMessage(message);
       }
     } catch (error) {
       console.error("Error during profile update:", error);
+      setErrorMessage(alertMessages[4]);
     }
   };
 
@@ -132,8 +133,12 @@ const AccountSettings = () => {
           <SecurityForm
             userData={userData}
             handleInputChange={handleInputChange}
+            errorMessage={errorMessage}
           />
         </div>
+        {/* {errorMessage && (
+          <p className="mt-2 text-center text-red-500">{errorMessage}</p>
+        )} */}
         <button
           type="submit"
           className="self-end w-full px-6 py-4 rounded-md mt-14 sm:mt-5 sm:w-fit bg-secondary text-textWhite dark:bg-primary dark:text-textBlack"

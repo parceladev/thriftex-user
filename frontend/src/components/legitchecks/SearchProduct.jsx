@@ -21,9 +21,9 @@ const SearchProduct = (props) => {
         className="w-full h-full p-3 bg-transparent border border-black dark:border-white"
       />
       <button
-        className={`${styles.flexCenter} p-5 border border-black dark:border-white border-l-0`}
+        className={`${styles.flexCenter} p-5  bg-secondary dark:border-white border-l-0 dark:bg-primary`}
       >
-        <FontAwesomeIcon icon={faMagnifyingGlass} className="text-2xl" />
+        <FontAwesomeIcon icon={faMagnifyingGlass} className="text-2xl text-primary dark:text-secondary" />
       </button>
 
       {/* The filter has not been used temporarily */}
