@@ -64,7 +64,7 @@ const ContactUs = () => {
     <div className="flex flex-col w-full mb-10 md:flex-1">
       <h2 className="mb-6 text-xl font-semibold">{t("Heading Contact")}</h2>
       {isSuccess && (
-        <div className="px-4 py-2 mb-4 text-green-800 bg-green-200 rounded">
+        <div className="px-4 py-2 mb-4 text-secondary dark:text-primary dark:bg-slate-800  bg-gray-200 rounded">
           {t("Div Success")}
         </div>
       )}
@@ -149,7 +149,7 @@ const ContactUs = () => {
           className={`w-full flex gap-4 items-center justify-center font-semibold py-2 transition-colors duration-200 transform rounded-md focus:outline-none ${
             isFormValid
               ? 'bg-secondary text-textWhite dark:bg-primary dark:text-textBlack hover:bg-gray-700 focus:bg-gray-700'
-              : 'bg-gray-300 text-gray-500 cursor-not-allowed'
+              : 'bg-gray-300 text-gray-500  cursor-not-allowed'
           }`}
           disabled={!isFormValid || isSubmitting}
         >
