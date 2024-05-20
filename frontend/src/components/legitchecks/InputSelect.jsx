@@ -1,13 +1,13 @@
 import { PropTypes } from "prop-types";
 import { data } from "../../datas/options-legit-form";
 import { useTranslation } from "react-i18next";
-import { fetchCategories } from "../../utils/brand-api-service";
+import { fetchBrands, fetchCategories } from "../../utils/brand-api-service";
 import { useState, useEffect } from "react";
 
 const InputSelect = (props) => {
   const { t } = useTranslation();
   const [categories, setCategories] = useState([]);
-  console.log(categories)
+  const [brands, setBrands] = useState([]);
   const {
     label,
     name,
@@ -22,29 +22,51 @@ const InputSelect = (props) => {
   } = props;
 
   useEffect(() => {
+    const loadCategories = async () => {
+      try {
+        const data = await fetchCategories();
+        if (data) {
+          setCategories(data);
+        }
+      } catch (error) {
+        console.error("Error fetching categories:", error);
+      }
+    };
+
+    const loadBrands = async () => {
+      try {
+        const result = await fetchBrands(1, 100); // Misalnya, dengan page=1 dan limit=10
+        if (result && result.data && result.data.data) {
+          setBrands(result.data.data);
+        }
+      } catch (error) {
+        console.error("Error fetching brands:", error);
+      }
+    };
+
     if (dataType === "categories" && categories.length === 0) {
-      fetchCategories()
-        .then((data) => {
-          if (data) {
-            setCategories(data);
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching categories:", error);
-        });
+      loadCategories();
     }
-  }, [dataType, categories]);
+
+    if (dataType === "brands" && brands.length === 0) {
+      loadBrands();
+    }
+  }, [dataType, categories.length, brands.length]);
+
   let optionsData = [];
 
   switch (dataType) {
-    case 'categories':
-      optionsData = categories.map(category => ({
+    case "categories":
+      optionsData = categories.map((category) => ({
         value: category.id,
-        label: category.kategori_name
+        label: category.kategori_name,
       }));
       break;
     case "brands":
-      optionsData = data.brands;
+      optionsData = brands.map((brand) => ({
+        value: brand.id,
+        label: brand.brand_name,
+      }));
       break;
     case "purchases":
       optionsData = data.purchases;

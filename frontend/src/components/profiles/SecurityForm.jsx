@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 
 const SecurityForm = (props) => {
   const { t } = useTranslation();
-  const { userData, handleInputChange } = props;
+  const { userData, handleInputChange, errorMessage } = props;
   const [showChangePassword, setShowChangePassword] = useState(false);
 
   const toggleChangePassword = () => {
@@ -57,6 +57,7 @@ const SecurityForm = (props) => {
             value={userData.oldPassword}
             onChange={handleInputChange}
             readOnly={false}
+            className={errorMessage && userData.oldPassword === "" ? 'border-red-500' : ''}
           />
           <InputForm
             label={t("Label Security 4")}
@@ -69,6 +70,7 @@ const SecurityForm = (props) => {
             value={userData.newPassword}
             onChange={handleInputChange}
             readOnly={false}
+            className={errorMessage && userData.newPassword.length < 8 ? 'border-red-500' : ''}
           />
           <InputForm
             label={t("Label Security 5")}
@@ -81,14 +83,20 @@ const SecurityForm = (props) => {
             value={userData.confirmNewPassword}
             onChange={handleInputChange}
             readOnly={false}
+            className={errorMessage && userData.newPassword !== userData.confirmNewPassword ? 'border-red-500' : ''}
           />
-          <button
-            onClick={toggleChangePassword}
-            type="button"
-            className="px-4 py-2 text-lg text-gray-600 bg-white border rounded-sm w-fit hover:bg-gray-100"
-          >
-            {t("Button Cancel")}
-          </button>
+          <div className="flex items-center">
+            <button
+              onClick={toggleChangePassword}
+              type="button"
+              className="px-4 py-2 text-lg text-gray-600 bg-white border rounded-sm w-fit hover:bg-gray-100"
+            >
+              {t("Button Cancel")}
+            </button>
+            {errorMessage && (
+              <p className="ml-4 text-sm text-red-500">{errorMessage}</p>
+            )}
+          </div>
         </>
       )}
       {!showChangePassword && (
@@ -112,6 +120,7 @@ SecurityForm.propTypes = {
     confirmNewPassword: PropTypes.string,
   }).isRequired,
   handleInputChange: PropTypes.func.isRequired,
+  errorMessage: PropTypes.string,
 };
 
 export default SecurityForm;

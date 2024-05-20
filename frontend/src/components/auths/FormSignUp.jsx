@@ -6,8 +6,10 @@ import InputPassword from './InputPassword';
 import InputEmail from './InputEmail';
 import SubmitButton from './SubmitButton';
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+import { useTranslation } from 'react-i18next';
 
 const FormSignUp = () => {
+  const { t } = useTranslation();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,23 +20,23 @@ const FormSignUp = () => {
 
   const validateForm = () => {
     if (!name || !email || !password || !confirmPassword) {
-      setErrorMessage('All fields must be filled.');
+      setErrorMessage(t('All fields must be filled.'));
       return false;
     }
 
     const emailRegex = /\S+@\S+\.\S+/;
     if (!emailRegex.test(email)) {
-      setErrorMessage('Please enter a valid email address.');
+      setErrorMessage(t('Please enter a valid email address.'));
       return false;
     }
 
     if (password.length < 8) {
-      setErrorMessage('Password must be at least 8 characters long.');
+      setErrorMessage(t('Password must be at least 8 characters long.'));
       return false;
     }
 
     if (password !== confirmPassword) {
-      setErrorMessage('Password does not match!');
+      setErrorMessage(t('Password does not match!'));
       return false;
     }
 
@@ -64,7 +66,7 @@ const FormSignUp = () => {
     setSuccessMessage('');
 
     const handleSuccess = () => {
-      setSuccessMessage('Please Wait, Redirecting...');
+      setSuccessMessage(t('Redirecting'));
       setTimeout(() => {
         navigate('/user/home');
       }, 1000);
@@ -83,12 +85,12 @@ const FormSignUp = () => {
   };
 
   const handleGoogleError = (error) => {
-    alert('Login dengan Google gagal. Silakan coba lagi.');
+    alert(t('Login with Google failed. Please try again.'));
     console.error('Login Error:', error);
   };
 
   const handleSuccess = () => {
-    setSuccessMessage('Registration Success! Redirecting to sign in...');
+    setSuccessMessage(t('Registration Success! Redirecting to sign in...'));
     setTimeout(() => {
       navigate('/auth/sign-in');
     }, 1000);
@@ -112,37 +114,42 @@ const FormSignUp = () => {
       </a>
       <input
         type="text"
+        value={name}
         onChange={(e) => setName(e.target.value)}
-        placeholder="Your Name"
-        className="p-4 bg-[rgba(217,217,217,0.2)] placeholder-white w-full text-white rounded-md"
+        placeholder={t('Your Name')}
+        className={`p-4 bg-[rgba(217,217,217,0.2)] placeholder-white w-full text-white rounded-md focus:outline-none focus:ring-1 focus:ring-white ${!name && errorMessage === t('All fields must be filled.') ? 'border border-red-500' : 'border-none'}`}
       />
       <InputEmail
         value={email}
         onChange={(e) => setEmail(e.target.value)}
-        placeholder="Your Email"
+        placeholder={t('Your Email')}
+        error={errorMessage && (errorMessage.includes('email') || (!email && errorMessage === t('All fields must be filled.')))}
       />
       <InputPassword
         value={password}
         onChange={(e) => setPassword(e.target.value)}
-        placeholder="Your Password"
+        placeholder={t('Your Password')}
+        error={errorMessage && (errorMessage.includes('Password') || errorMessage.includes('match') || (!password && errorMessage === t('All fields must be filled.')))}
       />
       <InputPassword
         value={confirmPassword}
         onChange={(e) => setConfirmPassword(e.target.value)}
-        placeholder="Confirm Password"
+        placeholder={t('Confirm Password')}
+        error={errorMessage && (errorMessage.includes('match') || (!confirmPassword && errorMessage === t('All fields must be filled.')))}
       />
       {errorMessage && (
-        <p className="mt-2 text-center text-red-500">{errorMessage}</p>
+        <p className={`mt-2 text-center ${errorMessage === t('All fields must be filled.') ? 'text-yellow-500' : 'text-red-500'}`}>
+          {errorMessage}
+        </p>
       )}
       {successMessage && (
         <p className="mt-2 text-center text-green-500">{successMessage}</p>
       )}
       <SubmitButton
-        name="Sign Up"
+        name={t('Sign Up')}
         buttonColor={buttonColor}
         onClick={handleSubmit}
       />
-
       <div className="flex justify-center w-full">
         <GoogleOAuthProvider clientId="516243855300-ajgnmk64lo4sp73mlrubpef808lpglvc.apps.googleusercontent.com">
           <GoogleLogin

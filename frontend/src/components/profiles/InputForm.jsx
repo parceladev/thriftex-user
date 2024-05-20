@@ -4,8 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useTranslation } from "react-i18next";
 
-
-const InputForm = (props) => {  
+const InputForm = (props) => {
   const { t } = useTranslation();
   const {
     label,
@@ -19,6 +18,7 @@ const InputForm = (props) => {
     onChange,
     children,
     className,
+    error,
   } = props;
 
   const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +60,7 @@ const InputForm = (props) => {
               onChange={type === "tel" ? handleNumericChange : onChange}
               placeholder={placeholder}
               readOnly={isRequired === "none"}
-              className={`w-full p-2 border-b-2 bg-primary dark:bg-secondary rounded border-slate-800 dark:border-primary focus:outline-none focus:ring-0 ${className}`}
+              className={`w-full p-2 border-b-2 bg-primary dark:bg-secondary rounded border-slate-800 dark:border-primary focus:outline-none focus:ring-0 ${className} ${error ? 'border-red-500' : ''}`}
             />
             {type === "password" && isRequired !== "none" && (
               <button
@@ -105,6 +105,7 @@ InputForm.propTypes = {
   ]),
   onChange: PropTypes.func,
   children: PropTypes.node,
+  error: PropTypes.bool, // Change this line to bool
 };
 
 export default InputForm;
