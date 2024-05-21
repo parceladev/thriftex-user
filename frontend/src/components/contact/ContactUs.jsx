@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { fetchContactEmail } from './../../utils/email-api-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleNotch } from '@fortawesome/free-solid-svg-icons';
@@ -13,6 +13,8 @@ const ContactUs = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
 
   const isFormValid =
     name.trim() !== '' && email.trim() !== '' && message.trim() !== '';
@@ -60,8 +62,12 @@ const ContactUs = () => {
     }
   };
 
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
   return (
-    <div className="flex flex-col w-full mb-10 md:flex-1">
+    <div className={`flex flex-col w-full mb-10 md:flex-1 transition-opacity duration-1000 ease-in-out ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
       <h2 className="mb-6 text-xl font-semibold">{t("Heading Contact")}</h2>
       {isSuccess && (
         <div className="px-4 py-2 mb-4 text-secondary dark:text-primary dark:bg-slate-800  bg-gray-200 rounded">
