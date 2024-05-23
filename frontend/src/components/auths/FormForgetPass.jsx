@@ -23,12 +23,14 @@ const FormForgetPass = () => {
     event.preventDefault();
     setLoading(true);
     const response = await forgetPassword(email);
-    console.log(response);
     setLoading(false);
-    if (response === 'success') {
+    if (response.status) {
       setModalContent({
         title: t('Email Sent'),
-        description: t('We sent an email to {{email}} with a link to reset the password.', { email }),
+        description: t(
+          'We sent an email to {{email}} with a link to reset the password.',
+          { email }
+        ),
       });
       setShowModal(true);
     } else {
@@ -52,7 +54,9 @@ const FormForgetPass = () => {
       <div className="flex flex-col gap-3 px-5 text-center text-white">
         <h3 className="text-2xl font-bold">{t('Trouble logging in?')}</h3>
         <p className="text-md">
-          {t('Enter your email and we’ll send you a link to get back into your account')}
+          {t(
+            'Enter your email and we’ll send you a link to get back into your account'
+          )}
         </p>
       </div>
       <InputEmail

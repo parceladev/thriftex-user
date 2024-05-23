@@ -124,11 +124,11 @@ export const forgetPassword = async (email) => {
       }
     );
 
-    const data = response.data;
-    if (data.message === 'success') {
-      return data.message;
+    const data = response.status;
+    if (data === 200) {
+      return response;
     } else {
-      return { error: data.message };
+      return { error: response };
     }
   } catch (error) {
     return { error: 'Make Sure Input Your Email' };
