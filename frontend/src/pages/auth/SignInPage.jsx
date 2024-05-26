@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import FormSignIn from './../../components/auths/FormSignIn';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const SignInPage = () => {
   const { t, i18n } = useTranslation();
@@ -8,11 +8,11 @@ const SignInPage = () => {
 
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
-    localStorage.setItem("i18nextLng", language);
+    localStorage.setItem('i18nextLng', language);
   };
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("i18nextLng") || "en";
+    const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
     i18n.changeLanguage(savedLanguage);
   }, [i18n]);
 
@@ -20,7 +20,7 @@ const SignInPage = () => {
     <div
       className="flex flex-col items-center justify-center w-full h-full min-h-screen gap-8"
       style={{
-        backgroundImage: "url('/src/assets/auth/bg-img-auth.png')",
+        backgroundImage: "url('../../public/auth/maksym.jpg')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
       }}
@@ -45,7 +45,7 @@ const SignInPage = () => {
         <div className="flex gap-1 py-8 text-white">
           <p>{title}</p>
           <a href="/auth/sign-up" className="font-bold">
-            {t("Sign Up")}
+            {t('Sign Up')}
           </a>
         </div>
       </div>

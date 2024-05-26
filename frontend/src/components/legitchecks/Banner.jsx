@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react';
-import backgroundImage from '/src/assets/user/legit-check-page/banner.png';
+import backgroundImage from '../../../public/legitcheckpage/Stan_Smith_Lux_Shoes_White_IG6421_01_standard.avif';
 import { fetchTotalLegitChecks } from '../../utils/legit-api-service';
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
 
 const Banner = () => {
   const [animate, setAnimate] = useState(false);
@@ -10,7 +10,6 @@ const Banner = () => {
   const styleRef = useRef();
   const legitStyleRef = useRef();
   const { t } = useTranslation();
-
 
   // Set All Animations Start
   useEffect(() => {
@@ -74,25 +73,28 @@ const Banner = () => {
       }`}
     >
       <div
-        className="absolute top-0 left-0 z-0 w-full h-full transition-opacity duration-[3000ms] bg-cover bg-opacity-90"
+        className="absolute top-0 left-0 z-0 w-full h-full transition-opacity duration-[3000ms] bg-cover bg-opacity-90 grayscale"
         style={{
           backgroundImage: `url(${backgroundImage})`,
           opacity: animate ? 1 : 0,
+          backgroundPosition: 'center 20%',
         }}
-      ></div>
+      >
+        <div className="absolute top-0 left-0 w-full h-full bg-black opacity-30"></div>
+      </div>
 
       <div className="z-10 flex-col hidden sm:mt-20 sm:flex">
         <h1
           ref={styleRef}
           className="w-full uppercase opacity-0 text-6xl font-didot"
         >
-          {t("bannerlegit 1")}
+          {t('bannerlegit 1')}
         </h1>
         <h1
           ref={legitStyleRef}
           className="self-end w-full uppercase opacity-0 text-end text-9xl font-didot"
         >
-          {t("bannerLegit 2")}
+          {t('bannerLegit 2')}
         </h1>
       </div>
       <div
@@ -107,11 +109,13 @@ const Banner = () => {
           <p className="text-7xl sm:text-5xl font-didot">{currentCount}</p>
           <span className="hidden w-full h-1 sm:block border-[2px] border-white"></span>
           <p className="text-xl uppercase sm:text-2xl font-didot">
-            {t("bannerLegit 3")}
+            {t('bannerLegit 3')}
           </p>
         </div>
         <div className="self-end hidden sm:flex">
-          <h4 className="text-3xl uppercase font-didot">{t("bannerLegit 4")}</h4>
+          <h4 className="text-3xl uppercase font-didot">
+            {t('bannerLegit 4')}
+          </h4>
         </div>
       </div>
     </div>

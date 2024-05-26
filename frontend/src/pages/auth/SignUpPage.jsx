@@ -1,18 +1,18 @@
-import FormSignUp from "./../../components/auths/FormSignUp";
-import { useTranslation } from "react-i18next";
-import { useEffect } from "react";
+import FormSignUp from './../../components/auths/FormSignUp';
+import { useTranslation } from 'react-i18next';
+import { useEffect } from 'react';
 
 const SignUpPage = () => {
   const { t, i18n } = useTranslation();
-  const title = t("Have any account?");
+  const title = t('Have any account?');
 
   const handleLanguageChange = (language) => {
     i18n.changeLanguage(language);
-    localStorage.setItem("i18nextLng", language);
+    localStorage.setItem('i18nextLng', language);
   };
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("i18nextLng") || "en";
+    const savedLanguage = localStorage.getItem('i18nextLng') || 'en';
     i18n.changeLanguage(savedLanguage);
   }, [i18n]);
 
@@ -20,9 +20,9 @@ const SignUpPage = () => {
     <div
       className="flex flex-col items-center justify-center w-full h-full min-h-screen gap-10"
       style={{
-        backgroundImage: "url('/src/assets/auth/bg-img-auth.png')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
+        backgroundImage: "url('../../public/auth/maksym.jpg')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
       }}
     >
       <div className="flex flex-col items-center w-full px-8">
@@ -45,7 +45,7 @@ const SignUpPage = () => {
         <div className="flex gap-1 py-8 text-white">
           <p>{title}</p>
           <a href="/auth/sign-in" className="font-bold">
-            {t("Sign In")}
+            {t('Sign In')}
           </a>
         </div>
       </div>
