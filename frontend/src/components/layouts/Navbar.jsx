@@ -1,7 +1,7 @@
 // eslint-disable-next-line no-unused-vars
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import logo from "../../../public/generals/thriftex-logo-text.jpg";
+// import logo from "../../../public/generals/realnfake.png";
 import { NavLink } from "react-router-dom";
 import { FiMenu, FiX } from "react-icons/fi";
 import { BiGlobe } from "react-icons/bi";
@@ -101,7 +101,8 @@ const Navbar = () => {
       >
         <div className="logo">
           <a href="/user/home">
-            <img className="h-10 w-44" src={logo} alt="Verifex" />
+            {/* <img className="h-fit w-44" src={logo} alt="RealnFake" /> */}
+            <p className="flex gap-1 font-semibold text-2xl tracking-[6px] dark:text-white">REAL<span className="pr-1 text-2xl">n</span>FAKE</p>
           </a>
         </div>
         <div className="items-center hidden space-x-32 sm:flex">
