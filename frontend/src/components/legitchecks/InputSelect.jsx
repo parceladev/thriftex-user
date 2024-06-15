@@ -64,7 +64,7 @@ const InputSelect = (props) => {
       break;
     case "brands":
       optionsData = brands.map((brand) => ({
-        value: brand.id,
+        value: brand.brand_name,
         label: brand.brand_name,
       }));
       break;

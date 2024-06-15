@@ -114,6 +114,7 @@ const LegitCheckFormPage = () => {
           setAlertVisible(true);
         } else {
           console.error('Error submitting form:', result.message);
+          alert(result.message || 'Unknown error occurred');
         }
       } catch (error) {
         console.error('Error submitting form:', error);

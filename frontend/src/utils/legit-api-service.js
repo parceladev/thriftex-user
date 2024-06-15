@@ -59,6 +59,7 @@ export const fetchDetailMyLegit = async (case_code) => {
     });
 
     const datas = response.data;
+    console.log("datas",datas)
 
     return datas;
   } catch (error) {
@@ -91,14 +92,14 @@ export const saveLegitCheck = async (formData, navigate) => {
     return response.data;
   } catch (error) {
     if (error.response) {
-      console.log(error.response.data);
+      alert("Image formats are not permitted, please use jpg, jpeg, or png image formats")
+      // alert("error response data",error.response.data);
     } else if (error.request) {
-      console.log(error.request);
+      alert("error request",error.request);
     } else {
-      console.log('Error', error.message);
+      alert('Error message',  error.message);
     }
-    console.log(error.config);
-    console.error('something went wrong!');
+    alert('Failed to send a legit product!');
     throw error;
   }
 };
