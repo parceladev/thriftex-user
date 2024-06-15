@@ -6,11 +6,11 @@ const Footer = () => {
   const { t } = useTranslation();
   const routes = [
     { id: 'contact', path: '/user/contact-us', name: t("CONTACT") },
-    {
-      id: 'terms',
-      path: '/user/terms-of-condition',
-      name: t("TERMS AND CONDITION"),
-    },
+    // {
+    //   id: 'terms',
+    //   path: '/user/terms-of-condition',
+    //   name: t("TERMS AND CONDITION"),
+    // },
     { id: 'faq', path: '/user/contact-us', name: 'FAQ' },
   ];
 
